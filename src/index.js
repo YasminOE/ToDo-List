@@ -5,4 +5,4 @@ import './style.css';
   alert('eee');
  }
 
- document.body.appendChild(component());
+ document.body.append(component());
