@@ -1,6 +1,7 @@
 const path = require('path');
 const common = require('./webpack.config');
 const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 module.exports = merge(common,{
@@ -9,6 +10,6 @@ module.exports = merge(common,{
   output: {
     filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
   },
+  plugins: [new CleanWebpackPlugin()],
 });
