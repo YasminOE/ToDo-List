@@ -1,4 +1,5 @@
 // import date library for due date
+import { addDays } from "date-fns";
 
 // Task Constructor
 function Task(taskName, description, dueDate, priority, type) {
@@ -7,7 +8,7 @@ function Task(taskName, description, dueDate, priority, type) {
 
   this.taskName = taskName;
   this.description = description;
-  this.dueDate = dueDate;
+  this.dueDate = dueDate || addDays(new Date(), 1); // TODO: making the dates more dynamic
   this.priority = priorityTypes[priority];
   this.type = taskType[type];
 }
@@ -36,9 +37,13 @@ class TaskManager {
 export default function handleTask() {
   const taskManager = new TaskManager();
 
-  taskManager.addTask(new Task('add task test to be removed', 'add test', 'test', '1', '2'));
-  taskManager.addTask(new Task('add task test', 'add test', 'test', '4', '0'));
-  taskManager.addTask(new Task('add another task test', 'add test', 'test', '4', '0'));
+  const today = new Date();
+  const tomorrow = addDays(today, 1);
+  const inThreeDays = addDays(today, 3);
+
+  taskManager.addTask(new Task('add task test to be removed', 'add test', today, '1', '2'));
+  taskManager.addTask(new Task('add task test', 'add test', tomorrow, '4', '0'));
+  taskManager.addTask(new Task('add another task test', 'add test', inThreeDays, '4', '0'));
 
   taskManager.tasks.forEach(task => console.log(task));
 
@@ -46,3 +51,4 @@ export default function handleTask() {
 
   console.log(taskManager.tasks);
 }
+
