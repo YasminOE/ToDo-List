@@ -67,4 +67,6 @@ export default function handleTask() {
   taskManager.updateTask('add another task test', { description: 'Updated description', priority: 'priorityOne' });
 
   console.log(taskManager.tasks);
+
+  return taskManager;
 }
