@@ -8,7 +8,7 @@ function Task(taskName, description, dueDate, priority, type) {
 
   this.taskName = taskName;
   this.description = description;
-  this.dueDate = dueDate || addDays(new Date(), 1); // TODO: making the dates more dynamic
+  this.dueDate = dueDate || addDays(new Date(), 0); // Use the provided dueDate or default to today
   this.priority = priorityTypes[priority];
   this.type = taskType[type];
 }
@@ -30,6 +30,25 @@ class TaskManager {
       console.log(`${removedTask[0].taskName} has been removed`);
     }
   }
+
+  updateDueDate(taskName, newDueDate) {
+    const task = this.tasks.find(task => task.taskName === taskName);
+
+    if (task) {
+      task.dueDate = newDueDate;
+      console.log(`${task.taskName}'s due date has been updated to ${newDueDate}`);
+    }
+  }
+
+  updateTask(taskName, updatedProperties) {
+    const task = this.tasks.find(task => task.taskName === taskName);
+
+    if (task) {
+      Object.assign(task, updatedProperties);
+      console.log(`${task.taskName}'s information has been updated`);
+    }
+  }
+  // TODO: add project task 
 }
 
 // test
@@ -37,18 +56,15 @@ class TaskManager {
 export default function handleTask() {
   const taskManager = new TaskManager();
 
-  const today = new Date();
-  const tomorrow = addDays(today, 1);
-  const inThreeDays = addDays(today, 3);
-
-  taskManager.addTask(new Task('add task test to be removed', 'add test', today, '1', '2'));
-  taskManager.addTask(new Task('add task test', 'add test', tomorrow, '4', '0'));
-  taskManager.addTask(new Task('add another task test', 'add test', inThreeDays, '4', '0'));
+  taskManager.addTask(new Task('add task test to be removed', 'add test', new Date(), '1', '2'));
+  taskManager.addTask(new Task('add task test', 'add test', addDays(new Date(), 1), '4', '0'));
+  taskManager.addTask(new Task('add another task test', 'add test', addDays(new Date(), 3), '4', '0'));
 
   taskManager.tasks.forEach(task => console.log(task));
 
-  taskManager.removeTask('add task test');
+  taskManager.updateDueDate('add task test', addDays(new Date(), 7));
+
+  taskManager.updateTask('add another task test', { description: 'Updated description', priority: 'priorityOne' });
 
   console.log(taskManager.tasks);
 }
-
