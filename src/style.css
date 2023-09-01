@@ -39,33 +39,33 @@ div#header > ul#inbox{
 
 
 
-ul#inbox > li:nth-child(2){
+div#header > ul#inbox > li:nth-child(2){
  width: 400px;
  display: flex;
  justify-content: flex-start;
  align-items: flex-start;
 }
 
-ul#inbox > li:nth-child(1) > img{
+div#header > ul#inbox > li:nth-child(1) > img{
   padding: 10px;
   border: 2px solid #4653EC;
   border-radius: 7px;
   cursor: pointer;
 }
-ul#inbox > li:nth-child(1) > img:hover{
+div#header > ul#inbox > li:nth-child(1) > img:hover{
   background-color: #FBE184;
   border: 2px solid #FBE184;
   transition: 1s all ease;
 }
 
-ul#inbox > li:nth-child(2) > img { 
+div#header > ul#inbox > li:nth-child(2) > img { 
   position: relative;
   top: 10px;
   left: 40px;
 
 }
 
-ul#inbox > li:nth-child(2) > input {
+div#header > ul#inbox > li:nth-child(2) > input {
   padding: 10px 70px;
   border-radius: 10px;
   font-size: 1.1rem;
@@ -74,7 +74,7 @@ ul#inbox > li:nth-child(2) > input {
   color: #4653EC;
 }
 
-ul#inbox > li:nth-child(2) > input:focus{
+div#header > ul#inbox > li:nth-child(2) > input:focus{
   background: #FBE184;
   padding: 10px 78px;
   transition: 1s all ease;

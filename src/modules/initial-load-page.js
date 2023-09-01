@@ -6,18 +6,18 @@ function createHeader(){
   inboxSec.setAttribute('id', 'inbox');
   const homeLi = document.createElement('li');
   const homeIcon = document.createElement('img');
-  homeIcon.src = './icons/home.svg';
+  homeIcon.src = 'icons/home.svg';
   homeLi.appendChild(homeIcon);
   inboxSec.appendChild(homeLi);
 
   const searchLi = document.createElement('li');
   const searchIcon = document.createElement('img');
-  searchIcon.src = './icons/search.svg';
+  searchIcon.src = 'icons/search.svg';
   const searchInput = document.createElement('input');
   Object.assign(searchIcon,{
     type: 'test',
     value: '',
-    placeholder: 'Search anything ...'
+    placeholder: 'Search anything ...',
   });
   searchLi.appendChild(searchIcon);
   searchLi.appendChild(searchInput);
@@ -28,36 +28,36 @@ function createHeader(){
   const logoSec = document.createElement('ul');
   logoSec.setAttribute('id', 'logo');
   const logoIcon = document.createElement('img');
-  logoIcon.src = './icons/logo1.png';
+  logoIcon.src = 'icons/logo1.png';
   homeLi.appendChild(logoIcon);
 
   header.appendChild(logoSec);
 
 
-  const accontInfoSec = document.createElement('ul');
-  accontInfoSec.setAttribute('id', 'account-info');
+  const accountInfoSec = document.createElement('ul');
+  accountInfoSec.setAttribute('id', 'account-info');
   const addTask = document.createElement('li');
   addTask.setAttribute('id', 'add-task');
   const addTaskIcon = document.createElement('img');
-  addTaskIcon.src = './icons/add-task.svg';
+  addTaskIcon.src = 'icons/add-task.svg';
   addTask.appendChild(addTaskIcon);
-  accontInfoSec.appendChild(addTask);
+  accountInfoSec.appendChild(addTask);
 
   const notification = document.createElement('li');
   notification.setAttribute('id', 'notification');
   const notificationIcon = document.createElement('img');
-  notificationIcon.src = './icons/notification.svg';
+  notificationIcon.src = 'icons/notification.svg';
   notification.appendChild(notificationIcon);
-  accontInfoSec.appendChild(notification);
+  accountInfoSec.appendChild(notification);
 
   const profilePic = document.createElement('li');
-  profilePic.setAttribute('id', 'profile-pic"');
+  profilePic.setAttribute('id', 'profile-pic');
   const profileIcon = document.createElement('img');
-  profileIcon.src = './icons/profile-pic1.png';
+  profileIcon.src = 'icons/profile-pic1.png';
   profilePic.appendChild(profileIcon);
-  accontInfoSec.appendChild(profilePic);
+  accountInfoSec.appendChild(profilePic);
   
-  header.appendChild(accontInfoSec);
+  header.appendChild(accountInfoSec);
 
   return header;
 
