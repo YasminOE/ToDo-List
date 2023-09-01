@@ -6,22 +6,28 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Albert Sans', sans-serif;
+
+}
+body{
+  background: #F0E9D7;
+
 }
 
 div#content{
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 2fr 6fr ;
+  grid-template-rows: 92px 12fr ;
   grid-template-areas: 
   "header header"
-  "nav tasksArea";
-  background: #DEE8E0;
+  "tasksArea nav";
+  height: 100vh;
 }
 
 /* Header */
 div#content > div#header{
   grid-area: header;
-  border: 1px solid #4653EC;
+  height: 92px;
+  border: 1px solid #DEE8E0;
   display: grid;
   grid-template-columns: 3fr 6fr 3fr;
   grid-template-rows: auto;
@@ -29,6 +35,7 @@ div#content > div#header{
   "search logo profile";
   /* background: #E1DFD3; */
   /* padding: 40px; */
+  background: #FFFBF2;
 }
 
 div#header > ul {
@@ -39,6 +46,7 @@ div#header > ul {
 div#header > ul#inbox{
   grid-area: search;
   list-style: none;
+  margin-left: 30px;
 }
 
 
@@ -59,8 +67,8 @@ div#header > ul#inbox > li:nth-child(1) > span{
   font-weight: 500;
 }
 div#header > ul#inbox > li:nth-child(1) > span:hover{
-  background-color: #FBE184;
-  border: 2px solid #FBE184;
+  background-color: #CFC0A0;
+  border: 2px solid #CFC0A0;
   transition: 1s all ease;
 }
 
@@ -141,14 +149,76 @@ ul#account-info > li#profile-pic > img{
 
 div#content > div#navbar{
   grid-area: navbar;
-  border: 1px solid red;
+  border: 2px solid #FFFBF2;
+  border-radius: 0px 20px 20px 0 ;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 4fr 6fr 2fr;
+  grid-template-areas: 
+  "dateViews"
+  "projectViews"
+  "soon";
+  /* gap: 10px; */
+  /* width: calc(100%/4); */
+  width: 600px;
+  background-color: rgba(255, 251, 242, 0.80);
+}
+
+div#content > div#navbar > ul{
+  /* border: 1px solid red; */
+  margin: 20px 30px;
+}
+div#content > div#navbar > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 10px;
+  margin: 10px 10px 10px 0px;
+  border-radius: 7px;
+}
+
+div#content > div#navbar > ul > li:hover , div#content > div#navbar > ul > li:focus {
+  background:#F4F5F7;
+  transition: 1s all ease;
+  
+}
+
+div#content > div#navbar > ul#date-views{
+  grid-area: dateViews;
+  font-weight: 400;
+}
+
+div#content > div#navbar > ul#date-views > li:nth-child(1){
+  color: #EC5C28;
+}
+div#content > div#navbar > ul#date-views > li:nth-child(2){
+  color: #809A7D;
+}
+div#content > div#navbar > ul#date-views > li:nth-child(3){
+  color: #CFC09F;
 }
 
 
+
+
+div#content > div#navbar > ul#project-views{
+  grid-area: projectViews;
+  list-style-type: circle;
+  list-style-position: inside;
+}
+  /* border: 1px solid red; */
+
+
+
+div#content > div#navbar > ul#soon{
+  grid-area: soon;
+  /* border: 1px solid red; */
+}
 
 /* tasks Area */
 
 div#content > div#navbar{
   grid-area: tasksArea;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }

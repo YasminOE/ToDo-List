@@ -11,15 +11,52 @@
 <body>
   <div id="content">
     <div id="navbar">
-     <ul id="DateViews">
+     <ul id="date-views">
+      <li id="inbox-view">
+        <span class="material-symbols-outlined">inbox</span>
+        Inbox
+      </li>
 
-     </ul>
-     <ul id="projectViews">
+      <li id="today-view">
+        <span class="material-symbols-outlined">event</span>
+        Today
+      </li>
+
+      <li id="upcoming-view">
+        <span class="material-symbols-outlined">calendar_month</span>
+        Upcoming
+      </li>
       
      </ul>
+     <ul id="project-views">
+      <li id="home">Home 🏡</li>
+      <li id="work">My work 🎯</li>
+     </ul>
+
+     <ul id="soon">
+      <li>
+        <span class="material-symbols-outlined">group_add</span>
+        Add team workspace
+      </li>
+     </ul>
+
     </div>
+
     <div id="tasksArea">
       <h1 id="areaName">Inbox</h1>
+      <ul id="tasks-view">
+        <li id="task-block">
+          <input type="radio">
+          <p id="task-name">Add new task</p>
+          <p id="describtion">Task describtion</p>
+        </li>      
+        <li id="task-info">
+          <p id="due-date"><span class="material-symbols-outlined">
+            event_note
+            </span> Today</p>
+            
+        </li>
+      </ul>
     </div>
   </div>
   <script type="module" src="index.js"></script>
