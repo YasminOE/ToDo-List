@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -8,6 +9,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/indexSrc.html'
     }),
+
+    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
@@ -22,14 +25,17 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: '/icons/[name][ext]',
+        },
         // use: {
         //    loader: 'file-loader',
         //    options: {
-        //     name: '[name].[ext]',
+        //     name: './[name].[ext]',
         //      outputPath: "icons"
         //    }
-        //  },
-      },
+        //},
+         },
      {
        test: /\.(woff|woff2|eot|ttf|otf)$/i,
        type: 'asset/resource',
