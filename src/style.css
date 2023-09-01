@@ -1,3 +1,125 @@
 *{
-  background-color:aqua;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+div#content{
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 2fr 6fr ;
+  grid-template-areas: 
+  "header header"
+  "nav tasksArea";
+  background: #DEE8E0;
+}
+
+/* Header */
+div#content > div#header{
+  grid-area: header;
+  border: 1px solid #4653EC;
+  display: grid;
+  grid-template-columns: 3fr 6fr 3fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "search logo profile";
+  /* background: #E1DFD3; */
+  /* padding: 40px; */
+}
+
+div#header > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div#header > ul#inbox{
+  grid-area: search;
+  list-style: none;
+}
+
+
+
+ul#inbox > li:nth-child(2){
+ width: 400px;
+ display: flex;
+ justify-content: flex-start;
+ align-items: flex-start;
+}
+
+ul#inbox > li:nth-child(1) > img{
+  padding: 10px;
+  border: 2px solid #4653EC;
+  border-radius: 7px;
+  cursor: pointer;
+}
+ul#inbox > li:nth-child(1) > img:hover{
+  background-color: #FBE184;
+  border: 2px solid #FBE184;
+  transition: 1s all ease;
+}
+
+ul#inbox > li:nth-child(2) > img { 
+  position: relative;
+  top: 10px;
+  left: 40px;
+
+}
+
+ul#inbox > li:nth-child(2) > input {
+  padding: 10px 70px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background: inherit;
+  border: 2px solid #4653EC;
+  color: #4653EC;
+}
+
+ul#inbox > li:nth-child(2) > input:focus{
+  background: #FBE184;
+  padding: 10px 78px;
+  transition: 1s all ease;
+}
+
+
+div#header > ul#logo{
+  grid-area: logo;
+} 
+
+ul#logo > img{
+  width: auto;
+  height: 70%;
+}
+
+div#header > ul#account-info{
+  grid-area: profile;
+  list-style: none;
+}
+ul#account-info > li{
+  margin-right: 30px;
+}
+
+ul#account-info > li > img{
+  padding: 10px;
+  cursor: pointer;
+}
+ul#account-info > li#add-task > img,  ul#account-info > li#notification > img{
+  border: 2px solid #4653EC;
+  border-radius: 7px;
+}
+
+
+ul#account-info > li#add-task > img:hover,  ul#account-info > li#notification > img:hover{
+  background-color: #FBE184;
+  border: 2px solid #FBE184;
+  transition: 1s all ease;}
+
+ul#account-info > li#profile-pic{
+  border: 2px solid #4653EC;
+  border-radius: 150px;
+  background: #FBE184;
+}
+ 
+ul#account-info > li#profile-pic > img{
+  width: auto;
+  height: 70%;
+} 

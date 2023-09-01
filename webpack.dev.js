@@ -12,7 +12,7 @@ module.exports = merge(common,{
   },
   devServer: { 
     compress: false,
-    open: 'chrome-Incognito',
+    open: 'chrome',
     stats: 'errors-only',
     overlay: true,
 },

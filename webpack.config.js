@@ -21,13 +21,14 @@ module.exports = {
      },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        use: {
-           loader: 'file-loader',
-           options: {
-             name:"[name].[hash].[ext]",
-             outputPath: "imgs"
-           }
-         },
+        type: 'asset/resource',
+        // use: {
+        //    loader: 'file-loader',
+        //    options: {
+        //     name: 'icons/[name].[hash].[ext]',
+        //     //  outputPath: "icons"
+        //    }
+        //  },
       },
      {
        test: /\.(woff|woff2|eot|ttf|otf)$/i,
