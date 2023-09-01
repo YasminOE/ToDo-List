@@ -15,5 +15,6 @@ module.exports = merge(common,{
     open: 'chrome',
     stats: 'errors-only',
     overlay: true,
+
 },
 });
