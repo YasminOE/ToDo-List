@@ -9,7 +9,6 @@
 
 }
 body{
-  /* background-color: rgba(255, 251, 242, 0.80); */
   background: #F4F5F7;
 
 }
@@ -28,13 +27,11 @@ div#content{
 div#content > div#header{
   grid-area: header;
   height: 92px;
-  /* border-bottom: 1px solid #4653EC; */
   display: grid;
   grid-template-columns: 3fr 6fr 3fr;
   grid-template-rows: auto;
   grid-template-areas: 
   "search logo profile";
-  /* background: #B6B6B6; */
 }
 
 div#header > ul {
@@ -126,11 +123,11 @@ ul#account-info > li#add-task > span,  ul#account-info > li#notification > span{
   font-weight: 500;
 }
 
-
 ul#account-info > li#add-task > span:hover,  ul#account-info > li#notification > span:hover{
   background-color: #4653EC;
   border: 2px solid #4653EC;
-  transition: 1s all ease;}
+  transition: 1s all ease;
+}
 
 ul#account-info > li#profile-pic{
   border: 2px solid #B6B6B6;
@@ -144,12 +141,11 @@ ul#account-info > li#profile-pic > img{
 }
 
 
-
 /* Nav Area */
 
 div#content > div#navbar{
   grid-area: navbar;
-  border: 1px solid #4653EC;
+  border: 2px solid #4653EC;
   border-radius: 0px 20px 20px 0 ;
   display: grid;
   grid-template-columns: auto;
@@ -158,16 +154,15 @@ div#content > div#navbar{
   "dateViews"
   "projectViews"
   "soon";
-  /* gap: 10px; */
-  /* width: calc(100%/4); */
   width: 450px;
   background-color:#B6B6B6 ;
+  /* width: calc(100%/4); */
 }
 
 div#content > div#navbar > ul{
-  /* border: 1px solid red; */
   margin: 20px 30px;
 }
+
 div#content > div#navbar > ul > li {
   display: flex;
   align-items: center;
@@ -181,7 +176,6 @@ div#content > div#navbar > ul > li {
 div#content > div#navbar > ul > li:hover , div#content > div#navbar > ul > li:focus {
   background:#4653EC;
   transition: 1s all ease;
-  
 }
 
 div#content > div#navbar > ul#date-views{
@@ -192,30 +186,26 @@ div#content > div#navbar > ul#date-views{
 div#content > div#navbar > ul#date-views > li:nth-child(1){
   color: #C5EABE;
 }
+
 div#content > div#navbar > ul#date-views > li:nth-child(2){
   color: #FCFF7A;
 }
+
 div#content > div#navbar > ul#date-views > li:nth-child(3){
   color: #D9CEDE;
 }
-
-
 
 
 div#content > div#navbar > ul#project-views{
   grid-area: projectViews;
   color: #F4F5F7;
 }
-  /* border: 1px solid red; */
-
-
 
 div#content > div#navbar > ul#soon{
   grid-area: soon;
   color: #F4F5F7;
   position: relative;
   top: 20px;
-  /* border: 1px solid red; */
 }
 
 div#content > div#navbar > ul#soon > li > span{
@@ -223,11 +213,9 @@ div#content > div#navbar > ul#soon > li > span{
   background: #D9CEDE;
   padding: 7px 10px;
   border-radius: 7px;
-  /* opacity: 0.6; */
 }
-/* tasks Area */
 
+/* tasks Area */
 div#content > div#navbar{
   grid-area: tasksArea;
-  /* border: 1px solid red; */
 }
