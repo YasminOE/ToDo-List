@@ -1,4 +1,4 @@
-function createHeader(){
+function createHeader() {
   const header = document.createElement('div');
   header.setAttribute('id', 'header');
 
@@ -8,26 +8,19 @@ function createHeader(){
 
   const homeLi = document.createElement('li');
   const homeIcon = document.createElement('img');
-  Object.assign(homeIcon,{
-    src: 'icons/home.svg',
-    alt: 'Home Icon',
-  });
+  homeIcon.src = '../icons/home.svg';
+  homeIcon.alt = 'Home Icon';
   homeLi.appendChild(homeIcon);
-  // homeLi.innerHTML= '<img ="/icons/home.svg" alt="">';
   inboxSec.appendChild(homeLi);
 
   const searchLi = document.createElement('li');
   searchLi.innerHTML = '<img src="icons/search.svg" alt=""><input type="text" value="" placeholder="Search">';
   inboxSec.appendChild(searchLi);
 
-
-
-  
   return header;
-
 }
 
-export default function loadPage(){
+export default function loadPage() {
   const content = document.getElementById('content');
 
   const header = createHeader();
