@@ -46,22 +46,26 @@ div#header > ul#inbox > li:nth-child(2){
  align-items: flex-start;
 }
 
-div#header > ul#inbox > li:nth-child(1) > img{
+div#header > ul#inbox > li:nth-child(1) > span{
   padding: 10px;
   border: 2px solid #4653EC;
   border-radius: 7px;
   cursor: pointer;
+  color: #4653EC;
+  font-weight: 500;
 }
-div#header > ul#inbox > li:nth-child(1) > img:hover{
+div#header > ul#inbox > li:nth-child(1) > span:hover{
   background-color: #FBE184;
   border: 2px solid #FBE184;
   transition: 1s all ease;
 }
 
-div#header > ul#inbox > li:nth-child(2) > img { 
+div#header > ul#inbox > li:nth-child(2) > span { 
   position: relative;
   top: 10px;
   left: 40px;
+  color: #4653EC;
+  font-weight: 500;
 
 }
 
@@ -98,17 +102,20 @@ ul#account-info > li{
   margin-right: 30px;
 }
 
-ul#account-info > li > img{
+ul#account-info > li > span{
   padding: 10px;
   cursor: pointer;
+  
 }
-ul#account-info > li#add-task > img,  ul#account-info > li#notification > img{
+ul#account-info > li#add-task > span,  ul#account-info > li#notification > span{
   border: 2px solid #4653EC;
   border-radius: 7px;
+  color: #4653EC;
+  font-weight: 500;
 }
 
 
-ul#account-info > li#add-task > img:hover,  ul#account-info > li#notification > img:hover{
+ul#account-info > li#add-task > span:hover,  ul#account-info > li#notification > span:hover{
   background-color: #FBE184;
   border: 2px solid #FBE184;
   transition: 1s all ease;}
