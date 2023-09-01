@@ -7,6 +7,7 @@ import loadPage from './modules/initial-load-page';
 init();
 
 function init(){
+  // loadPage();
   const taskManager = handleTask();
   handleViews(taskManager);
 }
