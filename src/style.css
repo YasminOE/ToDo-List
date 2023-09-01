@@ -9,7 +9,8 @@
 
 }
 body{
-  background: #F0E9D7;
+  /* background-color: rgba(255, 251, 242, 0.80); */
+  background: #F4F5F7;
 
 }
 
@@ -27,15 +28,13 @@ div#content{
 div#content > div#header{
   grid-area: header;
   height: 92px;
-  border: 1px solid #DEE8E0;
+  /* border-bottom: 1px solid #4653EC; */
   display: grid;
   grid-template-columns: 3fr 6fr 3fr;
   grid-template-rows: auto;
   grid-template-areas: 
   "search logo profile";
-  /* background: #E1DFD3; */
-  /* padding: 40px; */
-  background: #FFFBF2;
+  /* background: #B6B6B6; */
 }
 
 div#header > ul {
@@ -60,15 +59,16 @@ div#header > ul#inbox > li:nth-child(2){
 
 div#header > ul#inbox > li:nth-child(1) > span{
   padding: 10px;
-  border: 2px solid #4653EC;
+  border: 2px solid #B6B6B6;
   border-radius: 7px;
   cursor: pointer;
-  color: #4653EC;
+  color: #B6B6B6;
+
   font-weight: 500;
 }
 div#header > ul#inbox > li:nth-child(1) > span:hover{
-  background-color: #CFC0A0;
-  border: 2px solid #CFC0A0;
+  background-color: #4653EC;
+  border: 2px solid #4653EC;
   transition: 1s all ease;
 }
 
@@ -76,7 +76,7 @@ div#header > ul#inbox > li:nth-child(2) > span {
   position: relative;
   top: 10px;
   left: 40px;
-  color: #4653EC;
+  color: #B6B6B6;
   font-weight: 500;
 
 }
@@ -86,12 +86,12 @@ div#header > ul#inbox > li:nth-child(2) > input {
   border-radius: 10px;
   font-size: 1.1rem;
   background: inherit;
-  border: 2px solid #4653EC;
-  color: #4653EC;
+  border: 2px solid #B6B6B6;
+  color: #FCFF7A;
 }
 
 div#header > ul#inbox > li:nth-child(2) > input:focus{
-  background: #FBE184;
+  background: #4653EC;
   padding: 10px 78px;
   transition: 1s all ease;
 }
@@ -120,22 +120,22 @@ ul#account-info > li > span{
   
 }
 ul#account-info > li#add-task > span,  ul#account-info > li#notification > span{
-  border: 2px solid #4653EC;
+  border: 2px solid #B6B6B6;
   border-radius: 7px;
-  color: #4653EC;
+  color: #B6B6B6;
   font-weight: 500;
 }
 
 
 ul#account-info > li#add-task > span:hover,  ul#account-info > li#notification > span:hover{
-  background-color: #FBE184;
-  border: 2px solid #FBE184;
+  background-color: #4653EC;
+  border: 2px solid #4653EC;
   transition: 1s all ease;}
 
 ul#account-info > li#profile-pic{
-  border: 2px solid #4653EC;
+  border: 2px solid #B6B6B6;
   border-radius: 150px;
-  background: #FBE184;
+  background: #4653EC;
 }
  
 ul#account-info > li#profile-pic > img{
@@ -149,7 +149,7 @@ ul#account-info > li#profile-pic > img{
 
 div#content > div#navbar{
   grid-area: navbar;
-  border: 2px solid #FFFBF2;
+  border: 1px solid #4653EC;
   border-radius: 0px 20px 20px 0 ;
   display: grid;
   grid-template-columns: auto;
@@ -160,8 +160,8 @@ div#content > div#navbar{
   "soon";
   /* gap: 10px; */
   /* width: calc(100%/4); */
-  width: 600px;
-  background-color: rgba(255, 251, 242, 0.80);
+  width: 450px;
+  background-color:#B6B6B6 ;
 }
 
 div#content > div#navbar > ul{
@@ -179,7 +179,7 @@ div#content > div#navbar > ul > li {
 }
 
 div#content > div#navbar > ul > li:hover , div#content > div#navbar > ul > li:focus {
-  background:#F4F5F7;
+  background:#4653EC;
   transition: 1s all ease;
   
 }
@@ -190,13 +190,13 @@ div#content > div#navbar > ul#date-views{
 }
 
 div#content > div#navbar > ul#date-views > li:nth-child(1){
-  color: #EC5C28;
+  color: #C5EABE;
 }
 div#content > div#navbar > ul#date-views > li:nth-child(2){
-  color: #809A7D;
+  color: #FCFF7A;
 }
 div#content > div#navbar > ul#date-views > li:nth-child(3){
-  color: #CFC09F;
+  color: #D9CEDE;
 }
 
 
@@ -204,8 +204,7 @@ div#content > div#navbar > ul#date-views > li:nth-child(3){
 
 div#content > div#navbar > ul#project-views{
   grid-area: projectViews;
-  list-style-type: circle;
-  list-style-position: inside;
+  color: #F4F5F7;
 }
   /* border: 1px solid red; */
 
@@ -213,9 +212,19 @@ div#content > div#navbar > ul#project-views{
 
 div#content > div#navbar > ul#soon{
   grid-area: soon;
+  color: #F4F5F7;
+  position: relative;
+  top: 20px;
   /* border: 1px solid red; */
 }
 
+div#content > div#navbar > ul#soon > li > span{
+  color: #FCFF7A;
+  background: #D9CEDE;
+  padding: 7px 10px;
+  border-radius: 7px;
+  /* opacity: 0.6; */
+}
 /* tasks Area */
 
 div#content > div#navbar{
