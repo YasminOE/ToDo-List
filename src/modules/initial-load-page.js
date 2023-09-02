@@ -2,6 +2,8 @@ function createHeader() {
   const header = document.createElement('div');
   header.setAttribute('id', 'header');
 
+// Home and search section
+
   const inboxSec = document.createElement('ul');
   inboxSec.setAttribute('id', 'inbox');
   header.appendChild(inboxSec);
@@ -31,6 +33,8 @@ function createHeader() {
   inboxSec.appendChild(searchLi);
 
 
+// Logo section
+
   const logoSec = document.createElement('ul');
   logoSec.setAttribute('id', 'logo');
   header.appendChild(logoSec);
@@ -40,6 +44,7 @@ function createHeader() {
   logoIcon.alt = 'Logo Icon';
   logoSec.appendChild(logoIcon);
 
+// Account information and profile pic section
 
   const accountSec = document.createElement('ul');
   accountSec.setAttribute('id', 'account-info');
@@ -70,6 +75,7 @@ function createHeader() {
   accountSec.appendChild(profilePicLi);
   return header;
 }
+
 
 function createNav() {
   const nav = document.createElement('div');
