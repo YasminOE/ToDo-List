@@ -71,53 +71,48 @@ function createHeader() {
   return header;
 }
 
-function createNav(){
+function createNav() {
   const nav = document.createElement('div');
   nav.setAttribute("id", "navbar");
-  
+
+  function createNavItem(parent, id, icon, text) {
+    const itemLi = document.createElement('li');
+    itemLi.setAttribute('id', id);
+    itemLi.innerHTML = `<span class="material-symbols-outlined">${icon}</span>${text}`;
+    parent.appendChild(itemLi);
+  }
+
   const dateViews = document.createElement('ul');
-  dateViews.setAttribute('id','date-views');
+  dateViews.setAttribute('id', 'date-views');
   nav.appendChild(dateViews);
 
-  const inboxLi =document.createElement('li');
-  inboxLi.setAttribute('id','inbox-view');
-  dateViews.appendChild(inboxLi);
-  inboxLi.innerHTML = '<span class="material-symbols-outlined">inbox</span>Inbox';
+  const dateViewData = [
+    { id: 'inbox-view', icon: 'inbox', text: 'Inbox' },
+    { id: 'today-view', icon: 'event', text: 'Today' },
+    { id: 'upcoming-view', icon: 'calendar_month', text: 'Upcoming' },
+  ];
 
-  const todayLi =document.createElement('li');
-  todayLi.setAttribute('id','today-view');
-  dateViews.appendChild(todayLi);
-  todayLi.innerHTML = '<span class="material-symbols-outlined">event</span>Today';
-
-  const upcomingLi =document.createElement('li');
-  upcomingLi.setAttribute('id','upcoming-view');
-  dateViews.appendChild(upcomingLi);
-  upcomingLi.innerHTML = '<span class="material-symbols-outlined">calendar_month</span>Upcoming';
-
+  dateViewData.forEach(item => createNavItem(dateViews, item.id, item.icon, item.text));
 
   const projectViews = document.createElement('ul');
-  projectViews.setAttribute('id','project-views');
+  projectViews.setAttribute('id', 'project-views');
   nav.appendChild(projectViews);
 
-  const homeProjectsLi =document.createElement('li');
-  homeProjectsLi.setAttribute('id','home');
-  projectViews.appendChild(homeProjectsLi);
-  homeProjectsLi.innerHTML = 'Home 🏡';
+  const projectViewData = [
+    { id: 'home', text: 'Home 🏡' },
+    { id: 'work', text: 'My work 🎯' },
+  ];
 
-  const workProjectsLi =document.createElement('li');
-  workProjectsLi.setAttribute('id','work');
-  projectViews.appendChild(workProjectsLi);
-  workProjectsLi.innerHTML = 'My work 🎯';
+  projectViewData.forEach(item => createNavItem(projectViews, item.id, '', item.text));
 
   const soonViews = document.createElement('ul');
-  soonViews.setAttribute('id','soon');
+  soonViews.setAttribute('id', 'soon');
   nav.appendChild(soonViews);
-  soonViews.innerHTML = '<li><span>soon</span>Add team workspace</li>'
-
+  soonViews.innerHTML = '<li><span>soon</span>Add team workspace</li>';
 
   return nav;
-
 }
+
 
 export default function loadPage() {
   const content = document.getElementById('content');
