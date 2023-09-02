@@ -1,4 +1,7 @@
-import { secondsInDay } from "date-fns";
+import handleTask from './task-handler';
+import handleViews from './views';
+import Task from './task-handler';
+
 
 function createHeader() {
   const header = document.createElement('div');
@@ -386,6 +389,8 @@ function createAddTaskBlock(){
 
 
 
+
+
 export default function loadPage() {
   document.addEventListener('DOMContentLoaded', function () {
     const content = document.getElementById('content');
@@ -421,6 +426,8 @@ export default function loadPage() {
 
     showAddBlock();
 
+    const taskManager = handleTask(); // Create an instance of the task manager
+
     const successAddBtn = addTaskBlock.querySelector('#add');
 
     successAddBtn.addEventListener('click', () => {
@@ -430,6 +437,13 @@ export default function loadPage() {
       const dueDate = document.getElementById('task-due-date').value;
       const priority = document.getElementById('priority-type').value;
       const type = document.getElementById('task-type').value;
+
+      // Create a new task and add it to the task manager
+      const newTask = new Task(taskName, description, new Date(dueDate), priority, type);
+      taskManager.addTask(newTask);
+
+      // Update the views with the new task
+      handleViews(taskManager);
 
       // Create a new taskBlock and populate its inputs
       const taskBlock = createTaskBlock();
