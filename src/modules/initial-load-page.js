@@ -1,3 +1,5 @@
+import { secondsInDay } from "date-fns";
+
 function createHeader() {
   const header = document.createElement('div');
   header.setAttribute('id', 'header');
@@ -120,6 +122,139 @@ function createNav() {
 }
 
 
+function createTaskArea(){
+  const tasksArea = document.createElement('div');
+  tasksArea.setAttribute("id","tasks-area");
+
+  const areaName = document.createElement('h1');
+  areaName.setAttribute('id', 'area-name');
+   areaName.innerHTML = 'Inbox';
+   
+   tasksArea.appendChild(areaName);
+
+   const addBtn = document.createElement('button');
+   addBtn.setAttribute('id', 'show');
+   addBtn.innerHTML = '<span class="material-symbols-outlined">add</span>Add Task';
+
+   tasksArea.appendChild(addBtn);
+
+   const addATask = document.createElement('dialog');
+   addATask.setAttribute('id', 'add-a-task');
+
+   tasksArea.appendChild(addATask);
+   const taskNameInput = document.createElement('input');
+   Object.assign(taskNameInput,{
+    type : 'text',
+    id: 'task-name',
+    placeholder: 'Task name'
+
+   });
+
+   addATask.appendChild(taskNameInput);
+
+   const editIcon = document.createElement('span');
+   editIcon.setAttribute('class', 'material-symbols-outlined');
+   editIcon.innerHTML = 'edit_note';
+   addATask.appendChild(taskNameInput);
+
+   const taskDescriptionInput = document.createElement('textarea');
+   Object.assign(taskDescriptionInput,{
+    id: 'task-description',
+    placeholder: 'description'
+    
+   });
+
+  addATask.appendChild(taskDescriptionInput);
+
+
+  const selection = document.createElement('ul');
+  selection.setAttribute('id', 'selection');
+  addATask.appendChild(selection);
+
+  const dueDateInput = document.createElement('input');
+  Object.assign(dueDateInput,{
+   type : 'date',
+   id: 'task-due-date',
+   placeholder: '"Due date'
+  });
+
+  selection.appendChild(dueDateInput);
+
+  const selectPriority = document.createElement('select');
+  Object.assign (selectPriority, {
+    name : 'priorityType',
+     id : 'priority-type'
+  });
+  selection.appendChild(selectPriority);
+
+  const option1 = document.createElement('option');
+  Object.assign(option1 ,{value:'priorityOne'}); 
+  option1.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 1';
+  selectPriority.appendChild(option1);
+
+  const option2 = document.createElement('option');
+  Object.assign(option2 ,{value:'priorityTwo'}); 
+  option2.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 2';
+  selectPriority.appendChild(option2);
+
+  const option3 = document.createElement('option');
+  Object.assign(option3 ,{value:'priorityThree'}); 
+  option3.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 3';
+  selectPriority.appendChild(option3);
+
+  const option4 = document.createElement('option');
+  Object.assign(option4 ,{value:'priorityFour'}); 
+  option4.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 4';
+  selectPriority.appendChild(option4);
+
+  const selectTaskType = document.createElement('select');
+  Object.assign (selectTaskType, {
+    name : 'taskType',
+     id : 'task-type'
+  });
+  selection.appendChild(selectTaskType);
+
+  const typeInbox = document.createElement('option');
+  Object.assign(typeInbox ,{value:'inbox'}); 
+  typeInbox.innerHTML = 'Inbox';
+  selectTaskType.appendChild(typeInbox);
+
+  const typeHome = document.createElement('option');
+  Object.assign(typeHome ,{value:'home'}); 
+  typeHome.innerHTML = 'Home 🏡';
+  selectTaskType.appendChild(typeHome);
+
+  const typeWork = document.createElement('option');
+  Object.assign(typeWork ,{value:'projects'}); 
+  typeWork.innerHTML = 'My work 🎯';
+  selectTaskType.appendChild(typeWork);
+  
+  const actionBtns = document.createElement('ul');
+  actionBtns.setAttribute('id', 'task-action');
+  addATask.appendChild(actionBtns);
+
+
+  const closeBtn = document.createElement('button');
+  closeBtn.setAttribute('id', 'close');
+  closeBtn.innerHTML = 'Cancel';
+  actionBtns.appendChild(closeBtn);
+
+  const successAddBtn = document.createElement('button');
+  successAddBtn.setAttribute('id', 'add');
+  successAddBtn.innerHTML = 'Add Task';
+  actionBtns.appendChild(successAddBtn);
+
+
+  
+  return tasksArea ;
+
+
+}
+
+// function createAddTaskBtn(){
+  
+// }
+
 export default function loadPage() {
   const content = document.getElementById('content');
 
@@ -128,4 +263,7 @@ export default function loadPage() {
 
   const nav = createNav();
   content.appendChild(nav);
+
+  const taskArea = createTaskArea();
+  content.appendChild(taskArea);
 }
