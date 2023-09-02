@@ -241,6 +241,7 @@ div#content > div#tasks-area >  button#show{
   color: #4653EC;
   background: inherit;
   border: none;
+  border-radius: 7px;
   padding: 10px;
   gap: 5px;
 }
@@ -251,7 +252,6 @@ div#content > div#tasks-area > button#show:hover{
   color: #FCFF7A;
   background-color: #D9CEDE;
   border: 1px solid #D9CEDE;
-  border-radius: 7px;
   margin: 10px;
   transition: 1s all ease;
 }

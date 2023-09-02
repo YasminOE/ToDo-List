@@ -131,42 +131,46 @@ function createTaskArea(){
    areaName.innerHTML = 'Inbox';
    
    tasksArea.appendChild(areaName);
+  
+  return tasksArea ;
 
-   const addBtn = document.createElement('button');
-   addBtn.setAttribute('id', 'show');
-   addBtn.innerHTML = '<span class="material-symbols-outlined">add</span>Add Task';
+}
 
-   tasksArea.appendChild(addBtn);
+function createAddTaskBtn(){
+  const addBtn = document.createElement('button');
+  addBtn.setAttribute('id', 'show');
+  addBtn.innerHTML = '<span class="material-symbols-outlined">add</span>Add Task';
+  return addBtn;
+}
 
-   const addATask = document.createElement('dialog');
+
+
+
+function createAddTaskBlock(){
+  const addATask = document.createElement('dialog');
    addATask.setAttribute('id', 'add-a-task');
 
-   tasksArea.appendChild(addATask);
-   const taskNameInput = document.createElement('input');
-   Object.assign(taskNameInput,{
-    type : 'text',
-    id: 'task-name',
-    placeholder: 'Task name'
+  const taskNameInput = document.createElement('input');
+  Object.assign(taskNameInput,{
+   type : 'text',
+   id: 'task-name',
+   placeholder: 'Task name'
+  });
+  addATask.appendChild(taskNameInput);
 
-   });
-
-   addATask.appendChild(taskNameInput);
-
-   const editIcon = document.createElement('span');
-   editIcon.setAttribute('class', 'material-symbols-outlined');
-   editIcon.innerHTML = 'edit_note';
-   addATask.appendChild(taskNameInput);
-
-   const taskDescriptionInput = document.createElement('textarea');
-   Object.assign(taskDescriptionInput,{
+  const editIcon = document.createElement('span');
+  editIcon.setAttribute('class', 'material-symbols-outlined');
+  editIcon.innerHTML = 'edit_note';
+  addATask.appendChild(taskNameInput);
+  addATask.appendChild(editIcon);
+  
+  const taskDescriptionInput = document.createElement('textarea');
+  Object.assign(taskDescriptionInput,{
     id: 'task-description',
-    placeholder: 'description'
-    
-   });
-
+    placeholder: 'description'  
+  });
   addATask.appendChild(taskDescriptionInput);
-
-
+   
   const selection = document.createElement('ul');
   selection.setAttribute('id', 'selection');
   addATask.appendChild(selection);
@@ -177,7 +181,6 @@ function createTaskArea(){
    id: 'task-due-date',
    placeholder: '"Due date'
   });
-
   selection.appendChild(dueDateInput);
 
   const selectPriority = document.createElement('select');
@@ -235,35 +238,63 @@ function createTaskArea(){
 
 
   const closeBtn = document.createElement('button');
-  closeBtn.setAttribute('id', 'close');
+  Object.assign(closeBtn, {
+    id: 'close',
+    type: 'submit'
+  });
   closeBtn.innerHTML = 'Cancel';
   actionBtns.appendChild(closeBtn);
 
   const successAddBtn = document.createElement('button');
-  successAddBtn.setAttribute('id', 'add');
+  Object.assign(successAddBtn, {
+    id: 'add',
+    type: 'submit'
+  });
   successAddBtn.innerHTML = 'Add Task';
   actionBtns.appendChild(successAddBtn);
 
-
-  
-  return tasksArea ;
-
+  return addATask;
 
 }
 
-// function createAddTaskBtn(){
-  
-// }
-
 export default function loadPage() {
-  const content = document.getElementById('content');
+  document.addEventListener('DOMContentLoaded', function(){
+    const content = document.getElementById('content');
 
-  const header = createHeader();
-  content.appendChild(header);
+    const header = createHeader();
+    content.appendChild(header);
+  
+    const nav = createNav();
+    content.appendChild(nav);
+  
+    const taskArea = createTaskArea();
+    content.appendChild(taskArea);
+  
+    const addBtn = createAddTaskBtn();
+    taskArea.appendChild(addBtn);
+  
+    const addTaskBlock = createAddTaskBlock();
+    
+    function showAddBlock(){
+      
+      addBtn.addEventListener('click', () =>{
+        addTaskBlock.show();
+        taskArea.appendChild(addTaskBlock);
 
-  const nav = createNav();
-  content.appendChild(nav);
+        const closeBtn = document.getElementById('close');
+        console.log(closeBtn);
 
-  const taskArea = createTaskArea();
-  content.appendChild(taskArea);
+        closeBtn.addEventListener('click', ()=>{
+          taskArea.removeChild(addTaskBlock);
+          addTaskBlock.close();
+        });
+
+      });
+    }
+    
+    showAddBlock();
+
+  })
+
+
 }
