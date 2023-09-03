@@ -402,8 +402,10 @@ export default function loadPage() {
 
     const addTaskBlock = createAddTaskBlock();
 
-    function showAddBlock() {
-      addBtn.addEventListener('click', () => {
+    const headerAddTaskBtn = document.querySelector('#add-task');
+
+    function showAddBlock(btn) {
+      btn.addEventListener('click', () => {
         addTaskBlock.show();
         taskArea.appendChild(addTaskBlock);
 
@@ -417,7 +419,9 @@ export default function loadPage() {
       });
     }
 
-    showAddBlock();
+    // Attach the event listener to both addBtn and headerAddTaskBtn
+    showAddBlock(addBtn);
+    showAddBlock(headerAddTaskBtn);
 
     const successAddBtn = addTaskBlock.querySelector('#add');
 

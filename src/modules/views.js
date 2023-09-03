@@ -77,10 +77,25 @@ function changeView(viewId) {
 
 export default function handleViews(taskManager) {
   document.addEventListener('DOMContentLoaded', () => {
-    // Your existing code here
+    // let views = createViews(taskManager),
+  // Get views by type
+  const inboxView = getViews(taskManager.tasks, 'inbox');
+  const homeView = getViews(taskManager.tasks, 'home');
+  const projectsView = getViews(taskManager.tasks, 'projects');
+
+  console.log('Inbox View:', inboxView);
+  console.log('Home View:', homeView);
+  console.log('Projects View:', projectsView);
+
+  // Get views by date
+  const { today, upcoming } = getViewsByDate(taskManager.tasks);
+
+  console.log('Today View:', today);
+  console.log('Upcoming View:', upcoming);
+
 
     changeView('inbox-view');
-    
+
     const navBar = document.querySelector('#navbar');
     navBar.addEventListener('click', (event) => {
       if (event.target.classList.contains('view')) {
