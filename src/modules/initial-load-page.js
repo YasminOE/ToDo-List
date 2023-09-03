@@ -206,8 +206,9 @@ function createTaskBlock(){
   Object.assign (priorityInput, {
     name : 'priorityType',
      id : 'task-priority-type',
-     value: 'Priorty 1'
+     value: 'P1',
   });
+  
   selection.appendChild(priorityInput);
 
   // const option1 = document.createElement('option');
@@ -338,23 +339,23 @@ function createAddTaskBlock(){
   selection.appendChild(selectPriority);
 
   const option1 = document.createElement('option');
-  Object.assign(option1 ,{value:'priorityOne'}); 
-  option1.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 1';
+  Object.assign(option1 ,{value:'P1'}); 
+  option1.innerHTML = 'Priority 1';
   selectPriority.appendChild(option1);
 
   const option2 = document.createElement('option');
-  Object.assign(option2 ,{value:'priorityTwo'}); 
-  option2.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 2';
+  Object.assign(option2 ,{value:'P2'}); 
+  option2.innerHTML = 'Priority 2';
   selectPriority.appendChild(option2);
 
   const option3 = document.createElement('option');
-  Object.assign(option3 ,{value:'priorityThree'}); 
-  option3.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 3';
+  Object.assign(option3 ,{value:'P3'}); 
+  option3.innerHTML = 'Priority 3';
   selectPriority.appendChild(option3);
 
   const option4 = document.createElement('option');
-  Object.assign(option4 ,{value:'priorityFour'}); 
-  option4.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 4';
+  Object.assign(option4 ,{value:'P4'}); 
+  option4.innerHTML = 'Priority 4';
   selectPriority.appendChild(option4);
 
   const selectTaskType = document.createElement('select');
@@ -370,12 +371,12 @@ function createAddTaskBlock(){
   selectTaskType.appendChild(typeInbox);
 
   const typeHome = document.createElement('option');
-  Object.assign(typeHome ,{value:'home'}); 
+  Object.assign(typeHome ,{value:'Home 🏡'}); 
   typeHome.innerHTML = 'Home 🏡';
   selectTaskType.appendChild(typeHome);
 
   const typeWork = document.createElement('option');
-  Object.assign(typeWork ,{value:'projects'}); 
+  Object.assign(typeWork ,{value:'My work 🎯'}); 
   typeWork.innerHTML = 'My work 🎯';
   selectTaskType.appendChild(typeWork);
   
@@ -457,6 +458,8 @@ export default function loadPage() {
       const description = document.getElementById('task-description').value;
       const dueDate = document.getElementById('task-due-date').value;
       const priority = document.getElementById('priority-type').value;
+   
+    
       const type = document.getElementById('task-type').value;
 
       // Create a new taskBlock and populate its inputs
@@ -464,7 +467,7 @@ export default function loadPage() {
       taskBlock.querySelector('#taskName').value = taskName;
       taskBlock.querySelector('#description').value = description;
       taskBlock.querySelector('#due-date').value = dueDate;
-      taskBlock.querySelector('#task-priority-type').value = priority;
+      taskBlock.querySelector('#task-priority-type').value = priorityOutPut(priority);
       taskBlock.querySelector('#type').value = type;
 
   

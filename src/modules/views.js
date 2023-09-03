@@ -10,18 +10,18 @@ export function getViews(tasks, type = 'inbox') {
   tasks.forEach(task => {
     if (task.type === 'inbox') {
       inboxView.push(task);
-    } else if (task.type === 'home') {
+    } else if (task.type === 'Home 🏡') {
       homeView.push(task);
-    } else if (task.type === 'projects') {
+    } else if (task.type === 'My work 🎯') {
       projectsView.push(task);
     }
   });
 
   if (type === 'inbox') {
     return inboxView;
-  } else if (type === 'home') {
+  } else if (type === 'Home 🏡') {
     return homeView;
-  } else if (type === 'projects') {
+  } else if (type === 'My work 🎯') {
     return projectsView;
   } else {
     return inboxView; // Default to inbox view
@@ -80,8 +80,8 @@ export default function handleViews(taskManager) {
     // let views = createViews(taskManager),
   // Get views by type
   const inboxView = getViews(taskManager.tasks, 'inbox');
-  const homeView = getViews(taskManager.tasks, 'home');
-  const projectsView = getViews(taskManager.tasks, 'projects');
+  const homeView = getViews(taskManager.tasks, 'Home 🏡');
+  const projectsView = getViews(taskManager.tasks, 'My work 🎯');
 
   console.log('Inbox View:', inboxView);
   console.log('Home View:', homeView);

@@ -358,16 +358,16 @@ dialog#add-a-task > ul#selection > select > span.material-symbols-outlined {
   font-size: 1rem;
 }
 
-div#tasks-area > dialog#add-a-task > select#priority-type option:nth-child(1){
+div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(1) option:checked{
   color: #EE402E;
 }
-div#tasks-area > dialog#add-a-task > select#priority-type option:nth-child(2){
+div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(2) option:checked{
   color: #eb8909;
 }
-div#tasks-area > dialog#add-a-task > select#priority-type option:nth-child(3){
+div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(3) option:checked{
   color: #C0E0DB;
 }
-div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(4) > option{
+div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(4) option:checked{
   color: #B8B8B8;
 }
 
