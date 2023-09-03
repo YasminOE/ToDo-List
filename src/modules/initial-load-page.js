@@ -17,6 +17,9 @@ function createHeader() {
   const homeIcon = document.createElement('span');
   homeIcon.classList.add('material-symbols-outlined');
   homeIcon.innerHTML = 'home';
+  // const homeIcon = document.createElement('img');
+  // homeIcon.src = '../icons/home.svg';
+  // homeIcon.alt = 'Home Icon';
   homeLi.appendChild(homeIcon);
   inboxSec.appendChild(homeLi);
 
@@ -132,7 +135,7 @@ function createTaskArea(){
    
    tasksArea.appendChild(areaName);
   
-  return tasksArea;
+  return tasksArea ;
 
 }
 
@@ -145,135 +148,6 @@ function createAddTaskBtn(){
 
 
 
-
-function createTaskBlock(){
-  const taskBlock = document.createElement('div');
-   taskBlock.setAttribute('id', 'add-a-task');
-
-  const complete = document.createElement('input');
-  Object.assign(complete, {
-    type : 'radio',
-    name: 'complete',
-    id: 'complete',
-  });
-  //   complete.checked=true;
-  taskBlock.appendChild(complete);
-
-  const taskNameInput = document.createElement('input');
-  Object.assign(taskNameInput,{
-   type : 'text',
-   id: 'taskName',
-   value: '',
-  });
-  taskBlock.appendChild(taskNameInput);
-
-  const editIcon = document.createElement('span');
-  editIcon.setAttribute('class', 'material-symbols-outlined');
-  editIcon.innerHTML = 'edit_note';
-  taskBlock.appendChild(taskNameInput);
-  taskBlock.appendChild(editIcon);
-  
-  const taskDescriptionInput = document.createElement('textarea');
-  Object.assign(taskDescriptionInput,{
-    id: 'description',
-    placeholder: 'description'  
-  });
-
-  taskBlock.appendChild(taskDescriptionInput);
-   
-  const selection = document.createElement('ul');
-  selection.setAttribute('id', 'selection');
-  taskBlock.appendChild(selection);
-
-  const dueDateInput = document.createElement('input');
-  Object.assign(dueDateInput,{
-   type : 'text',
-   id: 'due-date',
-   value: '',
-  });
-  selection.appendChild(dueDateInput);
-
-  const priorityInput = document.createElement('input');
-  Object.assign (priorityInput, {
-    name : 'priorityType',
-     id : 'task-priority-type',
-     value: ''
-  });
-  selection.appendChild(priorityInput);
-
-  // const option1 = document.createElement('option');
-  // Object.assign(option1 ,{value:'priorityOne'}); 
-  // option1.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 1';
-  // selectPriority.appendChild(option1);
-
-  // const option2 = document.createElement('option');
-  // Object.assign(option2 ,{value:'priorityTwo'}); 
-  // option2.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 2';
-  // selectPriority.appendChild(option2);
-
-  // const option3 = document.createElement('option');
-  // Object.assign(option3 ,{value:'priorityThree'}); 
-  // option3.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 3';
-  // selectPriority.appendChild(option3);
-
-  // const option4 = document.createElement('option');
-  // Object.assign(option4 ,{value:'priorityFour'}); 
-  // option4.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 4';
-  // selectPriority.appendChild(option4);
-
-  const taskType = document.createElement('input');
-  Object.assign (taskType, {
-    name : 'taskType',
-     id : 'type',
-     value: '',
-  });
-  selection.appendChild(taskType);
-
-  // const typeInbox = document.createElement('option');
-  // Object.assign(typeInbox ,{value:'inbox'}); 
-  // typeInbox.innerHTML = 'Inbox';
-  // selectTaskType.appendChild(typeInbox);
-
-  // const typeHome = document.createElement('option');
-  // Object.assign(typeHome ,{value:'home'}); 
-  // typeHome.innerHTML = 'Home 🏡';
-  // selectTaskType.appendChild(typeHome);
-
-  // const typeWork = document.createElement('option');
-  // Object.assign(typeWork ,{value:'projects'}); 
-  // typeWork.innerHTML = 'My work 🎯';
-  // selectTaskType.appendChild(typeWork);
-  
-  const actionBtns = document.createElement('ul');
-  actionBtns.setAttribute('id', 'task-action');
-  taskBlock.appendChild(actionBtns);
-
-
-  const closeBtn = document.createElement('button');
-  Object.assign(closeBtn, {
-    id: 'close',
-    type: 'submit'
-  });
-  closeBtn.innerHTML = 'Cancel';
-  actionBtns.appendChild(closeBtn);
-
-  const successAddBtn = document.createElement('button');
-  Object.assign(successAddBtn, {
-    id: 'add',
-    type: 'submit'
-  });
-  successAddBtn.innerHTML = 'Add Task';
-  actionBtns.appendChild(successAddBtn);
-
-  return taskBlock;
-
-}
-
-function createSaveEditBtn(){
-  const editBtn = document.getElementById('add');
-  editBtn.innerHTML = 'Save task';
-  return editBtn;
-}
 
 function createAddTaskBlock(){
   const addATask = document.createElement('dialog');
@@ -389,41 +263,41 @@ function createAddTaskBlock(){
 
 
 
-
-
 export default function loadPage() {
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function(){
     const content = document.getElementById('content');
 
     const header = createHeader();
     content.appendChild(header);
-
+  
     const nav = createNav();
     content.appendChild(nav);
-
+  
     const taskArea = createTaskArea();
     content.appendChild(taskArea);
-
+  
     const addBtn = createAddTaskBtn();
     taskArea.appendChild(addBtn);
-
+  
     const addTaskBlock = createAddTaskBlock();
-
-    function showAddBlock() {
-      addBtn.addEventListener('click', () => {
+    
+    function showAddBlock(){
+      
+      addBtn.addEventListener('click', () =>{
         addTaskBlock.show();
         taskArea.appendChild(addTaskBlock);
 
         const closeBtn = document.getElementById('close');
         console.log(closeBtn);
 
-        closeBtn.addEventListener('click', () => {
+        closeBtn.addEventListener('click', ()=>{
           taskArea.removeChild(addTaskBlock);
           addTaskBlock.close();
         });
+
       });
     }
-
+    
     showAddBlock();
 
     const taskManager = handleTask(); // Create an instance of the task manager
@@ -438,23 +312,5 @@ export default function loadPage() {
       const priority = document.getElementById('priority-type').value;
       const type = document.getElementById('task-type').value;
 
-      // Create a new task and add it to the task manager
-      const newTask = new Task(taskName, description, new Date(dueDate), priority, type);
-      taskManager.addTask(newTask);
 
-      // Update the views with the new task
-      handleViews(taskManager);
-
-      // Create a new taskBlock and populate its inputs
-      const taskBlock = createTaskBlock();
-      taskBlock.querySelector('#taskName').value = taskName;
-      taskBlock.querySelector('#description').value = description;
-      taskBlock.querySelector('#due-date').value = dueDate;
-      taskBlock.querySelector('#task-priority-type').value = priority;
-      taskBlock.querySelector('#type').value = type;
-
-      // Append the new taskBlock to the taskArea
-      taskArea.appendChild(taskBlock);
-    });
-  });
 }
