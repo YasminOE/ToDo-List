@@ -1,5 +1,7 @@
 // view.js
 
+import { head } from "lodash";
+
 export function getViews(tasks, type = 'inbox') {
   const inboxView = [];
   const homeView = [];
@@ -47,22 +49,45 @@ export function getViewsByDate(tasks) {
   };
 }
 
+function clearActiveClass() {
+  const views = document.querySelectorAll('.view');
+  views.forEach(view => {
+    view.classList.remove('active');
+  });
+}
 
-// ... (Your getViews and getViewsByDate functions)
+function changeView(viewId) {
+  const heading = document.querySelector('#area-name');
+  const view = document.querySelector(`#${viewId}`);
+
+  if (viewId === 'inbox-view') {
+    heading.innerHTML = 'Inbox';
+  } else if (viewId === 'today-view') {
+    heading.innerHTML = 'Today';
+  } else if (viewId === 'upcoming-view') {
+    heading.innerHTML = 'Upcoming';
+  } else {
+    heading.innerHTML = view.textContent.trim();
+  }
+
+  clearActiveClass(); // Remove 'active' class from all views
+  view.classList.add('active'); // Add 'active' class to the clicked view
+}
+
 
 export default function handleViews(taskManager) {
-  // Get views by type
-  const inboxView = getViews(taskManager.tasks, 'inbox');
-  const homeView = getViews(taskManager.tasks, 'home');
-  const projectsView = getViews(taskManager.tasks, 'projects');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Your existing code here
 
-  console.log('Inbox View:', inboxView);
-  console.log('Home View:', homeView);
-  console.log('Projects View:', projectsView);
-
-  // Get views by date
-  const { today, upcoming } = getViewsByDate(taskManager.tasks);
-
-  console.log('Today View:', today);
-  console.log('Upcoming View:', upcoming);
+    changeView('inbox-view');
+    
+    const navBar = document.querySelector('#navbar');
+    navBar.addEventListener('click', (event) => {
+      if (event.target.classList.contains('view')) {
+        const viewId = event.target.id;
+        changeView(viewId);
+      }
+    });
+  });
 }
+

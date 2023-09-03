@@ -170,11 +170,16 @@ div#content > div#navbar > ul > li {
   padding: 10px;
   margin: 10px 10px 10px 0px;
   border-radius: 7px;
+  background: none;
 }
 
-div#content > div#navbar > ul > li:hover , div#content > div#navbar > ul > li:focus {
+div#content > div#navbar > ul > li:hover{
   background:#4653EC;
   transition: 1s all ease;
+}
+
+div#content > div#navbar > ul > li.active {
+  background:#4653EC;
 }
 
 div#content > div#navbar > ul#date-views{

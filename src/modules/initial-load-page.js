@@ -75,7 +75,6 @@ function createHeader() {
   return header;
 }
 
-
 function createNav() {
   const nav = document.createElement('div');
   nav.setAttribute("id", "navbar");
@@ -83,6 +82,7 @@ function createNav() {
   function createNavItem(parent, id, icon, text) {
     const itemLi = document.createElement('li');
     itemLi.setAttribute('id', id);
+    itemLi.classList.add('view'); // Add the 'view' class here
     itemLi.innerHTML = `<span class="material-symbols-outlined">${icon}</span>${text}`;
     parent.appendChild(itemLi);
   }
@@ -117,6 +117,7 @@ function createNav() {
 
   return nav;
 }
+
 
 
 function createTaskArea(){
