@@ -51,7 +51,7 @@ class TaskManager {
   // TODO: add project task 
 }
 
-function showEditTask() {
+export function showEditTask() {
   document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired');
     const taskBlock = document.querySelector('#a-task');
@@ -98,7 +98,6 @@ function showEditTask() {
         toggleEditMode();
       });
     }
-  
     return toggleEditMode; // Return the toggleEditMode function
 
   });
@@ -124,6 +123,7 @@ export default function handleTask() {
   
   const edit = showEditTask();
   edit;
+  
 
   return taskManager;
 }

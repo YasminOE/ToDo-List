@@ -303,6 +303,7 @@ function createAddTaskBlock(){
 
   const editIcon = document.createElement('span');
   editIcon.setAttribute('class', 'material-symbols-outlined');
+  editIcon.setAttribute('id', 'edit');
   editIcon.innerHTML = 'edit_note';
   addATask.appendChild(taskNameInput);
   addATask.appendChild(editIcon);
@@ -450,26 +451,26 @@ export default function loadPage() {
     const successAddBtn = addTaskBlock.querySelector('#add');
 
 
-    // successAddBtn.addEventListener('click', () => {
-    //   // Get values from the addTaskBlock
-    //   const taskName = document.getElementById('task-name').value;
-    //   const description = document.getElementById('task-description').value;
-    //   const dueDate = document.getElementById('task-due-date').value;
-    //   const priority = document.getElementById('priority-type').value;
-    //   const type = document.getElementById('task-type').value;
+    successAddBtn.addEventListener('click', () => {
+      // Get values from the addTaskBlock
+      const taskName = document.getElementById('task-name').value;
+      const description = document.getElementById('task-description').value;
+      const dueDate = document.getElementById('task-due-date').value;
+      const priority = document.getElementById('priority-type').value;
+      const type = document.getElementById('task-type').value;
 
-    //   // Create a new taskBlock and populate its inputs
-    //   const taskBlock = createTaskBlock();
-    //   taskBlock.querySelector('#taskName').value = taskName;
-    //   taskBlock.querySelector('#description').value = description;
-    //   taskBlock.querySelector('#due-date').value = dueDate;
-    //   taskBlock.querySelector('#task-priority-type').value = priority;
-    //   taskBlock.querySelector('#type').value = type;
+      // Create a new taskBlock and populate its inputs
+      const taskBlock = createTaskBlock();
+      taskBlock.querySelector('#taskName').value = taskName;
+      taskBlock.querySelector('#description').value = description;
+      taskBlock.querySelector('#due-date').value = dueDate;
+      taskBlock.querySelector('#task-priority-type').value = priority;
+      taskBlock.querySelector('#type').value = type;
 
-    //   // Append the new taskBlock to the taskArea
-    //   taskArea.appendChild(taskBlock);
-    //   taskArea.removeChild(addTaskBlock);
-    // });
+      // Append the new taskBlock to the taskArea
+      taskArea.appendChild(taskBlock);
+      taskArea.removeChild(addTaskBlock);
+    });
 
   });
 }
