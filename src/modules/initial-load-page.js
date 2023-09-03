@@ -1,11 +1,11 @@
 import { secondsInDay } from "date-fns";
 
+//  Header builder
 function createHeader() {
   const header = document.createElement('div');
   header.setAttribute('id', 'header');
 
 // Home and search section
-
   const inboxSec = document.createElement('ul');
   inboxSec.setAttribute('id', 'inbox');
   header.appendChild(inboxSec);
@@ -31,9 +31,7 @@ function createHeader() {
   searchLi.appendChild(searchInput);
   inboxSec.appendChild(searchLi);
 
-
 // Logo section
-
   const logoSec = document.createElement('ul');
   logoSec.setAttribute('id', 'logo');
   header.appendChild(logoSec);
@@ -44,7 +42,6 @@ function createHeader() {
   logoSec.appendChild(logoIcon);
 
 // Account information and profile pic section
-
   const accountSec = document.createElement('ul');
   accountSec.setAttribute('id', 'account-info');
   header.appendChild(accountSec);
@@ -72,9 +69,12 @@ function createHeader() {
   profileIcon.alt = 'profile Icon';
   profilePicLi.appendChild(profileIcon);
   accountSec.appendChild(profilePicLi);
+
   return header;
+
 }
 
+//  Nav builder
 function createNav() {
   const nav = document.createElement('div');
   nav.setAttribute("id", "navbar");
@@ -118,8 +118,7 @@ function createNav() {
   return nav;
 }
 
-
-
+// Tasks Area builder
 function createTaskArea(){
   const tasksArea = document.createElement('div');
   tasksArea.setAttribute("id","tasks-area");
@@ -134,47 +133,59 @@ function createTaskArea(){
 
 }
 
+//  Add A task button  builder
 function createAddTaskBtn(){
   const addBtn = document.createElement('button');
   addBtn.setAttribute('id', 'show');
   addBtn.innerHTML = '<span class="material-symbols-outlined">add</span>Add Task';
+  
   return addBtn;
 }
 
 
-
-
+// Task block builder
 function createTaskBlock(){
   const taskBlock = document.createElement('div');
-   taskBlock.setAttribute('id', 'add-a-task');
+   taskBlock.setAttribute('id', 'a-task');
 
-  const complete = document.createElement('input');
+  const mainInfo = document.createElement('ul');
+  mainInfo.setAttribute('id','mainInfo');
+  taskBlock.appendChild(mainInfo);
+
+  const complete = document.createElement('button');
   Object.assign(complete, {
-    type : 'radio',
-    name: 'complete',
     id: 'complete',
+    type : 'submit',
   });
   //   complete.checked=true;
-  taskBlock.appendChild(complete);
+  complete.addEventListener('click',()=>{
+    complete.classList.toggle('after');
+  })
+  mainInfo.appendChild(complete);
 
   const taskNameInput = document.createElement('input');
   Object.assign(taskNameInput,{
    type : 'text',
    id: 'taskName',
-   value: '',
+   value: 'test value',
   });
-  taskBlock.appendChild(taskNameInput);
+  mainInfo.appendChild(taskNameInput);
 
   const editIcon = document.createElement('span');
   editIcon.setAttribute('class', 'material-symbols-outlined');
+  editIcon.setAttribute('id', 'edit');
   editIcon.innerHTML = 'edit_note';
-  taskBlock.appendChild(taskNameInput);
-  taskBlock.appendChild(editIcon);
+  mainInfo.appendChild(taskNameInput);
+  mainInfo.appendChild(editIcon);
+  editIcon.addEventListener('click', ()=> {
+    editIcon.classList.add('active');
+  })
   
   const taskDescriptionInput = document.createElement('textarea');
   Object.assign(taskDescriptionInput,{
     id: 'description',
-    placeholder: 'description'  
+    placeholder: 'description' ,
+    value: 'test value',
   });
 
   taskBlock.appendChild(taskDescriptionInput);
@@ -187,7 +198,7 @@ function createTaskBlock(){
   Object.assign(dueDateInput,{
    type : 'text',
    id: 'due-date',
-   value: '',
+   value: 'Today',
   });
   selection.appendChild(dueDateInput);
 
@@ -195,7 +206,7 @@ function createTaskBlock(){
   Object.assign (priorityInput, {
     name : 'priorityType',
      id : 'task-priority-type',
-     value: ''
+     value: 'Priorty 1'
   });
   selection.appendChild(priorityInput);
 
@@ -223,7 +234,7 @@ function createTaskBlock(){
   Object.assign (taskType, {
     name : 'taskType',
      id : 'type',
-     value: '',
+     value: 'Inbox',
   });
   selection.appendChild(taskType);
 
@@ -249,7 +260,7 @@ function createTaskBlock(){
 
   const closeBtn = document.createElement('button');
   Object.assign(closeBtn, {
-    id: 'close',
+    id: 'cancel-btn',
     type: 'submit'
   });
   closeBtn.innerHTML = 'Cancel';
@@ -257,22 +268,27 @@ function createTaskBlock(){
 
   const successAddBtn = document.createElement('button');
   Object.assign(successAddBtn, {
-    id: 'add',
+    id: 'edit-btn',
     type: 'submit'
   });
-  successAddBtn.innerHTML = 'Add Task';
+  successAddBtn.innerHTML = 'Save task';
   actionBtns.appendChild(successAddBtn);
 
   return taskBlock;
 
 }
 
+
+//  Add A task button  builder
 function createSaveEditBtn(){
   const editBtn = document.getElementById('add');
   editBtn.innerHTML = 'Save task';
+ 
   return editBtn;
+
 }
 
+//  Add a Task builder
 function createAddTaskBlock(){
   const addATask = document.createElement('dialog');
    addATask.setAttribute('id', 'add-a-task');
@@ -290,6 +306,9 @@ function createAddTaskBlock(){
   editIcon.innerHTML = 'edit_note';
   addATask.appendChild(taskNameInput);
   addATask.appendChild(editIcon);
+  editIcon.addEventListener('click', ()=> {
+    editIcon.classList.add('active');
+  })
   
   const taskDescriptionInput = document.createElement('textarea');
   Object.assign(taskDescriptionInput,{
@@ -384,6 +403,8 @@ function createAddTaskBlock(){
 
 }
 
+
+// default function
 export default function loadPage() {
   document.addEventListener('DOMContentLoaded', function () {
     const content = document.getElementById('content');
@@ -423,26 +444,32 @@ export default function loadPage() {
     showAddBlock(addBtn);
     showAddBlock(headerAddTaskBtn);
 
+    const taskBlock = createTaskBlock();
+    taskArea.appendChild(taskBlock);
+
     const successAddBtn = addTaskBlock.querySelector('#add');
 
-    successAddBtn.addEventListener('click', () => {
-      // Get values from the addTaskBlock
-      const taskName = document.getElementById('task-name').value;
-      const description = document.getElementById('task-description').value;
-      const dueDate = document.getElementById('task-due-date').value;
-      const priority = document.getElementById('priority-type').value;
-      const type = document.getElementById('task-type').value;
 
-      // Create a new taskBlock and populate its inputs
-      const taskBlock = createTaskBlock();
-      taskBlock.querySelector('#taskName').value = taskName;
-      taskBlock.querySelector('#description').value = description;
-      taskBlock.querySelector('#due-date').value = dueDate;
-      taskBlock.querySelector('#task-priority-type').value = priority;
-      taskBlock.querySelector('#type').value = type;
+    // successAddBtn.addEventListener('click', () => {
+    //   // Get values from the addTaskBlock
+    //   const taskName = document.getElementById('task-name').value;
+    //   const description = document.getElementById('task-description').value;
+    //   const dueDate = document.getElementById('task-due-date').value;
+    //   const priority = document.getElementById('priority-type').value;
+    //   const type = document.getElementById('task-type').value;
 
-      // Append the new taskBlock to the taskArea
-      taskArea.appendChild(taskBlock);
-    });
+    //   // Create a new taskBlock and populate its inputs
+    //   const taskBlock = createTaskBlock();
+    //   taskBlock.querySelector('#taskName').value = taskName;
+    //   taskBlock.querySelector('#description').value = description;
+    //   taskBlock.querySelector('#due-date').value = dueDate;
+    //   taskBlock.querySelector('#task-priority-type').value = priority;
+    //   taskBlock.querySelector('#type').value = type;
+
+    //   // Append the new taskBlock to the taskArea
+    //   taskArea.appendChild(taskBlock);
+    //   taskArea.removeChild(addTaskBlock);
+    // });
+
   });
 }
