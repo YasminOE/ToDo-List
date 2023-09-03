@@ -301,15 +301,15 @@ function createAddTaskBlock(){
   });
   addATask.appendChild(taskNameInput);
 
-  const editIcon = document.createElement('span');
-  editIcon.setAttribute('class', 'material-symbols-outlined');
-  editIcon.setAttribute('id', 'edit');
-  editIcon.innerHTML = 'edit_note';
-  addATask.appendChild(taskNameInput);
-  addATask.appendChild(editIcon);
-  editIcon.addEventListener('click', ()=> {
-    editIcon.classList.add('active');
-  })
+  // const editIcon = document.createElement('span');
+  // editIcon.setAttribute('class', 'material-symbols-outlined');
+  // editIcon.setAttribute('id', 'edit');
+  // editIcon.innerHTML = 'edit_note';
+  // addATask.appendChild(taskNameInput);
+  // addATask.appendChild(editIcon);
+  // editIcon.addEventListener('click', ()=> {
+  //   editIcon.classList.add('active');
+  // })
   
   const taskDescriptionInput = document.createElement('textarea');
   Object.assign(taskDescriptionInput,{
@@ -460,16 +460,21 @@ export default function loadPage() {
       const type = document.getElementById('task-type').value;
 
       // Create a new taskBlock and populate its inputs
-      const taskBlock = createTaskBlock();
+
       taskBlock.querySelector('#taskName').value = taskName;
       taskBlock.querySelector('#description').value = description;
       taskBlock.querySelector('#due-date').value = dueDate;
       taskBlock.querySelector('#task-priority-type').value = priority;
       taskBlock.querySelector('#type').value = type;
 
+  
+
       // Append the new taskBlock to the taskArea
       taskArea.appendChild(taskBlock);
       taskArea.removeChild(addTaskBlock);
+
+      const editButton = taskBlock.querySelector('#edit'); // Adjust the selector as needed
+      editButton.classList.add('.edit-mode');
     });
 
   });

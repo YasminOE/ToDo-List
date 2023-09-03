@@ -51,6 +51,7 @@ class TaskManager {
   // TODO: add project task 
 }
 
+
 export function showEditTask() {
   document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded event fired');
@@ -104,6 +105,11 @@ export function showEditTask() {
   
   
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const edit = showEditTask();
+  edit;
+});
 
 export default function handleTask() {
   
