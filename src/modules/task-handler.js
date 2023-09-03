@@ -1,4 +1,4 @@
-// Import necessary date functions
+// import date library for due date
 import { addDays } from "date-fns";
 
 // Task Constructor
@@ -8,7 +8,7 @@ function Task(taskName, description, dueDate, priority, type) {
 
   this.taskName = taskName;
   this.description = description;
-  this.dueDate = dueDate instanceof Date && !isNaN(dueDate) ? dueDate : addDays(new Date(), 0);
+  this.dueDate = dueDate || addDays(new Date(), 0); // Use the provided dueDate or default to today
   this.priority = priorityTypes[priority];
   this.type = taskType[type];
 }
@@ -35,8 +35,8 @@ class TaskManager {
     const task = this.tasks.find(task => task.taskName === taskName);
 
     if (task) {
-      task.dueDate = newDueDate instanceof Date && !isNaN(newDueDate) ? newDueDate : task.dueDate;
-      console.log(`${task.taskName}'s due date has been updated to ${task.dueDate.toISOString()}`);
+      task.dueDate = newDueDate;
+      console.log(`${task.taskName}'s due date has been updated to ${newDueDate}`);
     }
   }
 
@@ -48,24 +48,25 @@ class TaskManager {
       console.log(`${task.taskName}'s information has been updated`);
     }
   }
+  // TODO: add project task 
 }
 
-// Initialize TaskManager
-const taskManager = new TaskManager();
+// test
 
-// Add example tasks
-taskManager.addTask(new Task('add task test to be removed', 'add test', new Date(), 1, 2));
-taskManager.addTask(new Task('add task test', 'add test', addDays(new Date(), 1), 3, 0));
-taskManager.addTask(new Task('add another task test', 'add test', addDays(new Date(), 3), 3, 0));
+export default function handleTask() {
+  const taskManager = new TaskManager();
 
-// Log tasks
-taskManager.tasks.forEach(task => console.log(task));
+  taskManager.addTask(new Task('add task test to be removed', 'add test', new Date(), '1', '2'));
+  taskManager.addTask(new Task('add task test', 'add test', addDays(new Date(), 1), '4', '0'));
+  taskManager.addTask(new Task('add another task test', 'add test', addDays(new Date(), 3), '4', '0'));
 
-// Update due date
-taskManager.updateDueDate('add task test', addDays(new Date(), 7));
+  taskManager.tasks.forEach(task => console.log(task));
 
-// Update task
-taskManager.updateTask('add another task test', { description: 'Updated description', priority: 0 });
+  taskManager.updateDueDate('add task test', addDays(new Date(), 7));
 
-// Log updated tasks
-taskManager.tasks.forEach(task => console.log(task));
+  taskManager.updateTask('add another task test', { description: 'Updated description', priority: 'priorityOne' });
+
+  console.log(taskManager.tasks);
+
+  return taskManager;
+}
