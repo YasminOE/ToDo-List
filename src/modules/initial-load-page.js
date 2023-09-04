@@ -171,14 +171,27 @@ function createTaskBlock(){
   });
   mainInfo.appendChild(taskNameInput);
 
+  const icons = document.createElement('ul');
+  icons.setAttribute('id' , "icons");
+  mainInfo.appendChild(icons);
+
   const editIcon = document.createElement('span');
   editIcon.setAttribute('class', 'material-symbols-outlined');
   editIcon.setAttribute('id', 'edit');
   editIcon.innerHTML = 'edit_note';
-  mainInfo.appendChild(taskNameInput);
-  mainInfo.appendChild(editIcon);
+  icons.appendChild(editIcon);
   editIcon.addEventListener('click', ()=> {
     editIcon.classList.add('active');
+  })
+
+  const deleteIcon = document.createElement('span');
+  deleteIcon.setAttribute('class', 'material-symbols-outlined');
+  deleteIcon.setAttribute('id', 'delete');
+  deleteIcon.innerHTML = 'delete';
+
+  icons.appendChild(deleteIcon);
+  deleteIcon.addEventListener('click', ()=> {
+    deleteIcon.classList.add('active');
   })
   
   const taskDescriptionInput = document.createElement('textarea');
@@ -196,42 +209,42 @@ function createTaskBlock(){
 
   const dueDateInput = document.createElement('input');
   Object.assign(dueDateInput,{
-   type : 'text',
+   type : 'date',
    id: 'due-date',
    value: 'Today',
   });
   selection.appendChild(dueDateInput);
 
-  const priorityInput = document.createElement('input');
+  const priorityInput = document.createElement('select');
   Object.assign (priorityInput, {
     name : 'priorityType',
-     id : 'task-priority-type',
-     value: 'P1',
+    id : 'task-priority-type',
+    value: '',
   });
   
   selection.appendChild(priorityInput);
 
-  // const option1 = document.createElement('option');
-  // Object.assign(option1 ,{value:'priorityOne'}); 
-  // option1.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 1';
-  // selectPriority.appendChild(option1);
+  const option1 = document.createElement('option');
+  Object.assign(option1 ,{value:'P1'}); 
+  option1.innerHTML = 'P1';
+  priorityInput.appendChild(option1);
 
-  // const option2 = document.createElement('option');
-  // Object.assign(option2 ,{value:'priorityTwo'}); 
-  // option2.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 2';
-  // selectPriority.appendChild(option2);
+  const option2 = document.createElement('option');
+  Object.assign(option2 ,{value:'P2'}); 
+  option2.innerHTML = 'P2';
+  priorityInput.appendChild(option2);
 
-  // const option3 = document.createElement('option');
-  // Object.assign(option3 ,{value:'priorityThree'}); 
-  // option3.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 3';
-  // selectPriority.appendChild(option3);
+  const option3 = document.createElement('option');
+  Object.assign(option3 ,{value:'P3'}); 
+  option3.innerHTML = 'P3';
+  priorityInput.appendChild(option3);
 
-  // const option4 = document.createElement('option');
-  // Object.assign(option4 ,{value:'priorityFour'}); 
-  // option4.innerHTML = '<span class="material-symbols-outlined">flag<span>Priority 4';
-  // selectPriority.appendChild(option4);
+  const option4 = document.createElement('option');
+  Object.assign(option4 ,{value:'P4'}); 
+  option4.innerHTML = 'P4';
+  priorityInput.appendChild(option4);
 
-  const taskType = document.createElement('input');
+  const taskType = document.createElement('select');
   Object.assign (taskType, {
     name : 'taskType',
      id : 'type',
@@ -239,20 +252,20 @@ function createTaskBlock(){
   });
   selection.appendChild(taskType);
 
-  // const typeInbox = document.createElement('option');
-  // Object.assign(typeInbox ,{value:'inbox'}); 
-  // typeInbox.innerHTML = 'Inbox';
-  // selectTaskType.appendChild(typeInbox);
+  const typeInbox = document.createElement('option');
+  Object.assign(typeInbox ,{value:'inbox'}); 
+  typeInbox.innerHTML = 'Inbox';
+  taskType.appendChild(typeInbox);
 
-  // const typeHome = document.createElement('option');
-  // Object.assign(typeHome ,{value:'home'}); 
-  // typeHome.innerHTML = 'Home 🏡';
-  // selectTaskType.appendChild(typeHome);
+  const typeHome = document.createElement('option');
+  Object.assign(typeHome ,{value:'Home 🏡'}); 
+  typeHome.innerHTML = 'Home 🏡';
+  taskType.appendChild(typeHome);
 
-  // const typeWork = document.createElement('option');
-  // Object.assign(typeWork ,{value:'projects'}); 
-  // typeWork.innerHTML = 'My work 🎯';
-  // selectTaskType.appendChild(typeWork);
+  const typeWork = document.createElement('option');
+  Object.assign(typeWork ,{value:'My work 🎯'}); 
+  typeWork.innerHTML = 'My work 🎯';
+  taskType.appendChild(typeWork);
   
   const actionBtns = document.createElement('ul');
   actionBtns.setAttribute('id', 'task-action');
@@ -458,8 +471,6 @@ export default function loadPage() {
       const description = document.getElementById('task-description').value;
       const dueDate = document.getElementById('task-due-date').value;
       const priority = document.getElementById('priority-type').value;
-   
-    
       const type = document.getElementById('task-type').value;
 
       // Create a new taskBlock and populate its inputs
@@ -467,7 +478,7 @@ export default function loadPage() {
       taskBlock.querySelector('#taskName').value = taskName;
       taskBlock.querySelector('#description').value = description;
       taskBlock.querySelector('#due-date').value = dueDate;
-      taskBlock.querySelector('#task-priority-type').value = priorityOutPut(priority);
+      taskBlock.querySelector('#task-priority-type').value = priority;
       taskBlock.querySelector('#type').value = type;
 
   
@@ -475,6 +486,11 @@ export default function loadPage() {
       // Append the new taskBlock to the taskArea
       taskArea.appendChild(taskBlock);
       taskArea.removeChild(addTaskBlock);
+
+      const deleteButton = taskBlock.querySelector('#delete');
+      deleteButton.addEventListener('click', () => {
+        taskArea.removeChild(taskBlock);
+      })
 
       const editButton = taskBlock.querySelector('#edit'); // Adjust the selector as needed
       editButton.classList.add('.edit-mode');
