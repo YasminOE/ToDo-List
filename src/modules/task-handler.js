@@ -51,125 +51,127 @@ class TaskManager {
   // TODO: add project task 
 }
 
+// function disableEditing() {
+//   const elementsToDisable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
+//   elementsToDisable.forEach(element => {
+//     element.disabled = true;
+//   });
+// }
 
-export function showEditTask() {
-  document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOMContentLoaded event fired');
-    const taskBlock = document.querySelector('#a-task');
-    const editIcon = document.querySelector('#edit');
-    const actionsSec = document.querySelector('#task-action');
-  
-    console.log(editIcon);
-    editIcon.classList.add('active');
+// function enableEditing() {
+//   const elementsToEnable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
+//   elementsToEnable.forEach(element => {
+//     element.disabled = false;
+//   });
+// }
 
-    function disableEditing() {
-      const elementsToDisable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
-      elementsToDisable.forEach(element => {
-        element.disabled = true;
-      });
-    }
+
+// export function showEditTask() {
+//   document.addEventListener('DOMContentLoaded', function () {
+//     console.log('DOMContentLoaded event fired');
+//     const taskBlock = document.querySelector('#a-task');
+//     const editIcon = document.querySelector('#edit');
+//     const actionsSec = document.querySelector('#task-action');
+  
+//     console.log(editIcon);
+//     editIcon.classList.add('active');
+
+
     
-    function enableEditing() {
-      const elementsToEnable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
-      elementsToEnable.forEach(element => {
-        element.disabled = false;
-      });
-    }
+//     // Call disableEditing to initially disable editing
+//     disableEditing();
     
-    // Call disableEditing to initially disable editing
-    disableEditing();
-    
-    // Store original values
-    let originalTaskName = '';
-    let originalDescription = '';
-    let originalDueDate = '';
-    let originalPriority = '';
-    let originalType = '';
+//     // Store original values
+//     let originalTaskName = '';
+//     let originalDescription = '';
+//     let originalDueDate = '';
+//     let originalPriority = '';
+//     let originalType = '';
   
-    let editModeActive = false; // Track the edit mode state
+//     let editModeActive = false; // Track the edit mode state
   
-    // Function to toggle edit mode
-    function toggleEditMode() {
-      editModeActive = !editModeActive; // Toggle the edit mode state
+//     // Function to toggle edit mode
+//     function toggleEditMode() {
+//       editModeActive = !editModeActive; // Toggle the edit mode state
   
-      if (editModeActive) {
-        // Enable edit mode
-        actionsSec.style.visibility = 'visible';
-        editIcon.classList.add('active');
-        taskBlock.classList.add('edit-mode');
+//       if (editModeActive) {
+//         // Enable edit mode
+//         actionsSec.style.visibility = 'visible';
+//         editIcon.classList.add('active');
+//         taskBlock.classList.add('edit-mode');
   
-        // Store the original values when entering edit mode
-        originalTaskName = taskBlock.querySelector('#taskName').value;
-        originalDescription = taskBlock.querySelector('#description').value;
-        originalDueDate = taskBlock.querySelector('#due-date').value;
-        originalPriority = taskBlock.querySelector('#task-priority-type').value;
-        originalType = taskBlock.querySelector('#type').value;
-      } else {
-        // Disable edit mode
-        actionsSec.style.visibility = 'hidden';
-        editIcon.classList.remove('active');
-        taskBlock.classList.remove('edit-mode');
-      }
-    }
+//         // Store the original values when entering edit mode
+//         originalTaskName = taskBlock.querySelector('#taskName').value;
+//         originalDescription = taskBlock.querySelector('#description').value;
+//         originalDueDate = taskBlock.querySelector('#due-date').value;
+//         originalPriority = taskBlock.querySelector('#task-priority-type').value;
+//         originalType = taskBlock.querySelector('#type').value;
+//       } else {
+//         // Disable edit mode
+//         actionsSec.style.visibility = 'hidden';
+//         editIcon.classList.remove('active');
+//         taskBlock.classList.remove('edit-mode');
+//       }
+//     }
   
-    editIcon.addEventListener('click', () => {
-      toggleEditMode();
-      enableEditing();
-    });
+//     editIcon.addEventListener('click', () => {
+//       toggleEditMode();
+//       enableEditing();
+//     });
     
   
-    const cancelBtn = document.querySelector('#cancel-btn');
-    const saveBtn = document.querySelector('#edit-btn'); // Corrected button ID
+//     const cancelBtn = document.querySelector('#cancel-btn');
+//     const saveBtn = document.querySelector('#edit-btn'); // Corrected button ID
   
-    console.log(cancelBtn, saveBtn);
+//     console.log(cancelBtn, saveBtn);
   
-    if (cancelBtn && saveBtn) {
-      // Add event listeners directly to both buttons
-      saveBtn.addEventListener('click', () => {
-        const newTaskName = taskBlock.querySelector('#taskName').value;
-        const newDescription = taskBlock.querySelector('#description').value;
-        const newDueDate = taskBlock.querySelector('#due-date').value;
-        const newPriority = taskBlock.querySelector('#task-priority-type').value;
-        const newType = taskBlock.querySelector('#type').value;
+//     if (cancelBtn && saveBtn) {
+//       // Add event listeners directly to both buttons
+//       saveBtn.addEventListener('click', () => {
+//         const newTaskName = taskBlock.querySelector('#taskName').value;
+//         const newDescription = taskBlock.querySelector('#description').value;
+//         const newDueDate = taskBlock.querySelector('#due-date').value;
+//         const newPriority = taskBlock.querySelector('#task-priority-type').value;
+//         const newType = taskBlock.querySelector('#type').value;
       
-        // Update only the fields that have changed
-        if (newTaskName !== originalTaskName) {
-          document.getElementById('task-name').value = newTaskName.value;
-        }
-        if (newDescription !== originalDescription) {
-          document.getElementById('task-description').value = newDescription;
-        }
-        if (newDueDate !== originalDueDate) {
-          document.getElementById('task-due-date').value = newDueDate;
-        }
-        if (newPriority !== originalPriority) {
-          document.getElementById('priority-type').value = newPriority;
-        }
-        if (newType !== originalType) {
-          document.getElementById('task-type').value = newType;
-        }
+//         // Update only the fields that have changed
+//         if (newTaskName !== originalTaskName) {
+//           document.getElementById('task-name').value = newTaskName.value;
+//         }
+//         if (newDescription !== originalDescription) {
+//           document.getElementById('task-description').value = newDescription;
+//         }
+//         if (newDueDate !== originalDueDate) {
+//           document.getElementById('task-due-date').value = newDueDate;
+//         }
+//         if (newPriority !== originalPriority) {
+//           document.getElementById('priority-type').value = newPriority;
+//         }
+//         if (newType !== originalType) {
+//           document.getElementById('task-type').value = newType;
+//         }
       
-        // Disable editing again
-        toggleEditMode();
-        disableEditing();
-      });
+//         // Disable editing again
+//         toggleEditMode();
+//         disableEditing();
+//       });
   
-      cancelBtn.addEventListener('click', () => {
-        // Restore the original values
-        taskBlock.querySelector('#taskName').value = originalTaskName;
-        taskBlock.querySelector('#description').value = originalDescription;
-        taskBlock.querySelector('#due-date').value = originalDueDate;
-        taskBlock.querySelector('#task-priority-type').value = originalPriority;
-        taskBlock.querySelector('#type').value = originalType;
+//       cancelBtn.addEventListener('click', () => {
+//         // Restore the original values
+//         taskBlock.querySelector('#taskName').value = originalTaskName;
+//         taskBlock.querySelector('#description').value = originalDescription;
+//         taskBlock.querySelector('#due-date').value = originalDueDate;
+//         taskBlock.querySelector('#task-priority-type').value = originalPriority;
+//         taskBlock.querySelector('#type').value = originalType;
       
-        // Disable editing again
-        toggleEditMode();
-        disableEditing();        
-      });
-    }
-    return toggleEditMode; // Return the toggleEditMode function
-  });
-}
+//         // Disable editing again
+//         toggleEditMode();
+//         disableEditing();        
+//       });
+//     }
+//     return toggleEditMode; // Return the toggleEditMode function
+//   });
+// }
 
 // export function deleteTask(){
 //   document.addEventListener('DOMContentLoaded', function() {
@@ -184,13 +186,13 @@ export function showEditTask() {
 //   });
 // }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const edit = showEditTask();
-  edit;
+// document.addEventListener('DOMContentLoaded', function () {
+//   const edit = showEditTask();
+//   edit;
 
-  // const deleteTask = deleteTask();
-  // deleteTask;
-});
+//   // const deleteTask = deleteTask();
+//   // deleteTask;
+// });
 
 export default function handleTask() {
   
@@ -207,11 +209,14 @@ export default function handleTask() {
 
   console.log(taskManager.tasks);
   
-  const edit = showEditTask();
-  edit;
+  // const edit = showEditTask();
+  // edit;
+
+  // const enableEdit = enableEditing();
+  // const disableEdit = disableEditing();
   
   // const deleteTask = deleteTask();
   // deleteTask;
 
-  return {taskManager, edit};
+  return {taskManager};
 }
