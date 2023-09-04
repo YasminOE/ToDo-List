@@ -2,7 +2,7 @@
 import { addDays } from "date-fns";
 
 // Task Constructor
-function Task(taskName, description, dueDate, priority, type) {
+export function Task(taskName, description, dueDate, priority, type) {
   const priorityTypes = ['priorityOne', 'priorityTwo', 'priorityThree', 'priorityFour'];
   const taskType = ['inbox', 'home', 'projects'];
 
@@ -60,6 +60,7 @@ export function showEditTask() {
     const actionsSec = document.querySelector('#task-action');
   
     console.log(editIcon);
+    editIcon.classList.add('active');
 
     function disableEditing() {
       const elementsToDisable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
@@ -195,9 +196,8 @@ export default function handleTask() {
   
   const taskManager = new TaskManager();
 
-  taskManager.addTask(new Task('add task test to be removed', 'add test', new Date(), '1', '2'));
-  taskManager.addTask(new Task('add task test', 'add test', addDays(new Date(), 1), '4', '0'));
-  taskManager.addTask(new Task('add another task test', 'add test', addDays(new Date(), 3), '4', '0'));
+  taskManager.addTask(new Task('add task test', 'add test', new Date(), '1', '2'));
+
 
   taskManager.tasks.forEach(task => console.log(task));
 
@@ -213,5 +213,5 @@ export default function handleTask() {
   // const deleteTask = deleteTask();
   // deleteTask;
 
-  return taskManager;
+  return {taskManager, edit};
 }

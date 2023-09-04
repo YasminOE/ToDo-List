@@ -1,5 +1,5 @@
 import { secondsInDay } from "date-fns";
-
+import Task from './task-handler';
 //  Header builder
 function createHeader() {
   const header = document.createElement('div');
@@ -144,7 +144,7 @@ function createAddTaskBtn(){
 
 
 // Task block builder
-function createTaskBlock(){
+export function createTaskBlock(){
   const taskBlock = document.createElement('div');
    taskBlock.setAttribute('id', 'a-task');
 
@@ -180,9 +180,9 @@ function createTaskBlock(){
   editIcon.setAttribute('id', 'edit');
   editIcon.innerHTML = 'edit_note';
   icons.appendChild(editIcon);
-  editIcon.addEventListener('click', ()=> {
-    editIcon.classList.add('active');
-  })
+  // editIcon.addEventListener('click', ()=> {
+  //   editIcon.classList.add('active');
+  // })
 
   const deleteIcon = document.createElement('span');
   deleteIcon.setAttribute('class', 'material-symbols-outlined');
@@ -289,16 +289,6 @@ function createTaskBlock(){
   actionBtns.appendChild(successAddBtn);
 
   return taskBlock;
-
-}
-
-
-//  Add A task button  builder
-function createSaveEditBtn(){
-  const editBtn = document.getElementById('add');
-  editBtn.innerHTML = 'Save task';
- 
-  return editBtn;
 
 }
 
@@ -420,81 +410,55 @@ function createAddTaskBlock(){
 
 
 // default function
-export default function loadPage() {
-  document.addEventListener('DOMContentLoaded', function () {
-    const content = document.getElementById('content');
+export default function createInitialPageStructure() {
+  const content = document.getElementById('content');
 
-    const header = createHeader();
-    content.appendChild(header);
+  const header = createHeader();
+  content.appendChild(header);
 
-    const nav = createNav();
-    content.appendChild(nav);
+  const nav = createNav();
+  content.appendChild(nav);
 
-    const taskArea = createTaskArea();
-    content.appendChild(taskArea);
+  const taskArea = createTaskArea();
+  content.appendChild(taskArea);
 
-    const addBtn = createAddTaskBtn();
-    taskArea.appendChild(addBtn);
+  const addBtn = createAddTaskBtn();
+  taskArea.appendChild(addBtn);
 
-    const addTaskBlock = createAddTaskBlock();
+  const taskBlock = createTaskBlock();
+  // taskArea.appendChild(taskBlock);
 
-    const headerAddTaskBtn = document.querySelector('#add-task');
+  const addTaskBlock = createAddTaskBlock();
 
-    function showAddBlock(btn) {
-      btn.addEventListener('click', () => {
-        addTaskBlock.show();
-        taskArea.appendChild(addTaskBlock);
+  const headerAddTaskBtn = document.querySelector('#add-task');
 
-        const closeBtn = document.getElementById('close');
-        console.log(closeBtn);
 
-        closeBtn.addEventListener('click', () => {
-          taskArea.removeChild(addTaskBlock);
-          addTaskBlock.close();
-        });
+
+  function showAddBlock(btn) {
+    btn.addEventListener('click', () => {
+      addTaskBlock.show();
+      taskArea.appendChild(addTaskBlock);
+
+      const closeBtn = document.getElementById('close');
+      console.log(closeBtn);
+
+      closeBtn.addEventListener('click', () => {
+        taskArea.removeChild(addTaskBlock);
+        addTaskBlock.close();
       });
-    }
-
-    // Attach the event listener to both addBtn and headerAddTaskBtn
-    showAddBlock(addBtn);
-    showAddBlock(headerAddTaskBtn);
-
-    const taskBlock = createTaskBlock();
-    taskArea.appendChild(taskBlock);
-
-    const successAddBtn = addTaskBlock.querySelector('#add');
-
-
-    successAddBtn.addEventListener('click', () => {
-      // Get values from the addTaskBlock
-      const taskName = document.getElementById('task-name').value;
-      const description = document.getElementById('task-description').value;
-      const dueDate = document.getElementById('task-due-date').value;
-      const priority = document.getElementById('priority-type').value;
-      const type = document.getElementById('task-type').value;
-
-      // Create a new taskBlock and populate its inputs
-
-      taskBlock.querySelector('#taskName').value = taskName;
-      taskBlock.querySelector('#description').value = description;
-      taskBlock.querySelector('#due-date').value = dueDate;
-      taskBlock.querySelector('#task-priority-type').value = priority;
-      taskBlock.querySelector('#type').value = type;
-
-  
-
-      // Append the new taskBlock to the taskArea
-      taskArea.appendChild(taskBlock);
-      taskArea.removeChild(addTaskBlock);
-
-      const deleteButton = taskBlock.querySelector('#delete');
-      deleteButton.addEventListener('click', () => {
-        taskArea.removeChild(taskBlock);
-      })
-
-      const editButton = taskBlock.querySelector('#edit'); // Adjust the selector as needed
-      editButton.classList.add('.edit-mode');
     });
+  }
 
-  });
+  // Attach the event listener to both addBtn and headerAddTaskBtn
+  showAddBlock(addBtn);
+  showAddBlock(headerAddTaskBtn);
+
+  return {
+    taskArea,
+    addBtn,
+    addTaskBlock,
+    headerAddTaskBtn,
+    taskBlock,
+  };
+
 }
