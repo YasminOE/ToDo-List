@@ -1,14 +1,14 @@
 // import date library for due date
 import { addDays } from "date-fns";
+import { createNewTaskBlock } from "..";
 
-// Task Constructor
 export function Task(taskName, description, dueDate, priority, type) {
   const priorityTypes = ['priorityOne', 'priorityTwo', 'priorityThree', 'priorityFour'];
   const taskType = ['inbox', 'home', 'projects'];
 
   this.taskName = taskName;
   this.description = description;
-  this.dueDate = dueDate || addDays(new Date(), 0); // Use the provided dueDate or default to today
+  this.dueDate = dueDate || addDays(new Date(), 0);
   this.priority = priorityTypes[priority];
   this.type = taskType[type];
 }
@@ -48,151 +48,179 @@ class TaskManager {
       console.log(`${task.taskName}'s information has been updated`);
     }
   }
-  // TODO: add project task 
 }
 
-// function disableEditing() {
-//   const elementsToDisable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
-//   elementsToDisable.forEach(element => {
-//     element.disabled = true;
-//   });
-// }
+export function addNewTask(manager, addBlock, taskBlock, area, btn) {
 
-// function enableEditing() {
-//   const elementsToEnable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
-//   elementsToEnable.forEach(element => {
-//     element.disabled = false;
-//   });
-// }
+  btn.addEventListener('click', () => {
+    // this os the taskBlock = createaddBlock()
+    const taskName = document.getElementById('task-name').value;
+    const description = document.getElementById('task-description').value;
+    const dueDate = document.getElementById('task-due-date').value;
+    const priority = document.getElementById('priority-type').value;
+    const type = document.getElementById('task-type').value;
 
 
-// export function showEditTask() {
-//   document.addEventListener('DOMContentLoaded', function () {
-//     console.log('DOMContentLoaded event fired');
-//     const taskBlock = document.querySelector('#a-task');
-//     const editIcon = document.querySelector('#edit');
-//     const actionsSec = document.querySelector('#task-action');
-  
-//     console.log(editIcon);
-//     editIcon.classList.add('active');
+// Create a new task instance
+let newTask = new Task(taskName, description, dueDate, priority, type);
+// Add the new task to the manager's tasks array
+manager.addTask(newTask);
+const newTaskBlock = createNewTaskBlock(newTask);
+
+  // Call the callback function to create the new task block
+  // createNewTaskBlock(newTask);
+
+   console.log(newTaskBlock);
 
 
-    
-//     // Call disableEditing to initially disable editing
-//     disableEditing();
-    
-//     // Store original values
-//     let originalTaskName = '';
-//     let originalDescription = '';
-//     let originalDueDate = '';
-//     let originalPriority = '';
-//     let originalType = '';
-  
-//     let editModeActive = false; // Track the edit mode state
-  
-//     // Function to toggle edit mode
-//     function toggleEditMode() {
-//       editModeActive = !editModeActive; // Toggle the edit mode state
-  
-//       if (editModeActive) {
-//         // Enable edit mode
-//         actionsSec.style.visibility = 'visible';
-//         editIcon.classList.add('active');
-//         taskBlock.classList.add('edit-mode');
-  
-//         // Store the original values when entering edit mode
-//         originalTaskName = taskBlock.querySelector('#taskName').value;
-//         originalDescription = taskBlock.querySelector('#description').value;
-//         originalDueDate = taskBlock.querySelector('#due-date').value;
-//         originalPriority = taskBlock.querySelector('#task-priority-type').value;
-//         originalType = taskBlock.querySelector('#type').value;
-//       } else {
-//         // Disable edit mode
-//         actionsSec.style.visibility = 'hidden';
-//         editIcon.classList.remove('active');
-//         taskBlock.classList.remove('edit-mode');
-//       }
-//     }
-  
-//     editIcon.addEventListener('click', () => {
-//       toggleEditMode();
-//       enableEditing();
-//     });
-    
-  
-//     const cancelBtn = document.querySelector('#cancel-btn');
-//     const saveBtn = document.querySelector('#edit-btn'); // Corrected button ID
-  
-//     console.log(cancelBtn, saveBtn);
-  
-//     if (cancelBtn && saveBtn) {
-//       // Add event listeners directly to both buttons
-//       saveBtn.addEventListener('click', () => {
-//         const newTaskName = taskBlock.querySelector('#taskName').value;
-//         const newDescription = taskBlock.querySelector('#description').value;
-//         const newDueDate = taskBlock.querySelector('#due-date').value;
-//         const newPriority = taskBlock.querySelector('#task-priority-type').value;
-//         const newType = taskBlock.querySelector('#type').value;
-      
-//         // Update only the fields that have changed
-//         if (newTaskName !== originalTaskName) {
-//           document.getElementById('task-name').value = newTaskName.value;
-//         }
-//         if (newDescription !== originalDescription) {
-//           document.getElementById('task-description').value = newDescription;
-//         }
-//         if (newDueDate !== originalDueDate) {
-//           document.getElementById('task-due-date').value = newDueDate;
-//         }
-//         if (newPriority !== originalPriority) {
-//           document.getElementById('priority-type').value = newPriority;
-//         }
-//         if (newType !== originalType) {
-//           document.getElementById('task-type').value = newType;
-//         }
-      
-//         // Disable editing again
-//         toggleEditMode();
-//         disableEditing();
-//       });
-  
-//       cancelBtn.addEventListener('click', () => {
-//         // Restore the original values
-//         taskBlock.querySelector('#taskName').value = originalTaskName;
-//         taskBlock.querySelector('#description').value = originalDescription;
-//         taskBlock.querySelector('#due-date').value = originalDueDate;
-//         taskBlock.querySelector('#task-priority-type').value = originalPriority;
-//         taskBlock.querySelector('#type').value = originalType;
-      
-//         // Disable editing again
-//         toggleEditMode();
-//         disableEditing();        
-//       });
-//     }
-//     return toggleEditMode; // Return the toggleEditMode function
-//   });
-// }
 
-// export function deleteTask(){
-//   document.addEventListener('DOMContentLoaded', function() {
-//     const taskBlock = document.querySelector('#a-task');
-//     const deleteIcon = document.querySelector('#delete');
-//     const taskArea = document.querySelector('#task-area');
-//     deleteIcon.addEventListener('click', () => {
-//       taskArea.removeChild(taskBlock);
-//     })
-//     return 1;
+// // Append the new taskBlock to the area
+  area.appendChild(newTaskBlock);
 
-//   });
-// }
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const edit = showEditTask();
-//   edit;
+   // Reset input fields
+   const today = new Date();
+   const setToday = today.toISOString().split('T')[0];
+   document.getElementById('task-name').value = '';
+   document.getElementById('task-description').value = '';
+   document.getElementById('task-due-date').value = setToday;
+   document.getElementById('priority-type').value = 'P1';
+   document.getElementById('task-type').value = 'Inbox';
 
-//   // const deleteTask = deleteTask();
-//   // deleteTask;
-// });
+let editBtn = newTaskBlock.querySelector('#edit');
+let deleteButton = newTaskBlock.querySelector('#delete');
+let actions = newTaskBlock.querySelector('#task-action'); 
+
+console.log(editBtn, deleteButton);
+// disableEdit;
+function disableEditing() {
+  const elementsToDisable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
+  elementsToDisable.forEach(element => {
+    element.disabled = true;
+  });
+}
+
+function enableEditing() {
+  const elementsToEnable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
+  elementsToEnable.forEach(element => {
+    element.disabled = false;
+  });
+}
+
+disableEditing();
+
+editBtn.addEventListener('click', () => {
+enableEditing();
+editBtn.classList.add('active');
+newTaskBlock.classList.add('edit-mode');
+actions.style.visibility = 'visible';
+// taskBlock = document.querySelector('#a-task');
+console.log(editBtn);
+
+// Store original values
+let originalTaskName = '';
+let originalDescription = '';
+let originalDueDate = '';
+let originalPriority = '';
+let originalType = '';
+
+ // Track the edit mode state
+// Store the original values when entering edit mode
+originalTaskName = newTaskBlock.querySelector('#taskName').value;
+originalDescription = newTaskBlock.querySelector('#description').value;
+originalDueDate = newTaskBlock.querySelector('#due-date').value;
+originalPriority = newTaskBlock.querySelector('#task-priority-type').value;
+originalType = newTaskBlock.querySelector('#type').value;
+// Function to toggle edit mode
+
+
+let cancelBtn = document.querySelector('#cancel-btn');
+let saveBtn = document.querySelector('#edit-btn'); 
+
+console.log(cancelBtn, saveBtn);
+
+if (cancelBtn && saveBtn) {
+  // Add event listeners directly to both buttons
+  saveBtn.addEventListener('click', () => {
+    const newTaskName = newTaskBlock.querySelector('#taskName').value;
+    const newDescription = newTaskBlock.querySelector('#description').value;
+    const newDueDate = newTaskBlock.querySelector('#due-date').value;
+    const newPriority = newTaskBlock.querySelector('#task-priority-type').value;
+    const newType = newTaskBlock.querySelector('#type').value;
+  
+    // Update only the fields that have changed
+    // TODO: accept null values ad newTaskInput
+    if (newTaskName !== originalTaskName || newTaskName === null) {
+     document.getElementById('task-name').value = newTaskName;
+    }
+   if (newDescription !== originalDescription || newDescription === null) {
+     document.getElementById('task-description').value = newDescription;
+   }
+    if (newDueDate !== originalDueDate || newDueDate === null) {
+      document.getElementById('task-due-date').value = newDueDate;
+   }
+   if (newPriority !== originalPriority || newPriority === null) {
+     document.getElementById('priority-type').value = newPriority;
+    }
+    if (newType !== originalType || newType === null) {
+      document.getElementById('task-type').value = newType;
+    }
+  
+    // Disable editing again
+    editBtn.classList.remove('active');
+    newTaskBlock.classList.remove('edit-mode');
+    actions.style.visibility = 'hidden';
+
+    // actions.style.visibility = 'hidden';
+    // editBtn.classList.remove('active');
+    // newTaskBlock.classList.remove('edit-mode');
+    disableEditing();
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    // Restore the original values
+    newTaskBlock.querySelector('#taskName').value = originalTaskName;
+    newTaskBlock.querySelector('#description').value = originalDescription;
+    newTaskBlock.querySelector('#due-date').value = originalDueDate;
+    newTaskBlock.querySelector('#task-priority-type').value = originalPriority;
+    newTaskBlock.querySelector('#type').value = originalType;
+  
+    // Disable editing again
+    editBtn.classList.remove('active');
+    newTaskBlock.classList.remove('edit-mode');
+    actions.style.visibility = 'hidden';
+
+    // actions.style.visibility = 'hidden';
+    // editBtn.classList.remove('active');
+    // newTaskBlock.classList.remove('edit-mode');
+    disableEditing();      
+  });
+}
+return {saveBtn, cancelBtn};
+
+  // enableEdit;
+
+});
+
+deleteButton.addEventListener('click', () => {
+  // Remove the task from the manager when the user deletes it
+  let taskIndex = manager.tasks.findIndex(task => task.taskName === taskName);
+  if (taskIndex !== -1) {
+    manager.removeTask(taskName);
+  }
+  area.removeChild(newTaskBlock);
+});
+area.removeChild(addBlock);
+
+// Clear input fields or perform any necessary updates
+// Optionally, you can re-render the task list or update the view
+// based on the new task added.
+});
+
+return btn;
+}
+
+
 
 export default function handleTask() {
   
@@ -217,6 +245,9 @@ export default function handleTask() {
   
   // const deleteTask = deleteTask();
   // deleteTask;
+
+  
+
 
   return {taskManager};
 }
