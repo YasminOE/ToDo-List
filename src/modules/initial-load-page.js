@@ -460,7 +460,7 @@ export default function loadPage() {
     showAddBlock(headerAddTaskBtn);
 
     const taskBlock = createTaskBlock();
-    taskArea.appendChild(taskBlock);
+    // taskArea.appendChild(taskBlock);
 
     const successAddBtn = addTaskBlock.querySelector('#add');
 
