@@ -37,6 +37,13 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
     // Append the new taskBlock to the taskArea
     taskArea.appendChild(newTaskBlock);
 
+    // Reset input fields
+    document.getElementById('task-name').value = '';
+    document.getElementById('task-description').value = '';
+    document.getElementById('task-due-date').value = ''; // You can set it to the default value if needed
+    document.getElementById('priority-type').value = ''; // You can set it to the default value if needed
+    document.getElementById('task-type').value = ''; // You can set it to the default value if needed
+
     let editButton = newTaskBlock.querySelector('#edit');
     let deleteButton = newTaskBlock.querySelector('#delete');
 
@@ -152,7 +159,6 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
       }
       taskArea.removeChild(newTaskBlock);
     });
-
     taskArea.removeChild(addTaskBlock);
     
     // Clear input fields or perform any necessary updates
