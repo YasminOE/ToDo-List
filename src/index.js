@@ -1,14 +1,40 @@
 import _ from 'lodash';
 import './style.css';
-import handleTask from './modules/task-handler';
+import handleTask, { addNewTask } from './modules/task-handler';
 import handleViews from './modules/views';
-import loadPage from './modules/initial-load-page';
-
+import createInitialPageStructure from './modules/initial-load-page';
 
 init();
 
 function init() {
-  loadPage();
-  const taskManager = handleTask();
+  const {
+    taskArea,
+    addBtn,
+    addTaskBlock,
+    headerAddTaskBtn,
+    taskBlock,
+  } = createInitialPageStructure();
+
+  const { taskManager } = handleTask(); // Pass the callback function
+
   handleViews(taskManager);
+
+  let successAddBtn = addTaskBlock.querySelector('#add');
+
+
+  addBtn.addEventListener('click', () => { 
+
+    addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
+
+  });
+
+  headerAddTaskBtn.addEventListener('click', () => {
+
+    addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn );
+  
+   });
+
+
+
+
 }
