@@ -86,7 +86,7 @@ newTaskBlock.querySelector('#type').value = type;
 
   // Pass the edit button of the new task block
   const editBtn = newTaskBlock.querySelector('#edit');
-  showEditTask(editBtn);
+  showEditTask(editBtn, manager);
   console.log('iam working');
 
   //  // Reset input fields
@@ -118,7 +118,7 @@ return btn;
 }
 
 
-export function showEditTask(editBtn) {
+export function showEditTask(editBtn, manager) {
   // document.addEventListener('DOMContentLoaded', function () {
     console.log('the editing is  working');
     const theTaskBlock = document.querySelector('#a-task');
@@ -189,36 +189,59 @@ export function showEditTask(editBtn) {
   
     console.log(cancelBtn, saveBtn);
   
-    // if (cancelBtn && saveBtn) {
+    if (cancelBtn && saveBtn) {
       // Add event listeners directly to both buttons
       saveBtn.addEventListener('click', () => {
+        console.log(document.getElementById('task-name'));
+        console.log(document.getElementById('task-description'));
+        console.log(document.getElementById('task-due-date'));
+        console.log(document.getElementById('priority-type'));
+        console.log(document.getElementById('task-type'));
+
         const newTaskName = theTaskBlock.querySelector('#taskName').value;
         const newDescription = theTaskBlock.querySelector('#description').value;
         const newDueDate = theTaskBlock.querySelector('#due-date').value;
         const newPriority = theTaskBlock.querySelector('#task-priority-type').value;
         const newType = theTaskBlock.querySelector('#type').value;
-        
-        // Update only the fields that have changed
-        if (newTaskName !== originalTaskName) {
-          document.getElementById('task-name').value = newTaskName ? newTaskName : '';
-        }
-        if (newDescription !== originalDescription) {
-          document.getElementById('task-description').value = newDescription ? newDescription : '';
-        }
-        if (newDueDate !== originalDueDate) {
-          document.getElementById('task-due-date').value = newDueDate ? newDueDate : setToday;
-        }
-        if (newPriority !== originalPriority) {
-          document.getElementById('priority-type').value = newPriority ? newPriority : 'P1';
-        }
-        if (newType !== originalType) {
-          document.getElementById('task-type').value = newType ? newType : 'inbox';
-        }
-        
+      
+        // Prepare an object with the updated properties
+        const updatedProperties = {
+          taskName: newTaskName,
+          description: newDescription,
+          dueDate: newDueDate,
+          priority: newPriority,
+          type: newType
+        };
+
+        // Call the updateTask method of your TaskManager instance
+        manager.updateTask(taskName, updatedProperties);
+      
+        // Update the displayed task information in the UI
+        const taskNameElement = document.getElementById('task-name');
+        const descriptionElement = document.getElementById('task-description');
+        const dueDateElement = document.getElementById('task-due-date');
+        const priorityElement = document.getElementById('priority-type');
+        const typeElement = document.getElementById('task-type');
+      
+        // Update the elements with the new values
+        taskNameElement.textContent = newTaskName;
+        descriptionElement.textContent = newDescription;
+        dueDateElement.textContent = newDueDate;
+        priorityElement.textContent = newPriority;
+        typeElement.textContent = newType;
+      
+        // Optionally, you can also update the input fields to reflect the changes
+        document.getElementById('taskName').value = newTaskName;
+        document.getElementById('description').value = newDescription;
+        document.getElementById('due-date').value = newDueDate;
+        document.getElementById('task-priority-type').value = newPriority;
+        document.getElementById('type').value = newType;
+      
         // Disable editing again
         toggleEditMode();
         disableEditing();
       });
+      
       
       cancelBtn.addEventListener('click', () => {
         // Restore the original values
@@ -232,23 +255,11 @@ export function showEditTask(editBtn) {
         toggleEditMode();
         disableEditing();        
       });
-    // }
+    }
     return toggleEditMode; // Return the toggleEditMode function
   // });
 }
-
-// export function deleteTask(){
-//   document.addEventListener('DOMContentLoaded', function() {
-//     const taskBlock = document.querySelector('#a-task');
-//     const deleteIcon = document.querySelector('#delete');
-//     const taskArea = document.querySelector('#task-area');
-//     deleteIcon.addEventListener('click', () => {
-//       taskArea.removeChild(taskBlock);
-//     })
-//     return 1;
-
-//   });
-// }
+// TODO: fix edti functionality
 
 
 

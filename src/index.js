@@ -6,28 +6,6 @@ import createInitialPageStructure from './modules/initial-load-page';
 
 init();
 
-// export function createNewTaskBlock(taskData) {
-//   // document.addEventListener('DOMContentLoaded', function () {
-//   // Create and append a new task block in the UI based on taskData
-//   // if(taskArea.contains(addTaskBlock)){
-//      let block = createInitialPageStructure().taskBlock;
-//     console.log(block);
-//     // Populate the new task block with taskData
-//     block.querySelector('#taskName').value = taskData.taskName;
-//     block.querySelector('#description').value = taskData.description;
-//     block.querySelector('#due-date').value = taskData.dueDate;
-//     block.querySelector('#task-priority-type').value = taskData.priority;
-//     block.querySelector('#type').value = taskData.type;
-  
-    
-//     createInitialPageStructure().taskArea.appendChild(block);
-//     return block;
-
-
-// }
-
-
-
 function init() {
   const {
     taskArea,
