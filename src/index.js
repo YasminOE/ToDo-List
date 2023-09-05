@@ -25,18 +25,20 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
     taskManager.addTask(newTask);
     console.log(newTask);
 
+    const newTaskBlock = taskBlock.cloneNode(true);
+
     // Create a new taskBlock and populate its inputs
-    taskBlock.querySelector('#taskName').value = taskName;
-    taskBlock.querySelector('#description').value = description;
-    taskBlock.querySelector('#due-date').value = dueDate;
-    taskBlock.querySelector('#task-priority-type').value = priority;
-    taskBlock.querySelector('#type').value = type;
+    newTaskBlock.querySelector('#taskName').value = taskName;
+    newTaskBlock.querySelector('#description').value = description;
+    newTaskBlock.querySelector('#due-date').value = dueDate;
+    newTaskBlock.querySelector('#task-priority-type').value = priority;
+    newTaskBlock.querySelector('#type').value = type;
 
     // Append the new taskBlock to the taskArea
-    taskArea.appendChild(taskBlock);
+    taskArea.appendChild(newTaskBlock);
 
-    let editButton = taskBlock.querySelector('#edit');
-    let deleteButton = taskBlock.querySelector('#delete');
+    let editButton = newTaskBlock.querySelector('#edit');
+    let deleteButton = newTaskBlock.querySelector('#delete');
 
     console.log(editButton, deleteButton);
     // disableEdit;
@@ -60,7 +62,7 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
     enableEditing();
     const actionsSec = document.querySelector('#task-action');
     editButton.classList.add('active');
-    taskBlock.classList.add('edit-mode');
+    newTaskBlock.classList.add('edit-mode');
     actionsSec.style.visibility = 'visible';
     // taskBlock = document.querySelector('#a-task');
     console.log(editButton);
@@ -74,11 +76,11 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
   
      // Track the edit mode state
     // Store the original values when entering edit mode
-    originalTaskName = taskBlock.querySelector('#taskName').value;
-    originalDescription = taskBlock.querySelector('#description').value;
-    originalDueDate = taskBlock.querySelector('#due-date').value;
-    originalPriority = taskBlock.querySelector('#task-priority-type').value;
-    originalType = taskBlock.querySelector('#type').value;
+    originalTaskName = newTaskBlock.querySelector('#taskName').value;
+    originalDescription = newTaskBlock.querySelector('#description').value;
+    originalDueDate = newTaskBlock.querySelector('#due-date').value;
+    originalPriority = newTaskBlock.querySelector('#task-priority-type').value;
+    originalType = newTaskBlock.querySelector('#type').value;
     // Function to toggle edit mode
     
   
@@ -90,11 +92,11 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
     if (cancelBtn && saveBtn) {
       // Add event listeners directly to both buttons
       saveBtn.addEventListener('click', () => {
-        const newTaskName = taskBlock.querySelector('#taskName').value;
-        const newDescription = taskBlock.querySelector('#description').value;
-        const newDueDate = taskBlock.querySelector('#due-date').value;
-        const newPriority = taskBlock.querySelector('#task-priority-type').value;
-        const newType = taskBlock.querySelector('#type').value;
+        const newTaskName = newTaskBlock.querySelector('#taskName').value;
+        const newDescription = newTaskBlock.querySelector('#description').value;
+        const newDueDate = newTaskBlock.querySelector('#due-date').value;
+        const newPriority = newTaskBlock.querySelector('#task-priority-type').value;
+        const newType = newTaskBlock.querySelector('#type').value;
       
         // Update only the fields that have changed
         // TODO: accept null values ad newTaskInput
@@ -117,22 +119,22 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
         // Disable editing again
         actionsSec.style.visibility = 'hidden';
         editButton.classList.remove('active');
-        taskBlock.classList.remove('edit-mode');
+        newTaskBlock.classList.remove('edit-mode');
         disableEditing();
       });
   
       cancelBtn.addEventListener('click', () => {
         // Restore the original values
-        taskBlock.querySelector('#taskName').value = originalTaskName;
-        taskBlock.querySelector('#description').value = originalDescription;
-        taskBlock.querySelector('#due-date').value = originalDueDate;
-        taskBlock.querySelector('#task-priority-type').value = originalPriority;
-        taskBlock.querySelector('#type').value = originalType;
+        newTaskBlock.querySelector('#taskName').value = originalTaskName;
+        newTaskBlock.querySelector('#description').value = originalDescription;
+        newTaskBlock.querySelector('#due-date').value = originalDueDate;
+        newTaskBlock.querySelector('#task-priority-type').value = originalPriority;
+        newTaskBlock.querySelector('#type').value = originalType;
       
         // Disable editing again
         actionsSec.style.visibility = 'hidden';
         editButton.classList.remove('active');
-        taskBlock.classList.remove('edit-mode');
+        newTaskBlock.classList.remove('edit-mode');
         disableEditing();      
       });
     }
@@ -148,7 +150,7 @@ function addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBt
       if (taskIndex !== -1) {
         taskManager.removeTask(taskName);
       }
-      taskArea.removeChild(taskBlock);
+      taskArea.removeChild(newTaskBlock);
     });
 
     taskArea.removeChild(addTaskBlock);
