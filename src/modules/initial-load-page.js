@@ -211,7 +211,7 @@ export function createTaskBlock(){
   Object.assign(dueDateInput,{
    type : 'date',
    id: 'due-date',
-   value: 'Today',
+   value: '',
   });
   selection.appendChild(dueDateInput);
 

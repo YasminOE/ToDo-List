@@ -6,25 +6,25 @@ import createInitialPageStructure from './modules/initial-load-page';
 
 init();
 
-export function createNewTaskBlock(taskData) {
-  // document.addEventListener('DOMContentLoaded', function () {
-  // Create and append a new task block in the UI based on taskData
-  // if(taskArea.contains(addTaskBlock)){
-     let block = createInitialPageStructure().taskBlock;
-    console.log(block);
-    // Populate the new task block with taskData
-    block.querySelector('#taskName').value = taskData.taskName;
-    block.querySelector('#description').value = taskData.description;
-    block.querySelector('#due-date').value = taskData.dueDate;
-    block.querySelector('#task-priority-type').value = taskData.priority;
-    block.querySelector('#type').value = taskData.type;
+// export function createNewTaskBlock(taskData) {
+//   // document.addEventListener('DOMContentLoaded', function () {
+//   // Create and append a new task block in the UI based on taskData
+//   // if(taskArea.contains(addTaskBlock)){
+//      let block = createInitialPageStructure().taskBlock;
+//     console.log(block);
+//     // Populate the new task block with taskData
+//     block.querySelector('#taskName').value = taskData.taskName;
+//     block.querySelector('#description').value = taskData.description;
+//     block.querySelector('#due-date').value = taskData.dueDate;
+//     block.querySelector('#task-priority-type').value = taskData.priority;
+//     block.querySelector('#type').value = taskData.type;
   
     
-    createInitialPageStructure().taskArea.appendChild(block);
-    return block;
+//     createInitialPageStructure().taskArea.appendChild(block);
+//     return block;
 
 
-}
+// }
 
 
 
@@ -45,28 +45,18 @@ function init() {
 
 
   addBtn.addEventListener('click', () => { 
-    // let editButton = document.querySelector('#edit');
-    // // let deleteButton = newTaskBlock.querySelector('#delete');
-    // let actionsSec = document.querySelector('#task-action');
-    // const cancelBtn = document.querySelector('#cancel-btn');
-    // const saveBtn = document.querySelector('#edit-btn'); 
+
     addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
 
   });
 
   headerAddTaskBtn.addEventListener('click', () => {
-    // let editButton = document.querySelector('#edit');
-    // // let deleteButton = newTaskBlock.querySelector('#delete');
-    // let actionsSec = document.querySelector('#task-action');
-    // const cancelBtn = document.querySelector('#cancel-btn');
-    // const saveBtn = document.querySelector('#edit-btn');
+
     addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn );
   
    });
 
-  // createNewTaskBlock(['name', 'des', '', 'P1', 'Inbox']);
 
 
-  // taskArea.appendChild(blockTest);
 
 }
