@@ -59,15 +59,16 @@ function clearActiveClass() {
 function changeView(viewId) {
   const heading = document.querySelector('#area-name');
   const view = document.querySelector(`#${viewId}`);
-
   if (viewId === 'inbox-view') {
     heading.innerHTML = 'Inbox';
   } else if (viewId === 'today-view') {
     heading.innerHTML = 'Today';
   } else if (viewId === 'upcoming-view') {
     heading.innerHTML = 'Upcoming';
-  } else {
-    heading.innerHTML = view.textContent.trim();
+  } else if (viewId === 'home'){
+    heading.innerHTML = 'Home';
+  }else{
+    heading.innerHTML = 'My work';
   }
 
   clearActiveClass(); // Remove 'active' class from all views
