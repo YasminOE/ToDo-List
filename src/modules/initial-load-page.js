@@ -446,50 +446,6 @@ export default function createInitialPageStructure() {
         taskArea.removeChild(addTaskBlock);
         addTaskBlock.close();
       });
-<<<<<<< HEAD
-    }
-
-    // Attach the event listener to both addBtn and headerAddTaskBtn
-    showAddBlock(addBtn);
-    showAddBlock(headerAddTaskBtn);
-
-    const taskBlock = createTaskBlock();
-    // taskArea.appendChild(taskBlock);
-
-    const successAddBtn = addTaskBlock.querySelector('#add');
-
-
-    successAddBtn.addEventListener('click', () => {
-      // Get values from the addTaskBlock
-      const taskName = document.getElementById('task-name').value;
-      const description = document.getElementById('task-description').value;
-      const dueDate = document.getElementById('task-due-date').value;
-      const priority = document.getElementById('priority-type').value;
-      const type = document.getElementById('task-type').value;
-
-      // Create a new taskBlock and populate its inputs
-
-      taskBlock.querySelector('#taskName').value = taskName;
-      taskBlock.querySelector('#description').value = description;
-      taskBlock.querySelector('#due-date').value = dueDate;
-      taskBlock.querySelector('#task-priority-type').value = priority;
-      taskBlock.querySelector('#type').value = type;
-
-  
-
-      // Append the new taskBlock to the taskArea
-      taskArea.appendChild(taskBlock);
-      taskArea.removeChild(addTaskBlock);
-
-      const deleteButton = taskBlock.querySelector('#delete');
-      deleteButton.addEventListener('click', () => {
-        taskArea.removeChild(taskBlock);
-      })
-
-      const editButton = taskBlock.querySelector('#edit'); // Adjust the selector as needed
-      editButton.classList.add('.edit-mode');
-=======
->>>>>>> origin
     });
   }
 
