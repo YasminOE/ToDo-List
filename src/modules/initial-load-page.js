@@ -146,17 +146,17 @@ function createAddTaskBtn(){
 // Task block builder
 export function createTaskBlock(){
   const taskBlock = document.createElement('div');
-   taskBlock.setAttribute('id', 'a-task');
+   taskBlock.setAttribute('class', 'a-task');
 
   const mainInfo = document.createElement('ul');
-  mainInfo.setAttribute('id','mainInfo');
+  mainInfo.setAttribute('class','mainInfo');
   taskBlock.appendChild(mainInfo);
 
   const complete = document.createElement('button');
   Object.assign(complete, {
-    id: 'complete',
     type : 'submit',
   });
+  complete.setAttribute('class','complete');
   //   complete.checked=true;
   complete.addEventListener('click',()=>{
     complete.classList.toggle('after');
@@ -166,18 +166,17 @@ export function createTaskBlock(){
   const taskNameInput = document.createElement('input');
   Object.assign(taskNameInput,{
    type : 'text',
-   id: 'taskName',
    value: 'test value',
   });
+  taskNameInput.setAttribute('class', 'taskName');
   mainInfo.appendChild(taskNameInput);
 
   const icons = document.createElement('ul');
-  icons.setAttribute('id' , "icons");
+  icons.setAttribute('class' , "icons");
   mainInfo.appendChild(icons);
 
   const editIcon = document.createElement('span');
-  editIcon.setAttribute('class', 'material-symbols-outlined');
-  editIcon.setAttribute('id', 'edit');
+  editIcon.classList.add('edit', 'material-symbols-outlined');
   editIcon.innerHTML = 'edit_note';
   icons.appendChild(editIcon);
   // editIcon.addEventListener('click', ()=> {
@@ -185,8 +184,7 @@ export function createTaskBlock(){
   // })
 
   const deleteIcon = document.createElement('span');
-  deleteIcon.setAttribute('class', 'material-symbols-outlined');
-  deleteIcon.setAttribute('id', 'delete');
+  deleteIcon.classList.add('delete', 'material-symbols-outlined');
   deleteIcon.innerHTML = 'delete';
 
   icons.appendChild(deleteIcon);
@@ -196,32 +194,30 @@ export function createTaskBlock(){
   
   const taskDescriptionInput = document.createElement('textarea');
   Object.assign(taskDescriptionInput,{
-    id: 'description',
     placeholder: 'description' ,
     value: 'test value',
   });
-
+  taskDescriptionInput.setAttribute('class', 'description');
   taskBlock.appendChild(taskDescriptionInput);
    
   const selection = document.createElement('ul');
-  selection.setAttribute('id', 'selection');
+  selection.setAttribute('class', 'selection');
   taskBlock.appendChild(selection);
 
   const dueDateInput = document.createElement('input');
   Object.assign(dueDateInput,{
    type : 'date',
-   id: 'due-date',
    value: '',
   });
+  dueDateInput.setAttribute('class', 'due-date');
   selection.appendChild(dueDateInput);
 
   const priorityInput = document.createElement('select');
   Object.assign (priorityInput, {
     name : 'priorityType',
-    id : 'task-priority-type',
     value: '',
   });
-  
+  priorityInput.setAttribute('class', 'task-priority-type');
   selection.appendChild(priorityInput);
 
   const option1 = document.createElement('option');
@@ -247,9 +243,9 @@ export function createTaskBlock(){
   const taskType = document.createElement('select');
   Object.assign (taskType, {
     name : 'taskType',
-     id : 'type',
      value: 'Inbox',
   });
+  taskType.setAttribute('class', 'type');
   selection.appendChild(taskType);
 
   const typeInbox = document.createElement('option');
@@ -268,23 +264,23 @@ export function createTaskBlock(){
   taskType.appendChild(typeWork);
   
   const actionBtns = document.createElement('ul');
-  actionBtns.setAttribute('id', 'task-action');
+  actionBtns.setAttribute('class', 'task-action');
   taskBlock.appendChild(actionBtns);
 
 
   const closeBtn = document.createElement('button');
   Object.assign(closeBtn, {
-    id: 'cancel-btn',
     type: 'submit'
   });
+  closeBtn.setAttribute('class', 'cancel-btn');
   closeBtn.innerHTML = 'Cancel';
   actionBtns.appendChild(closeBtn);
-
+  
   const successAddBtn = document.createElement('button');
   Object.assign(successAddBtn, {
-    id: 'edit-btn',
     type: 'submit'
   });
+  closeBtn.setAttribute('class', 'edit-btn');
   successAddBtn.innerHTML = 'Save task';
   actionBtns.appendChild(successAddBtn);
 
@@ -295,14 +291,15 @@ export function createTaskBlock(){
 //  Add a Task builder
 function createAddTaskBlock(){
   const addATask = document.createElement('dialog');
-   addATask.setAttribute('id', 'add-a-task');
+  addATask.classList.add('add-a-task')
+
 
   const taskNameInput = document.createElement('input');
   Object.assign(taskNameInput,{
    type : 'text',
-   id: 'task-name',
    placeholder: 'Task name'
   });
+  taskNameInput.setAttribute('class', 'task-name');
   addATask.appendChild(taskNameInput);
 
   // const editIcon = document.createElement('span');
@@ -316,29 +313,29 @@ function createAddTaskBlock(){
   // })
   
   const taskDescriptionInput = document.createElement('textarea');
+  taskDescriptionInput.setAttribute('class', 'task-description');
   Object.assign(taskDescriptionInput,{
-    id: 'task-description',
     placeholder: 'description'  
   });
   addATask.appendChild(taskDescriptionInput);
    
   const selection = document.createElement('ul');
-  selection.setAttribute('id', 'selection');
+  selection.setAttribute('class', 'selection');
   addATask.appendChild(selection);
 
   const dueDateInput = document.createElement('input');
   Object.assign(dueDateInput,{
    type : 'date',
-   id: 'task-due-date',
    placeholder: '"Due date'
   });
+  dueDateInput.setAttribute('class', 'task-due-date')
   selection.appendChild(dueDateInput);
 
   const selectPriority = document.createElement('select');
   Object.assign (selectPriority, {
     name : 'priorityType',
-     id : 'priority-type'
   });
+  selectPriority.setAttribute('class', 'priority-type');
   selection.appendChild(selectPriority);
 
   const option1 = document.createElement('option');
@@ -364,8 +361,8 @@ function createAddTaskBlock(){
   const selectTaskType = document.createElement('select');
   Object.assign (selectTaskType, {
     name : 'taskType',
-     id : 'task-type'
   });
+  selectTaskType.setAttribute('class','task-type');
   selection.appendChild(selectTaskType);
 
   const typeInbox = document.createElement('option');
@@ -384,15 +381,15 @@ function createAddTaskBlock(){
   selectTaskType.appendChild(typeWork);
   
   const actionBtns = document.createElement('ul');
-  actionBtns.setAttribute('id', 'task-action');
+  actionBtns.setAttribute('class', 'task-action');
   addATask.appendChild(actionBtns);
 
 
   const closeBtn = document.createElement('button');
   Object.assign(closeBtn, {
-    id: 'close',
     type: 'submit'
   });
+  closeBtn.setAttribute('class', 'close');
   closeBtn.innerHTML = 'Cancel';
   actionBtns.appendChild(closeBtn);
 
@@ -439,7 +436,7 @@ export default function createInitialPageStructure() {
       addTaskBlock.show();
       taskArea.appendChild(addTaskBlock);
 
-      const closeBtn = document.getElementById('close');
+      const closeBtn = document.querySelector('.close');
       console.log(closeBtn);
 
       closeBtn.addEventListener('click', () => {

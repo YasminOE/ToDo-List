@@ -54,24 +54,24 @@ export function addNewTask(manager, addBlock, block, area, btn) {
 
   btn.addEventListener('click', () => {
     // this os the taskBlock = createaddBlock()
-    const taskName = document.getElementById('task-name').value;
-    const description = document.getElementById('task-description').value;
-    const dueDate = document.getElementById('task-due-date').value;
-    const priority = document.getElementById('priority-type').value;
-    const type = document.getElementById('task-type').value;
+    const nameInput = document.querySelector('.task-name').value;
+    const descriptionInput = document.querySelector('.task-description').value;
+    const dueDateInput = document.querySelector('.task-due-date').value;
+    const priorityInput = document.querySelector('.priority-type').value;
+    const typeInput = document.querySelector('.task-type').value;
 
 
 // Create a new task instance
-let newTask = new Task(taskName, description, dueDate, priority, type);
+let newTask = new Task(nameInput, descriptionInput, dueDateInput, priorityInput, typeInput);
 // Add the new task to the manager's tasks array
 manager.addTask(newTask);
-const newTaskBlock = block;
+const newTaskBlock = block.cloneNode(true);
 
-newTaskBlock.querySelector('#taskName').value = taskName;
-newTaskBlock.querySelector('#description').value = description;
-newTaskBlock.querySelector('#due-date').value = dueDate;
-newTaskBlock.querySelector('#task-priority-type').value = priority;
-newTaskBlock.querySelector('#type').value = type;
+newTaskBlock.querySelector('.taskName').value = nameInput;
+newTaskBlock.querySelector('.description').value = descriptionInput;
+newTaskBlock.querySelector('.due-date').value = dueDateInput;
+newTaskBlock.querySelector('.task-priority-type').value = priorityInput;
+newTaskBlock.querySelector('.type').value = typeInput;
 
 
   // Call the callback function to create the new task block
@@ -85,7 +85,7 @@ newTaskBlock.querySelector('#type').value = type;
   area.appendChild(newTaskBlock);
 
   // Pass the edit button of the new task block
-  const editBtn = newTaskBlock.querySelector('#edit');
+  let editBtn = newTaskBlock.querySelector('.edit');
   showEditTask(editBtn, manager);
   console.log('iam working');
 
@@ -97,10 +97,10 @@ newTaskBlock.querySelector('#type').value = type;
   //  document.getElementById('task-due-date').value = setToday;
   //  document.getElementById('priority-type').value = 'P1';
   //  document.getElementById('task-type').value = 'Inbox';
-let deleteButton = newTaskBlock.querySelector('#delete');
+let deleteButton = newTaskBlock.querySelector('.delete');
 deleteButton.addEventListener('click', () => {
   // Remove the task from the manager when the user deletes it
-  let taskIndex = manager.tasks.findIndex(task => task.taskName === taskName);
+  let taskIndex = manager.tasks.findIndex(task => task.nameInput === task.taskName);
   if (taskIndex !== -1) {
     manager.removeTask(taskName);
   }
@@ -121,22 +121,22 @@ return btn;
 export function showEditTask(editBtn, manager) {
   // document.addEventListener('DOMContentLoaded', function () {
     console.log('the editing is  working');
-    const theTaskBlock = document.querySelector('#a-task');
-     editBtn = document.querySelector('#edit');
-    const actionsSec = theTaskBlock.querySelector('#task-action');
+    const theTaskBlock = document.querySelector('.a-task');
+     editBtn = document.querySelector('.edit');
+    let actionsSec = theTaskBlock.querySelector('.task-action');
     console.log(actionsSec);
   
     console.log(editBtn);
 
     function disableEditing() {
-      const elementsToDisable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
+      const elementsToDisable = document.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
       elementsToDisable.forEach(element => {
         element.disabled = true;
       });
     }
     
     function enableEditing() {
-      const elementsToEnable = document.querySelectorAll('#taskName, #description, #due-date, #task-priority-type, #type');
+      const elementsToEnable = document.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
       elementsToEnable.forEach(element => {
         element.disabled = false;
       });
@@ -146,11 +146,11 @@ export function showEditTask(editBtn, manager) {
     disableEditing();
     
     // Store original values
-    let originalTaskName ;
-    let originalDescription ;
-    let originalDueDate ;
-    let originalPriority ;
-    let originalType ;
+    let originalTaskName = '' ;
+    let originalDescription= '' ;
+    let originalDueDate= '' ;
+    let originalPriority= '' ;
+    let originalType= '' ;
   
     let editModeActive = true; // Track the edit mode state
   
@@ -165,11 +165,11 @@ export function showEditTask(editBtn, manager) {
         theTaskBlock.classList.add('edit-mode');
   
         // Store the original values when entering edit mode
-        originalTaskName = theTaskBlock.querySelector('#taskName').value;
-        originalDescription = theTaskBlock.querySelector('#description').value;
-        originalDueDate = theTaskBlock.querySelector('#due-date').value;
-        originalPriority = theTaskBlock.querySelector('#task-priority-type').value;
-        originalType = theTaskBlock.querySelector('#type').value;
+        originalTaskName = theTaskBlock.querySelector('.taskName').value;
+        originalDescription = theTaskBlock.querySelector('.description').value;
+        originalDueDate = theTaskBlock.querySelector('.due-date').value;
+        originalPriority = theTaskBlock.querySelector('.task-priority-type').value;
+        originalType = theTaskBlock.querySelector('.type').value;
       } else {
         // Disable edit mode
         editBtn.classList.remove('active');
@@ -177,6 +177,7 @@ export function showEditTask(editBtn, manager) {
         theTaskBlock.classList.remove('edit-mode');
       }
     }
+    
     toggleEditMode();
     editBtn.addEventListener('click', () => {
       toggleEditMode();
@@ -184,25 +185,25 @@ export function showEditTask(editBtn, manager) {
     });
     
   
-    const cancelBtn = theTaskBlock.querySelector('#cancel-btn');
-    const saveBtn = theTaskBlock.querySelector('#edit-btn'); // Corrected button ID
+    const cancelBtn = theTaskBlock.querySelector('.cancel-btn');
+    const saveBtn = theTaskBlock.querySelector('.edit-btn'); // Corrected button ID
   
     console.log(cancelBtn, saveBtn);
   
     if (cancelBtn && saveBtn) {
       // Add event listeners directly to both buttons
       saveBtn.addEventListener('click', () => {
-        console.log(document.getElementById('task-name'));
-        console.log(document.getElementById('task-description'));
-        console.log(document.getElementById('task-due-date'));
-        console.log(document.getElementById('priority-type'));
-        console.log(document.getElementById('task-type'));
+        console.log(document.querySelector('.task-name'));
+        console.log(document.querySelector('.task-description'));
+        console.log(document.querySelector('.task-due-date'));
+        console.log(document.querySelector('.priority-type'));
+        console.log(document.querySelector('.task-type'));
 
-        const newTaskName = theTaskBlock.querySelector('#taskName').value;
-        const newDescription = theTaskBlock.querySelector('#description').value;
-        const newDueDate = theTaskBlock.querySelector('#due-date').value;
-        const newPriority = theTaskBlock.querySelector('#task-priority-type').value;
-        const newType = theTaskBlock.querySelector('#type').value;
+        const newTaskName = theTaskBlock.querySelector('.taskName').value;
+        const newDescription = theTaskBlock.querySelector('.description').value;
+        const newDueDate = theTaskBlock.querySelector('.due-date').value;
+        const newPriority = theTaskBlock.querySelector('.task-priority-type').value;
+        const newType = theTaskBlock.querySelector('.type').value;
       
         // Prepare an object with the updated properties
         const updatedProperties = {
@@ -214,14 +215,14 @@ export function showEditTask(editBtn, manager) {
         };
 
         // Call the updateTask method of your TaskManager instance
-        manager.updateTask(taskName, updatedProperties);
+        manager.updateTask(Task.taskName, updatedProperties);
       
         // Update the displayed task information in the UI
-        const taskNameElement = document.getElementById('task-name');
-        const descriptionElement = document.getElementById('task-description');
-        const dueDateElement = document.getElementById('task-due-date');
-        const priorityElement = document.getElementById('priority-type');
-        const typeElement = document.getElementById('task-type');
+        const taskNameElement = document.querySelector('.task-name');
+        const descriptionElement = document.querySelector('.task-description');
+        const dueDateElement = document.querySelector('.task-due-date');
+        const priorityElement = document.querySelector('.priority-type');
+        const typeElement = document.querySelector('.task-type');
       
         // Update the elements with the new values
         taskNameElement.textContent = newTaskName;
@@ -231,8 +232,8 @@ export function showEditTask(editBtn, manager) {
         typeElement.textContent = newType;
       
         // Optionally, you can also update the input fields to reflect the changes
-        document.getElementById('taskName').value = newTaskName;
-        document.getElementById('description').value = newDescription;
+        document.querySelector('.taskName').value = newTaskName;
+        document.querySelector('.description').value = newDescription;
         document.getElementById('due-date').value = newDueDate;
         document.getElementById('task-priority-type').value = newPriority;
         document.getElementById('type').value = newType;
@@ -245,11 +246,11 @@ export function showEditTask(editBtn, manager) {
       
       cancelBtn.addEventListener('click', () => {
         // Restore the original values
-        theTaskBlock.querySelector('#taskName').value = originalTaskName;
-        theTaskBlock.querySelector('#description').value = originalDescription;
-        theTaskBlock.querySelector('#due-date').value = originalDueDate;
-        theTaskBlock.querySelector('#task-priority-type').value = originalPriority;
-        theTaskBlock.querySelector('#type').value = originalType;
+        theTaskBlock.querySelector('.taskName').value = originalTaskName;
+        theTaskBlock.querySelector('.description').value = originalDescription;
+        theTaskBlock.querySelector('.due-date').value = originalDueDate;
+        theTaskBlock.querySelector('.task-priority-type').value = originalPriority;
+        theTaskBlock.querySelector('.type').value = originalType;
       
         // Disable editing again
         toggleEditMode();

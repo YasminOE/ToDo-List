@@ -261,7 +261,7 @@ div#content > div#tasks-area > button#show:hover{
   transition: 1s all ease;
 }
 
-div#content> div#tasks-area > dialog#add-a-task {
+div#content> div#tasks-area > dialog.add-a-task {
   border: 1px solid #B6B6B6;
   border-radius: 15px;
   width: inherit;
@@ -281,19 +281,20 @@ div#content> div#tasks-area > dialog#add-a-task {
   font-size: 1.2rem;
   background-color: #F4F5F7;
 }
-div#tasks-area > dialog#add-a-task > input:focus , dialog#add-a-task > textarea#task-description:focus{
+div#tasks-area > dialog#add-a-task > input.task-name:focus , dialog.add-a-task > textarea.task-description:focus{
   outline: transparent;
   transition: 1s all ease;
 }
 
-div#tasks-area > dialog#add-a-task > input#task-name{
+div#tasks-area > dialog.add-a-task > input.task-name{
   grid-area: name;
   font-weight: 700;
   border: none;
   background: inherit;
+  outline: none;
 }
 
-div#tasks-area > dialog#add-a-task > span{
+div#tasks-area > dialog.add-a-task > span{
   grid-area: editIcon;
   position: relative;
   display: flex;
@@ -301,21 +302,22 @@ div#tasks-area > dialog#add-a-task > span{
   color: #B6B6B6;
   cursor: pointer;
 }
-div#tasks-area > dialog#add-a-task > span.active{
+div#tasks-area > dialog.add-a-task > span.active{
   color: #4653EC;
   transition: 1s all ease;
 }
 
-div#tasks-area > dialog#add-a-task > textarea#task-description{
+div#tasks-area > dialog.add-a-task > textarea.task-description{
   grid-area: description;
   border: none;
   background: inherit;
   /* margin-bottom: 20px; */
   padding-bottom: 20px;
+  outline: none;
 }
 
 
-div#tasks-area > dialog#add-a-task > ul#selection {
+div#tasks-area > dialog.add-a-task > ul.selection {
   grid-area: selection;
   padding-bottom: 15px;
   border-bottom:1px solid #B6B6B6;
@@ -324,7 +326,7 @@ div#tasks-area > dialog#add-a-task > ul#selection {
   
 }
 
-div#tasks-area > dialog#add-a-task > ul#selection > input#task-due-date{
+div#tasks-area > dialog.add-a-task > ul.selection > input.task-due-date{
   grid-area: selection;
   padding: 5px 10px;
   width: 160px;
@@ -334,12 +336,12 @@ div#tasks-area > dialog#add-a-task > ul#selection > input#task-due-date{
   color: #B6B6B6;
 }
 
-ul#selection > input#task-due-date:focus{
+ul.selection > input.task-due-date:focus{
   outline: transparent;
   transition: 1s all ease;
   cursor: pointer;
 }
-div#tasks-area > dialog#add-a-task > ul#selection > select {
+div#tasks-area > dialog.add-a-task > ul.selection > select {
   grid-area: selection;
   padding: 5px 10px;
   width: 160px;
@@ -348,36 +350,36 @@ div#tasks-area > dialog#add-a-task > ul#selection > select {
   background: #F4F5F7;
   color: #333333;
 }
-div#tasks-area > dialog#add-a-task > ul#selection > select:focus, div#tasks-area > dialog#add-a-task > ul#selection > select > option::after{
+div#tasks-area > dialog.add-a-task > ul.selection > select:focus, div#tasks-area > dialog.add-a-task > ul.selection > select > option::after{
   outline: transparent;
   transition: 1s all ease;
   background-color: #D9CEDE;
   color: #FCFF7A;
 }
 
-dialog#add-a-task > ul#selection > select > span.material-symbols-outlined {
+dialog.add-a-task > ul.selection > select > span.material-symbols-outlined {
   font-family: 'Material Icons';
   font-size: 1rem;
 }
 
-div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(1) option:checked{
+div#tasks-area > dialog.add-a-task > select.priority-type:nth-child(1) option:checked{
   color: #EE402E;
 }
-div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(2) option:checked{
+div#tasks-area > dialog.add-a-task > select.priority-type:nth-child(2) option:checked{
   color: #eb8909;
 }
-div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(3) option:checked{
+div#tasks-area > dialog.add-a-task > select.priority-type:nth-child(3) option:checked{
   color: #C0E0DB;
 }
-div#tasks-area > dialog#add-a-task > select#priority-type:nth-child(4) option:checked{
+div#tasks-area > dialog.add-a-task > select.priority-type:nth-child(4) option:checked{
   color: #B8B8B8;
 }
 
-div#tasks-area > dialog#add-a-task > select#task-type{
+div#tasks-area > dialog.add-a-task > select.task-type{
   grid-area: taskType;
 }
 
-div#tasks-area > dialog#add-a-task > ul#task-action {
+div#tasks-area > dialog.add-a-task > ul.task-action {
   grid-area: taskAction;
   /* border: 1px solid red; */
   display: flex;
@@ -386,19 +388,19 @@ div#tasks-area > dialog#add-a-task > ul#task-action {
   padding: 5px 0;
 }
 
-div#tasks-area > dialog#add-a-task > ul#task-action > button{
+div#tasks-area > dialog.add-a-task > ul.task-action > button{
   padding: 10px 20px;
   border: none;
   border-radius: 7px;
   cursor: pointer;
 }
 
-div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(1){
+div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(1){
   border: 1px solid #B8B8B8;
   background-color:#F4F5F7;
 }
 
-div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(2){
+div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(2){
   border: 1px solid #4653EC;
   background-color: #4653EC;
   color: #F4F5F7;
@@ -406,7 +408,7 @@ div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(2){
 }
 
 
-div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(2):hover{
+div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(2):hover{
   border: 1px solid #D9CEDE;
   background-color: #D9CEDE;
   color: #FCFF7A;
@@ -414,7 +416,7 @@ div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(2):hover{
   transition: 1s all ease;
 }
 
-div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(1):hover{
+div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(1):hover{
   border: 1px solid #4653EC;
   background-color: #F4F5F7;
   color: #4653EC;
@@ -426,7 +428,7 @@ div#tasks-area > dialog#add-a-task > ul#task-action > button:nth-child(1):hover{
 
 /* taskBlock  */
 
-div#content> div#tasks-area > div#a-task{
+div#content> div#tasks-area > div.a-task{
   
   border-radius: 15px;
   width: inherit;
@@ -447,16 +449,16 @@ div#content> div#tasks-area > div#a-task{
   font-weight: 300;
   color: #333333;
 }
-div#content> div#tasks-area > div#a-task.edit-mode{
+div#content> div#tasks-area > div.a-task.edit-mode{
   border: 1px solid #B6B6B6;
   transition: 1s all ease;
 }
 
-div#a-task > ul#mainInfo > #taskName:focus , div#a-task > textarea#description:focus{
+div.a-task > ul.mainInfo > .taskName:focus , div.a-task > textarea.description:focus{
   outline: transparent;
   transition: 1s all ease;
 }
-div#tasks-area > div#a-task > ul#mainInfo{
+div#tasks-area > div.a-task > ul.mainInfo{
   grid-area: mainInfo;
   display: grid;
   grid-template-columns: 40px 11fr 1fr ;
@@ -464,7 +466,7 @@ div#tasks-area > div#a-task > ul#mainInfo{
   grid-template-areas:"completeBtn name editIcon";
 }
 
-div#tasks-area > div#a-task > ul#mainInfo > #complete {
+div#tasks-area > div.a-task > ul.mainInfo > .complete {
   grid-area: completeBtn;
   border: 2px solid #4653EC;
   border-radius: 30px;
@@ -478,11 +480,11 @@ div#tasks-area > div#a-task > ul#mainInfo > #complete {
   transition: 0.8s all ease;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo > #complete.after{
+div#tasks-area > div.a-task > ul.mainInfo > .complete.after{
   background: #4653EC;
   transition: 0.8s all ease;
 }
-div#tasks-area > div#a-task > ul#mainInfo > #taskName {
+div#tasks-area > div.a-task > ul.mainInfo > .taskName {
   grid-area: name;
   font-weight: 500;
   border: none;
@@ -490,7 +492,7 @@ div#tasks-area > div#a-task > ul#mainInfo > #taskName {
   font-size: 1rem;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo > ul#icons{
+div#tasks-area > div.a-task > ul.mainInfo > ul.icons{
   grid-area: editIcon;
   position: relative;
   display: flex;
@@ -499,35 +501,35 @@ div#tasks-area > div#a-task > ul#mainInfo > ul#icons{
   gap: 10px;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo >  ul#icons > span#edit {
+div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.edit {
   color: #B6B6B6;
   cursor: pointer;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo >  ul#icons > span#edit:hover{
+div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.edit:hover{
   font-size: 1.8rem;
   transition: 0.8s all ease;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo >  ul#icons > span#edit.active{
+div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.edit.active{
     color: #4653EC;
     transition: 1s all ease;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo >  ul#icons  > span#delete {
+div#tasks-area > div.a-task > ul.mainInfo >  ul.icons  > span.delete {
   cursor: pointer;
   color: #B6B6B6;
   font-size: 1.4rem;
 }
 
-div#tasks-area > div#a-task > ul#mainInfo >  ul#icons > span#delete:hover{
+div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.delete:hover{
     color: #EE402E;
     font-size: 1.6rem;
     transition: 0.8s all ease;
 }
 
 
-div#tasks-area > div#a-task > #description {
+div#tasks-area > div.a-task > .description {
   grid-area: description;
   border: none;
   background: inherit;
@@ -535,7 +537,7 @@ div#tasks-area > div#a-task > #description {
   font-size: 0.7rem;
 }
 
-div#tasks-area > div#a-task > #selection {
+div#tasks-area > div.a-task > .selection {
   grid-area: selection;
   padding-bottom: 15px;
   border-bottom:1px solid #B6B6B6;
@@ -545,7 +547,7 @@ div#tasks-area > div#a-task > #selection {
   gap: 5px;
 }
 
-div#tasks-area > div#a-task >  #selection > #due-date {
+div#tasks-area > div.a-task >  .selection > .due-date {
   padding: 5px 10px 5px 3px;
   width: 90px;
     /* border:1px solid #B6B6B6; */
@@ -555,7 +557,7 @@ div#tasks-area > div#a-task >  #selection > #due-date {
   font-size: 0.7rem;
 }
 
-div#tasks-area > div#a-task >  #selection > #task-priority-type {
+div#tasks-area > div.a-task >  .selection > .task-priority-type {
   padding: 5px 10px 5px 3px;
   width: 50px;
   border:none;
@@ -565,7 +567,7 @@ div#tasks-area > div#a-task >  #selection > #task-priority-type {
   font-size: 0.7rem;
 }
 
-div#tasks-area > div#a-task > #selection > #type {
+div#tasks-area > div.a-task > .selection > .type {
   padding: 5px 10px 5px 3px;
   width: 100px;
   /* border:1px solid #B6B6B6; */
@@ -575,7 +577,7 @@ div#tasks-area > div#a-task > #selection > #type {
   font-size: 0.7rem;
 }
 
-div#tasks-area > div#a-task > #task-action {
+div#tasks-area > div.a-task > .task-action {
   grid-area: taskAction;
   display: flex;
   justify-content: flex-end;
@@ -584,26 +586,26 @@ div#tasks-area > div#a-task > #task-action {
   /* visibility: hidden; */
 }
 
-div#tasks-area > div#a-task > #task-action > button {
+div#tasks-area > div.a-task > .task-action > button {
   padding: 10px 20px;
   border: none;
   border-radius: 7px;
   cursor: pointer;
 }
 
-div#tasks-area > div#a-task > #task-action > button:nth-child(1) {
+div#tasks-area > div.a-task > .task-action > button:nth-child(1) {
   border: 1px solid #B8B8B8;
   background-color:#F4F5F7;
 }
 
-div#tasks-area > div#a-task > #task-action > button:nth-child(2) {
+div#tasks-area > div.a-task > .task-action > button:nth-child(2) {
   border: 1px solid #4653EC;
   background-color: #4653EC;
   color: #F4F5F7;
 }
 
   
-div#tasks-area > div#a-task > #task-action > button:nth-child(1):hover {
+div#tasks-area > div.a-task > .task-action > button:nth-child(1):hover {
   border: 1px solid #4653EC;
   background-color: #F4F5F7;
   color: #4653EC;
@@ -611,7 +613,7 @@ div#tasks-area > div#a-task > #task-action > button:nth-child(1):hover {
   transition: 1s all ease;
 }
 
-div#tasks-area > div#a-task > #task-action > button:nth-child(2):hover {
+div#tasks-area > div.a-task > .task-action > button:nth-child(2):hover {
   border: 1px solid #D9CEDE;
   background-color: #D9CEDE;
   color: #FCFF7A;
