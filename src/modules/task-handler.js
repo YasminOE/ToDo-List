@@ -91,7 +91,7 @@ newTaskBlock.querySelector('.type').value = typeInput;
      console.log(editBtn, actionsSec , newTaskBlock);
     //  toggleEditMode(editBtn, actionsSec, newTaskBlock);
     enableEditing();
-    const editIt = handelEdting(manager);
+    const editIt = handleEditing(manager, newTaskBlock);
     editIt;
    });
    
@@ -154,19 +154,27 @@ export function toggleEditMode(btn, section,block) {
       }
 }
 
-export  function handelEdting(manager){
-  let block = document.querySelector('.a-task');
-  let save = block.querySelector('.edit-btn');
-  let cancel = block.querySelector('.cancel-btn');
+export function handleEditing(manager, taskBlock) {
+  let save = taskBlock.querySelector('.edit-btn');
+  let cancel = taskBlock.querySelector('.cancel-btn');
+  let taskNameInput = taskBlock.querySelector('.taskName');
+  let descriptionInput = taskBlock.querySelector('.description');
+  let dueDateInput = taskBlock.querySelector('.due-date');
+  let priorityInput = taskBlock.querySelector('.task-priority-type');
+  let typeInput = taskBlock.querySelector('.type');
 
-  console.log(block, save, cancel);
+  let originalTaskName = taskNameInput.value;
+  let originalDescription = descriptionInput.value;
+  let originalDueDate = dueDateInput.value;
+  let originalPriority = priorityInput.value;
+  let originalType = typeInput.value;
 
   save.addEventListener('click', () => {
-    let newTaskName = block.querySelector('.taskName').value; // Get the new task name as a string
-    let newDescription = block.querySelector('.description').value;
-    let newDueDate = block.querySelector('.due-date').value;
-    let newPriority = block.querySelector('.task-priority-type').value;
-    let newType = block.querySelector('.type').value;
+    let newTaskName = taskNameInput.value;
+    let newDescription = descriptionInput.value;
+    let newDueDate = dueDateInput.value;
+    let newPriority = priorityInput.value;
+    let newType = typeInput.value;
 
     let updatedProperties = {
       taskName: newTaskName,
@@ -176,36 +184,35 @@ export  function handelEdting(manager){
       type: newType
     };
 
-    console.log('I am for updating properties and I am working!');
-    manager.updateTask(newTaskName, updatedProperties); // Pass the task name as a string
-    console.log('Done');
+    manager.updateTask(originalTaskName, updatedProperties);
+
     console.log(manager);
+    // Optionally, update the displayed values in the task block
+    // taskBlock.querySelector('.taskName').textContent = newTaskName;
+    // taskBlock.querySelector('.description').textContent = newDescription;
+    // taskBlock.querySelector('.due-date').textContent = newDueDate;
+    // taskBlock.querySelector('.task-priority-type').textContent = newPriority;
+    // taskBlock.querySelector('.type').textContent = newType;
+
+    // Exit edit mode
+    disableEditing(taskBlock);
   });
 
   cancel.addEventListener('click', () => {
-    let originalTaskName = block.querySelector('.taskName').value;
-    let originalDescription = block.querySelector('.description').value;
-    let originalDueDate = block.querySelector('.due-date').value;
-    let originalPriority = block.querySelector('.task-priority-type').value;
-    let originalType = block.querySelector('.type').value;
-    console.log(originalTaskName, originalDescription, originalDueDate, originalPriority, originalType);
-  
-    console.log(block.querySelector('.task-name'));
-    console.log(block.querySelector('.task-description'));
-    console.log(block.querySelector('.task-due-date'));
-    console.log(block.querySelector('.priority-type'));
-    console.log(block.querySelector('.task-type'));
+    // Restore original values
+    taskNameInput.value = originalTaskName;
+    descriptionInput.value = originalDescription;
+    dueDateInput.value = originalDueDate;
+    priorityInput.value = originalPriority;
+    typeInput.value = originalType;
 
-    block.querySelector('.taskName').value = originalTaskName;
-    block.querySelector('.description').value = originalDescription;
-    block.querySelector('.due-date').value = originalDueDate;
-    block.querySelector('.task-priority-type').value = originalPriority;
-    block.querySelector('.type').value = originalType;
-    console.log(manager);
+    // Exit edit mode
+    disableEditing(taskBlock);
   });
-return block;
 
+  enableEditing(taskBlock);
 }
+
 
 
 export default function handleTask() {
