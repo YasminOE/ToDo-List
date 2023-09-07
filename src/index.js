@@ -15,26 +15,19 @@ function init() {
     taskBlock,
   } = createInitialPageStructure();
 
-  const { taskManager } = handleTask(); // Pass the callback function
+  document.addEventListener('DOMContentLoaded', function () {
+    const { taskManager } = handleTask(); // Initialize your task manager once the DOM is ready
 
-  handleViews(taskManager);
+    handleViews(taskManager);
 
-  let successAddBtn = addTaskBlock.querySelector('#add');
+    let successAddBtn = addTaskBlock.querySelector('#add');
 
+    addBtn.addEventListener('click', () => {
+      addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
+    });
 
-  addBtn.addEventListener('click', () => { 
-
-    addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
-
+    headerAddTaskBtn.addEventListener('click', () => {
+      addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
+    });
   });
-
-  headerAddTaskBtn.addEventListener('click', () => {
-
-    addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn );
-  
-   });
-
-
-
-
 }

@@ -215,7 +215,7 @@ export function createTaskBlock(){
   const priorityInput = document.createElement('select');
   Object.assign (priorityInput, {
     name : 'priorityType',
-    value: '',
+
   });
   priorityInput.setAttribute('class', 'task-priority-type');
   selection.appendChild(priorityInput);
@@ -243,7 +243,7 @@ export function createTaskBlock(){
   const taskType = document.createElement('select');
   Object.assign (taskType, {
     name : 'taskType',
-     value: 'Inbox',
+
   });
   taskType.setAttribute('class', 'type');
   selection.appendChild(taskType);
@@ -276,13 +276,13 @@ export function createTaskBlock(){
   closeBtn.innerHTML = 'Cancel';
   actionBtns.appendChild(closeBtn);
   
-  const successAddBtn = document.createElement('button');
-  Object.assign(successAddBtn, {
+  const successEditBtn = document.createElement('button');
+  Object.assign(successEditBtn, {
     type: 'submit'
   });
-  closeBtn.setAttribute('class', 'edit-btn');
-  successAddBtn.innerHTML = 'Save task';
-  actionBtns.appendChild(successAddBtn);
+  successEditBtn.setAttribute('class', 'edit-btn');
+  successEditBtn.innerHTML = 'Save task';
+  actionBtns.appendChild(successEditBtn);
 
   return taskBlock;
 
