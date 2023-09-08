@@ -52,29 +52,28 @@ class TaskManager {
 export function addNewTask(manager, addBlock, block, area, btn) {
 
   btn.addEventListener('click', () => {
-    // this os the taskBlock = createaddBlock()
-    let nameInput = document.querySelector('.task-name').value;
-    let descriptionInput = document.querySelector('.task-description').value;
-    let dueDateInput = document.querySelector('.task-due-date').value;
-    let priorityInput = document.querySelector('.priority-type').value;
-    let typeInput = document.querySelector('.task-type').value;
+     // Get the input values for the new task
+     let nameInput = document.querySelector('.task-name').value;
+     let descriptionInput = document.querySelector('.task-description').value;
+     let dueDateInput = document.querySelector('.task-due-date').value;
+     let priorityInput = document.querySelector('.priority-type').value;
+     let typeInput = document.querySelector('.task-type').value;
+ 
+     // Create a new task instance with unique properties
+     let newTask = new Task(nameInput, descriptionInput, dueDateInput, priorityInput, typeInput);
+ 
+     // Add the new task to the manager's tasks array
+     manager.addTask(newTask);
+ 
+     // Create a clone of the task block template
+     let newTaskBlock = block.cloneNode(true);
 
-
-// Create a new task instance
-let newTask = new Task(nameInput, descriptionInput, dueDateInput, priorityInput, typeInput);
-// Add the new task to the manager's tasks array
-manager.addTask(newTask);
-let newTaskBlock = block.cloneNode(true);
-
-newTaskBlock.querySelector('.taskName').value = nameInput;
-newTaskBlock.querySelector('.description').value = descriptionInput;
-newTaskBlock.querySelector('.due-date').value = dueDateInput;
-newTaskBlock.querySelector('.task-priority-type').value = priorityInput;
-newTaskBlock.querySelector('.type').value = typeInput;
-
-
-  // Call the callback function to create the new task block
-  // createNewTaskBlock(newTask);
+  // Set the values in the new task block
+    newTaskBlock.querySelector('.taskName').value = newTask.taskName;
+    newTaskBlock.querySelector('.description').value = newTask.description;
+    newTaskBlock.querySelector('.due-date').value = newTask.dueDate;
+    newTaskBlock.querySelector('.task-priority-type').value = newTask.priority;
+    newTaskBlock.querySelector('.type').value = newTask.type;
 
    console.log(newTaskBlock);
    
@@ -135,15 +134,15 @@ area.removeChild(addBlock);
 return btn;
 }
 
-function disableEditing() {
-  const elementsToDisable = document.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
+function disableEditing(taskBlock) {
+  const elementsToDisable = taskBlock.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
   elementsToDisable.forEach(element => {
     element.disabled = true;
   });
 }
 
-function enableEditing() {
-  const elementsToEnable = document.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
+function enableEditing(taskBlock) {
+  const elementsToEnable = taskBlock.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
   elementsToEnable.forEach(element => {
     element.disabled = false;
   });
