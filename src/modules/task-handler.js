@@ -81,22 +81,38 @@ newTaskBlock.querySelector('.type').value = typeInput;
    
    // // Append the new taskBlock to the area
    area.appendChild(newTaskBlock);
-   let editBtn = newTaskBlock.querySelector('.edit');
-   let actionsSec = newTaskBlock.querySelector('.task-action');
-  //  toggleEditMode(editBtn, actionsSec, newTaskBlock);
-   disableEditing();
-  
-   editBtn.addEventListener('click', () => {
+   disableEditing(newTaskBlock);
 
-     console.log(editBtn, actionsSec , newTaskBlock);
-    //  toggleEditMode(editBtn, actionsSec, newTaskBlock);
-    enableEditing();
-    const editIt = handleEditing(manager, newTaskBlock);
-    editIt;
-   });
-   
-  //  let saveTheEdit = newTaskBlock.querySelector('.edit-btn');
-  //  saveTheEdit.addEventListener('click', toggleEditMode(editBtn, actionsSec, newTaskBlock));
+    let editBtn = newTaskBlock.querySelector('.edit');
+    let actionsSec = newTaskBlock.querySelector('.task-action');
+     editBtn.classList.remove('active');
+     actionsSec.style.visibility = 'hidden';
+     newTaskBlock.classList.remove('edit-mode');
+
+    editBtn.addEventListener('click', () => {
+      // Update the edit mode when the edit button is clicked
+      toggleEditMode(editBtn, actionsSec, newTaskBlock);
+      // Enable editing (if needed)
+      enableEditing(newTaskBlock);
+      // Handle editing (if needed)
+      const editIt = handleEditing(manager, newTaskBlock);
+      editIt;
+      
+    });
+
+    let saveTheTask = newTaskBlock.querySelector('.edit-btn')
+    saveTheTask.addEventListener('click', () =>{
+      editBtn.classList.remove('active');
+      actionsSec.style.visibility = 'hidden';
+      newTaskBlock.classList.remove('edit-mode');
+    });
+
+    let cancelTheTask = newTaskBlock.querySelector('.cancel-btn');
+    cancelTheTask.addEventListener('click', () => {
+      editBtn.classList.remove('active');
+      actionsSec.style.visibility = 'hidden';
+      newTaskBlock.classList.remove('edit-mode');
+    });
  
   console.log('iam working');
 
@@ -133,26 +149,25 @@ function enableEditing() {
   });
 }
 
-export function toggleEditMode(btn, section,block) {
-  let editModeActive = false
-      editModeActive = !editModeActive; // Toggle the edit mode state
-      
-  
-      if (editModeActive) {
-        // Enable edit mode
-        btn.classList.add('active');
-        section.style.visibility = 'visible';
-        block.classList.add('edit-mode');
-  
-        // Store the original values when entering edit mode
-   
-      } else {
-        // Disable edit mode
-        btn.classList.remove('active');
-        section.style.visibility = 'hidden';
-        block.classList.remove('edit-mode');
-      }
+export function toggleEditMode(btn, section, block) {
+  let editModeActive = block.classList.contains('edit-mode'); // Check if the block already has the 'edit-mode' class
+
+  editModeActive = !editModeActive; // Toggle the edit mode state
+
+  if (editModeActive) {
+    // Enable edit mode
+    btn.classList.add('active');
+    section.style.visibility = 'visible';
+    block.classList.add('edit-mode');
+  } else {
+    // Disable edit mode
+    btn.classList.remove('active');
+    section.style.visibility = 'hidden';
+    block.classList.remove('edit-mode');
+  }
 }
+
+
 
 export function handleEditing(manager, taskBlock) {
   let save = taskBlock.querySelector('.edit-btn');
@@ -187,13 +202,6 @@ export function handleEditing(manager, taskBlock) {
     manager.updateTask(originalTaskName, updatedProperties);
 
     console.log(manager);
-    // Optionally, update the displayed values in the task block
-    // taskBlock.querySelector('.taskName').textContent = newTaskName;
-    // taskBlock.querySelector('.description').textContent = newDescription;
-    // taskBlock.querySelector('.due-date').textContent = newDueDate;
-    // taskBlock.querySelector('.task-priority-type').textContent = newPriority;
-    // taskBlock.querySelector('.type').textContent = newType;
-
     // Exit edit mode
     disableEditing(taskBlock);
   });
