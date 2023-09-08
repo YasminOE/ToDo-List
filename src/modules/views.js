@@ -77,7 +77,7 @@ function changeView(viewId) {
 
 
 export default function handleViews(taskManager) {
-  document.addEventListener('DOMContentLoaded', () => {
+
     // let views = createViews(taskManager),
   // Get views by type
   const inboxView = getViews(taskManager.tasks, 'inbox');
@@ -104,6 +104,6 @@ export default function handleViews(taskManager) {
         changeView(viewId);
       }
     });
-  });
+
 }
 
