@@ -24,6 +24,8 @@ function init() {
 
     addBtn.addEventListener('click', () => {
       addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
+
+
     });
 
     headerAddTaskBtn.addEventListener('click', () => {

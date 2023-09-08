@@ -1,6 +1,5 @@
 // import date library for due date
 import { addDays } from "date-fns";
-
 export function Task(taskName, description, dueDate, priority, type) {
   // const priorityTypes = ['P1', 'P2', 'P3', 'P4'];
   // const taskType = ['inbox', 'Home 🏡', 'My work 🎯'];
@@ -14,11 +13,25 @@ export function Task(taskName, description, dueDate, priority, type) {
 
 class TaskManager {
   constructor() {
-    this.tasks = [];
+    // Load tasks from local storage if available, or initialize an empty array
+    this.tasks = this.loadTasksFromLocalStorage() || [];
   }
 
   addTask(task) {
     this.tasks.push(task);
+    this.saveTasksToLocalStorage(); // Save tasks to local storage after adding
+  }
+  
+
+  saveTasksToLocalStorage() {
+    // Serialize and save the tasks array to local storage
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  loadTasksFromLocalStorage() {
+    // Retrieve and deserialize tasks from local storage
+    const tasksJSON = localStorage.getItem('tasks');
+    return JSON.parse(tasksJSON);
   }
 
   removeTask(taskName) {
@@ -220,6 +233,36 @@ export function handleEditing(manager, taskBlock) {
   enableEditing(taskBlock);
 }
 
+function displayTasks(manager, block, area) {
+  // Get the task container element within the area
+  const taskContainer = area.querySelector('.task-container');
+
+  // Remove existing task blocks (if any)
+  const existingTaskBlocks = taskContainer.querySelectorAll('.task-block');
+  existingTaskBlocks.forEach(taskBlock => {
+    taskContainer.removeChild(taskBlock);
+  });
+
+  // Loop through the tasks in the manager and create HTML elements for each task
+  manager.tasks.forEach(task => {
+    let taskBlock = block.cloneNode(true);
+
+    // Set the values in the task block
+    taskBlock.querySelector('.taskName').value = task.taskName;
+    taskBlock.querySelector('.description').value = task.description;
+    taskBlock.querySelector('.due-date').value = task.dueDate;
+    taskBlock.querySelector('.task-priority-type').value = task.priority;
+    taskBlock.querySelector('.type').value = task.type;
+
+    // Append the task block to the task container
+    taskContainer.appendChild(taskBlock);
+    disableEditing(taskBlock);
+
+    // Add event listeners (edit, save, delete) here as needed
+    // ...
+  });
+}
+
 
 
 export default function handleTask() {
@@ -227,4 +270,6 @@ export default function handleTask() {
   const taskManager = new TaskManager();  
   taskManager.tasks.forEach(task => console.log(task));
   return {taskManager};
+
+  // localStorage.clear();
 }
