@@ -129,9 +129,9 @@ ul#account-info > li#add-task > span:hover,  ul#account-info > li#notification >
 }
 
 ul#account-info > li#profile-pic{
-  border: 2px solid #B6B6B6;
+  border: 2px solid #4653EC;
   border-radius: 150px;
-  background: #4653EC;
+  background: #B6B6B6;
 }
  
 ul#account-info > li#profile-pic > img{

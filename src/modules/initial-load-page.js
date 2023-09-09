@@ -37,7 +37,7 @@ function createHeader() {
   header.appendChild(logoSec);
 
   const logoIcon = document.createElement('img');
-  logoIcon.src = './icons/logo1.png';
+  logoIcon.src = 'icons/logo1.png';
   logoIcon.alt = 'Logo Icon';
   logoSec.appendChild(logoIcon);
 
@@ -64,11 +64,11 @@ function createHeader() {
 
   const profilePicLi = document.createElement('li');
   profilePicLi.setAttribute('id', 'profile-pic');
+  accountSec.appendChild(profilePicLi);
   const profileIcon = document.createElement('img');
-  profileIcon.src = './icons/profile-pic.png';
+  profileIcon.src = 'icons/profile.jpeg';
   profileIcon.alt = 'profile Icon';
   profilePicLi.appendChild(profileIcon);
-  accountSec.appendChild(profilePicLi);
 
   return header;
 
