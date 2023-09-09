@@ -1,33 +1,22 @@
-// import date library for due date
+// Import necessary libraries and functions
 import { addDays, isToday } from "date-fns";
-import{createTaskBlock} from "./initial-load-page";
+import { createTaskBlock } from "./initial-load-page";
 
+// Define the Task class
 export function Task(taskName, description, dueDate, priority, type) {
-  // const priorityTypes = ['P1', 'P2', 'P3', 'P4'];
-  // const taskType = ['inbox', 'Home 🏡', 'My work 🎯'];
-
   this.taskName = taskName;
   this.description = description;
   this.dueDate = dueDate || addDays(new Date(), 0);
   this.priority = priority;
   this.type = type;
+  this.completed = false; // Add a completed property with an initial value of false
 }
 
-class TaskManager {
+// Define the TaskManager class
+export class TaskManager {
   constructor() {
     // Load tasks from local storage if available, or initialize an empty array
     this.tasks = this.loadTasksFromLocalStorage() || [];
-  }
-
-  addTask(task) {
-    this.tasks.push(task);
-    this.saveTasksToLocalStorage(); // Save tasks to local storage after adding
-  }
-  
-
-  saveTasksToLocalStorage() {
-    // Serialize and save the tasks array to local storage
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   loadTasksFromLocalStorage() {
@@ -36,12 +25,22 @@ class TaskManager {
     return JSON.parse(tasksJSON);
   }
 
+  updateLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  addTask(task) {
+    this.tasks.push(task);
+    this.updateLocalStorage(); // Update local storage
+  }
+
   removeTask(taskName) {
     const index = this.tasks.findIndex(task => task.taskName === taskName);
 
     if (index !== -1) {
       const removedTask = this.tasks.splice(index, 1);
       console.log(`${removedTask[0].taskName} has been removed`);
+      this.updateLocalStorage(); // Update local storage
     }
   }
 
@@ -51,6 +50,7 @@ class TaskManager {
     if (task) {
       task.dueDate = newDueDate;
       console.log(`${task.taskName}'s due date has been updated to ${newDueDate}`);
+      this.updateLocalStorage(); // Update local storage
     }
   }
 
@@ -60,43 +60,42 @@ class TaskManager {
     if (task) {
       Object.assign(task, updatedProperties);
       console.log(`${task.taskName}'s information has been updated`);
+      this.updateLocalStorage(); // Update local storage
     }
   }
 }
 
+// Define a function to add a new task
 export function addNewTask(manager, addBlock, block, area, btn) {
-
   btn.addEventListener('click', () => {
-     // Get the input values for the new task
-     let nameInput = document.querySelector('.task-name').value;
-     let descriptionInput = document.querySelector('.task-description').value;
-     let dueDateInput = document.querySelector('.task-due-date').value;
-     let priorityInput = document.querySelector('.priority-type').value;
-     let typeInput = document.querySelector('.task-type').value;
- 
-     // Create a new task instance with unique properties
-     let newTask = new Task(nameInput, descriptionInput, dueDateInput, priorityInput, typeInput);
- 
-     // Add the new task to the manager's tasks array
-     manager.addTask(newTask);
- 
-     // Save tasks to local storage after adding
-    manager.saveTasksToLocalStorage();
-     // Create a clone of the task block template
-     let newTaskBlock = block.cloneNode(true);
+    // Get the input values for the new task
+    let nameInput = document.querySelector('.task-name').value;
+    let descriptionInput = document.querySelector('.task-description').value;
+    let dueDateInput = document.querySelector('.task-due-date').value;
+    let priorityInput = document.querySelector('.priority-type').value;
+    let typeInput = document.querySelector('.task-type').value;
 
-  // Set the values in the new task block
+    // Create a new task instance with unique properties
+    let newTask = new Task(nameInput, descriptionInput, dueDateInput, priorityInput, typeInput);
+    newTask.completed = false; // Set completed property to false for new tasks
+
+    // Add the new task to the manager's tasks array
+    manager.addTask(newTask);
+
+    // Create a clone of the task block template
+    let newTaskBlock = block.cloneNode(true);
+
+    // Set the values in the new task block
     newTaskBlock.querySelector('.taskName').value = newTask.taskName;
     newTaskBlock.querySelector('.description').value = newTask.description;
     newTaskBlock.querySelector('.due-date').value = newTask.dueDate;
     newTaskBlock.querySelector('.task-priority-type').value = newTask.priority;
     newTaskBlock.querySelector('.type').value = newTask.type;
 
-   console.log(newTaskBlock);
-   
-   
-   // // Append the new taskBlock to the area
-   area.appendChild(newTaskBlock);
+    console.log(newTaskBlock);
+    // Append the new taskBlock to the area
+    area.appendChild(newTaskBlock);
+  //  completeTask(newTaskBlock);
    disableEditing(newTaskBlock);
 
     let editBtn = newTaskBlock.querySelector('.edit');
@@ -151,6 +150,7 @@ area.removeChild(addBlock);
 return btn;
 }
 
+// Define a function to disable editing
 function disableEditing(taskBlock) {
   const elementsToDisable = taskBlock.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
   elementsToDisable.forEach(element => {
@@ -158,13 +158,14 @@ function disableEditing(taskBlock) {
   });
 }
 
+// Define a function to enable editing
 function enableEditing(taskBlock) {
   const elementsToEnable = taskBlock.querySelectorAll('.taskName, .description, .due-date, .task-priority-type, .type');
   elementsToEnable.forEach(element => {
     element.disabled = false;
   });
 }
-
+// Define a function to toggle edit mode
 export function toggleEditMode(btn, section, block) {
   let editModeActive = block.classList.contains('edit-mode'); // Check if the block already has the 'edit-mode' class
 
@@ -237,6 +238,27 @@ export function handleEditing(manager, taskBlock) {
   enableEditing(taskBlock);
 }
 
+function completeTask(completeBlocks, manager) {
+  // manager = new TaskManager();
+  completeBlocks.forEach(completeBlock => {
+    let completeName = completeBlock.querySelector('.taskName');
+    let completeBtn = completeBlock.querySelector('.complete');
+    
+    completeBtn.addEventListener('click', () => {
+      completeBtn.classList.add('after');
+      completeName.classList.add('done');
+      
+      // Find the task in the manager's tasks array and mark it as completed
+      let taskName = completeBlock.querySelector('.taskName').value;
+      let task = manager.tasks.find(task => task.taskName === taskName);
+      if (task) {
+        task.completed = true;
+        manager.updateLocalStorage(); // Update local storage
+      }
+    });
+  });
+}
+
 
 
 export function displayTasks(manager, block, area, types, view) {
@@ -267,23 +289,33 @@ export function displayTasks(manager, block, area, types, view) {
     return false;
   });
 
+  // Create an array to store the task blocks
+  const taskBlocks = [];
+
   // Loop through the filtered tasks and create HTML elements for each task
   filteredTasks.forEach(task => {
     let taskBlock = block.cloneNode(true);
-
+  
     // Set the values in the task block
     taskBlock.querySelector('.taskName').value = task.taskName;
     taskBlock.querySelector('.description').value = task.description;
     taskBlock.querySelector('.due-date').value = task.dueDate;
     taskBlock.querySelector('.task-priority-type').value = task.priority;
     taskBlock.querySelector('.type').value = task.type;
+  
+    if (task.completed) {
+      // If the task is completed, add the necessary CSS classes
+      let completeBtn = taskBlock.querySelector('.complete');
+      let taskName = taskBlock.querySelector('.taskName');
+      completeBtn.classList.add('after');
+      taskName.classList.add('done');
+    }
 
     // Append the task block to the task container
     area.appendChild(taskBlock);
-    disableEditing(taskBlock);
+    taskBlocks.push(taskBlock); // Add the task block to the array
 
-    // Add event listeners (edit, save, delete) here as needed
-    // ...
+    // Rest of your code...
 
     let editBtn = taskBlock.querySelector('.edit');
     let actionsSec = taskBlock.querySelector('.task-action');
@@ -299,7 +331,7 @@ export function displayTasks(manager, block, area, types, view) {
       // Handle editing (if needed)
       const editIt = handleEditing(manager, taskBlock);
       editIt;
-      manager.saveTasksToLocalStorage();
+      manager.updateLocalStorage();
     });
 
     let saveTheTask = taskBlock.querySelector('.edit-btn')
@@ -331,7 +363,13 @@ export function displayTasks(manager, block, area, types, view) {
       area.removeChild(taskBlock);
     });
   });
+
+  // Apply complete button functionality to all task blocks
+  completeTask(taskBlocks, manager);
+
+  // ...
 }
+
 
 
 

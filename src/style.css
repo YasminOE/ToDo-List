@@ -482,7 +482,7 @@ div#tasks-area > div.a-task > ul.mainInfo > .complete {
 
 div#tasks-area > div.a-task > ul.mainInfo > .complete.after{
   background: #4653EC;
-  transition: 0.8s all ease;
+  /* transition: 0.8s all ease; */
 }
 div#tasks-area > div.a-task > ul.mainInfo > .taskName {
   grid-area: name;
@@ -490,6 +490,10 @@ div#tasks-area > div.a-task > ul.mainInfo > .taskName {
   border: none;
   background: inherit;
   font-size: 1rem;
+}
+div#tasks-area > div.a-task > ul.mainInfo > .taskName.done{
+  text-decoration: line-through;
+  color: #4653EC;
 }
 
 div#tasks-area > div.a-task > ul.mainInfo > ul.icons{

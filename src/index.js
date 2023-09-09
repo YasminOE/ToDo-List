@@ -32,4 +32,5 @@ function init() {
       addNewTask(taskManager, addTaskBlock, taskBlock, taskArea, successAddBtn);
     });
   });
+  
 }
