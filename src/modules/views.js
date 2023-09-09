@@ -1,53 +1,5 @@
-// view.js
-
+import { displayTasks } from './task-handler';
 import { head } from "lodash";
-
-// export function getViews(tasks, type = 'inbox') {
-//   const inboxView = [];
-//   const homeView = [];
-//   const projectsView = [];
-
-//   tasks.forEach(task => {
-//     if (task.type === 'inbox') {
-//       inboxView.push(task);
-//     } else if (task.type === 'Home 🏡') {
-//       homeView.push(task);
-//     } else if (task.type === 'My work 🎯') {
-//       projectsView.push(task);
-//     }
-//   });
-
-//   if (type === 'inbox') {
-//     return inboxView;
-//   } else if (type === 'Home 🏡') {
-//     return homeView;
-//   } else if (type === 'My work 🎯') {
-//     return projectsView;
-//   } else {
-//     return inboxView; // Default to inbox view
-//   }
-// }
-
-// export function getViewsByDate(tasks) {
-//   const todayView = [];
-//   const upcomingView = [];
-
-//   const today = new Date();
-//   const todayDate = today.toISOString().split('T')[0];
-
-//   tasks.forEach(task => {
-//     if (task.dueDate.toISOString().split('T')[0] === todayDate) {
-//       todayView.push(task);
-//     } else {
-//       upcomingView.push(task);
-//     }
-//   });
-
-//   return {
-//     today: todayView,
-//     upcoming: upcomingView
-//   };
-// }
 
 function clearActiveClass() {
   const views = document.querySelectorAll('.view');
@@ -56,64 +8,54 @@ function clearActiveClass() {
   });
 }
 
-function changeView(viewId) {
+function changeView(viewId, manager, block, area) {
   const heading = document.querySelector('#area-name');
   const view = document.querySelector(`#${viewId}`);
+  let types = []; // Initialize an empty array to store types
+  let viewName = ''; // Initialize a variable to store the view name
+
   if (viewId === 'inbox-view') {
     heading.innerHTML = 'Inbox';
-    //clear remove taskBlock that type isn't inbox
+    types = ['inbox']; // Set the types for the 'inbox-view'
+    viewName = 'inbox'; // Set the view name
   } else if (viewId === 'today-view') {
     heading.innerHTML = 'Today';
-        //clear remove taskBlock that date is today's datw
+    types = ['inbox', 'Home 🏡', 'My work 🎯']; // Set the types for the 'today-view'
+    viewName = 'today'; // Set the view name
   } else if (viewId === 'upcoming-view') {
     heading.innerHTML = 'Upcoming';
-        //clear remove taskBlock that date is not date
-  } else if (viewId === 'home'){
+    types = ['inbox', 'Home 🏡', 'My work 🎯']; // Set the types for the 'upcoming-view'
+    viewName = 'upcoming'; // Set the view name
+  } else if (viewId === 'home') {
     heading.innerHTML = 'Home';
-        //clear remove taskBlock that type isn't home
-  }else{
+    types = ['Home 🏡']; // Set the types for the 'home' view
+    viewName = 'home'; // Set the view name
+  } else {
     heading.innerHTML = 'My work';
-        //clear remove taskBlock that type isn't work
+    types = ['My work 🎯']; // Set the types for the 'My work' view
+    viewName = 'myWork'; // Set the view name
   }
+
+  // Call the displayTasks function with the specified types and view
+  displayTasks(manager, block, area, types, viewName);
 
   clearActiveClass(); // Remove 'active' class from all views
   view.classList.add('active'); // Add 'active' class to the clicked view
 }
 
-
-// function displayTasks(){
-  
-// }
-
 export default function handleViews(taskManager) {
+  // const tasksArea = document.querySelector('#tasks-area')
+  const navBar = document.querySelector('#navbar');
+  const block = document.querySelectorAll('.a-task');
+  const area = document.querySelector('#tasks-area');
 
-  //   // let views = createViews(taskManager),
-  // // Get views by type
-  // const inboxView = getViews(taskManager.tasks, 'inbox');
-  // const homeView = getViews(taskManager.tasks, 'Home 🏡');
-  // const projectsView = getViews(taskManager.tasks, 'My work 🎯');
+  // Initialize the default view
+  changeView('inbox-view', taskManager, block, area);
 
-  // console.log('Inbox View:', inboxView);
-  // console.log('Home View:', homeView);
-  // console.log('Projects View:', projectsView);
-
-  // // Get views by date
-  // const { today, upcoming } = getViewsByDate(taskManager.tasks);
-
-  // console.log('Today View:', today);
-  // console.log('Upcoming View:', upcoming);
-
-
-    changeView('inbox-view');
-    const tasksArea = document.querySelector('#tasks-area')
-    const navBar = document.querySelector('#navbar');
-    navBar.addEventListener('click', (event) => {
-      if (event.target.classList.contains('view')) {
-        const viewId = event.target.id;
-        changeView(viewId);
-        
-      }
-    });
-
+  navBar.addEventListener('click', (event) => {
+    if (event.target.classList.contains('view')) {
+      const viewId = event.target.id;
+      changeView(viewId, taskManager, block, area);
+    }
+  });
 }
-

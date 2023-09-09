@@ -1,5 +1,5 @@
 // import date library for due date
-import { addDays } from "date-fns";
+import { addDays, isToday } from "date-fns";
 import{createTaskBlock} from "./initial-load-page";
 
 export function Task(taskName, description, dueDate, priority, type) {
@@ -239,11 +239,8 @@ export function handleEditing(manager, taskBlock) {
 
 
 
-function displayTasks(manager, block, area) {
+export function displayTasks(manager, block, area, types, view) {
   area = document.querySelector('#tasks-area');
-  // Get the task container element within the area
-  // const taskContainer = area.querySelector('.a-task');
-
   // Remove existing task blocks (if any)
   const existingTaskBlocks = area.querySelectorAll('.a-task');
   block = createTaskBlock();
@@ -251,8 +248,27 @@ function displayTasks(manager, block, area) {
     area.removeChild(taskBlock);
   });
 
-  // Loop through the tasks in the manager and create HTML elements for each task
-  manager.tasks.forEach(task => {
+  // Filter tasks based on types and view
+  const filteredTasks = manager.tasks.filter(task => {
+    if (view === 'today') {
+      // Filter tasks for today's view
+      if (types.includes(task.type) && isToday(new Date(task.dueDate))) {
+        return true;
+      }
+    } else if (view === 'upcoming') {
+      // Filter tasks for upcoming view
+      if (types.includes(task.type) && !isToday(new Date(task.dueDate))) {
+        return true;
+      }
+    } else {
+      // Filter tasks for other views (inbox, Home, My work)
+      return types.includes(task.type);
+    }
+    return false;
+  });
+
+  // Loop through the filtered tasks and create HTML elements for each task
+  filteredTasks.forEach(task => {
     let taskBlock = block.cloneNode(true);
 
     // Set the values in the task block
@@ -271,9 +287,9 @@ function displayTasks(manager, block, area) {
 
     let editBtn = taskBlock.querySelector('.edit');
     let actionsSec = taskBlock.querySelector('.task-action');
-     editBtn.classList.remove('active');
-     actionsSec.style.visibility = 'hidden';
-     taskBlock.classList.remove('edit-mode');
+    editBtn.classList.remove('active');
+    actionsSec.style.visibility = 'hidden';
+    taskBlock.classList.remove('edit-mode');
 
     editBtn.addEventListener('click', () => {
       // Update the edit mode when the edit button is clicked
@@ -299,23 +315,21 @@ function displayTasks(manager, block, area) {
       actionsSec.style.visibility = 'hidden';
       taskBlock.classList.remove('edit-mode');
     });
- 
-  console.log('iam working');
 
-let deleteButton = taskBlock.querySelector('.delete');
-deleteButton.addEventListener('click', () => {
-  // Get the task name from the task block
-  let taskName = taskBlock.querySelector('.taskName').value;
+    let deleteButton = taskBlock.querySelector('.delete');
+    deleteButton.addEventListener('click', () => {
+      // Get the task name from the task block
+      let taskName = taskBlock.querySelector('.taskName').value;
 
-  // Remove the task from the manager when the user deletes it
-  let taskIndex = manager.tasks.findIndex(task => task.taskName === taskName);
+      // Remove the task from the manager when the user deletes it
+      let taskIndex = manager.tasks.findIndex(task => task.taskName === taskName);
 
-  if (taskIndex !== -1) {
-    manager.removeTask(taskName);
-  }
+      if (taskIndex !== -1) {
+        manager.removeTask(taskName);
+      }
 
-  area.removeChild(taskBlock);
-});
+      area.removeChild(taskBlock);
+    });
   });
 }
 
@@ -326,7 +340,7 @@ export default function handleTask() {
   let theTaskBlock = document.querySelector('#tasks-area');
   const taskManager = new TaskManager();  
   taskManager.tasks.forEach(task => console.log(task));
-  displayTasks(taskManager, createTaskBlock ,theTaskBlock);
+  displayTasks(taskManager, createTaskBlock ,theTaskBlock, 'inbox');
 
   return {taskManager};
 
