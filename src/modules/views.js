@@ -61,20 +61,29 @@ function changeView(viewId) {
   const view = document.querySelector(`#${viewId}`);
   if (viewId === 'inbox-view') {
     heading.innerHTML = 'Inbox';
+    //clear remove taskBlock that type isn't inbox
   } else if (viewId === 'today-view') {
     heading.innerHTML = 'Today';
+        //clear remove taskBlock that date is today's datw
   } else if (viewId === 'upcoming-view') {
     heading.innerHTML = 'Upcoming';
+        //clear remove taskBlock that date is not date
   } else if (viewId === 'home'){
     heading.innerHTML = 'Home';
+        //clear remove taskBlock that type isn't home
   }else{
     heading.innerHTML = 'My work';
+        //clear remove taskBlock that type isn't work
   }
 
   clearActiveClass(); // Remove 'active' class from all views
   view.classList.add('active'); // Add 'active' class to the clicked view
 }
 
+
+// function displayTasks(){
+  
+// }
 
 export default function handleViews(taskManager) {
 
@@ -96,12 +105,13 @@ export default function handleViews(taskManager) {
 
 
     changeView('inbox-view');
-
+    const tasksArea = document.querySelector('#tasks-area')
     const navBar = document.querySelector('#navbar');
     navBar.addEventListener('click', (event) => {
       if (event.target.classList.contains('view')) {
         const viewId = event.target.id;
         changeView(viewId);
+        
       }
     });
 
