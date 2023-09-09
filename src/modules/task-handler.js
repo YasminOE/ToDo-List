@@ -143,9 +143,7 @@ deleteButton.addEventListener('click', () => {
 
 area.removeChild(addBlock);
 
-// Clear input fields or perform any necessary updates
-// Optionally, you can re-render the task list or update the view
-// based on the new task added.
+// TODO :Clear input fields or perform any necessary updates
 });
 return btn;
 }
@@ -314,6 +312,8 @@ export function displayTasks(manager, block, area, types, view) {
     // Append the task block to the task container
     area.appendChild(taskBlock);
     taskBlocks.push(taskBlock); // Add the task block to the array
+    disableEditing(taskBlock);
+
 
     // Rest of your code...
 

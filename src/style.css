@@ -9,7 +9,9 @@
 }
 
 body{
-  background: #F4F5F7;
+  background: #a0a1a2;
+  /* background: #e6e6e7; */
+  /* background: #EFEFEF; */
 }
 
 div#content{
@@ -55,16 +57,17 @@ div#header > ul#inbox > li:nth-child(2){
 
 div#header > ul#inbox > li:nth-child(1) > span{
   padding: 10px;
-  border: 2px solid #B6B6B6;
+  border: 2px solid #FEFAF1;
   border-radius: 7px;
   cursor: pointer;
-  color: #B6B6B6;
-
+  color: #FEFAF1;
+  
   font-weight: 500;
 }
 div#header > ul#inbox > li:nth-child(1) > span:hover{
-  background-color: #4653EC;
-  border: 2px solid #4653EC;
+  /* color: #40495A; */
+  background-color: #D3D0C7;
+  /* border: 2px solid #FEFAF1; */
   transition: 1s all ease;
 }
 
@@ -72,7 +75,7 @@ div#header > ul#inbox > li:nth-child(2) > span {
   position: relative;
   top: 10px;
   left: 40px;
-  color: #B6B6B6;
+  color: #FEFAF1;
   font-weight: 500;
 
 }
@@ -82,14 +85,15 @@ div#header > ul#inbox > li:nth-child(2) > input {
   border-radius: 10px;
   font-size: 1.1rem;
   background: inherit;
-  border: 2px solid #B6B6B6;
-  color: #FCFF7A;
+  border: 2px solid #FEFAF1;
+  color: #e2ff0a;
 }
 
 div#header > ul#inbox > li:nth-child(2) > input:focus{
-  background: #4653EC;
+  background: #D3D0C7;
   padding: 10px 78px;
   transition: 1s all ease;
+  outline: none;
 }
 
 
@@ -116,22 +120,22 @@ ul#account-info > li > span{
   
 }
 ul#account-info > li#add-task > span,  ul#account-info > li#notification > span{
-  border: 2px solid #B6B6B6;
+  border: 2px solid #FEFAF1;
   border-radius: 7px;
-  color: #B6B6B6;
+  color: #FEFAF1;
   font-weight: 500;
 }
 
 ul#account-info > li#add-task > span:hover,  ul#account-info > li#notification > span:hover{
-  background-color: #4653EC;
-  border: 2px solid #4653EC;
+  background-color: #D3D0C7;
+  /* border: 2px solid #FEFAF1; */
   transition: 1s all ease;
 }
 
 ul#account-info > li#profile-pic{
-  border: 2px solid #4653EC;
+  border: 2px solid #e2ff0a;
   border-radius: 150px;
-  background: #B6B6B6;
+  /* background: #FEFAF1; */
 }
  
 ul#account-info > li#profile-pic > img{
@@ -144,7 +148,7 @@ ul#account-info > li#profile-pic > img{
 
 div#content > div#navbar{
   grid-area: nav;
-  border: 2px solid #4653EC;
+  /* border: 2px solid #4653EC; */
   border-radius: 0px 20px 20px 0 ;
   display: grid;
   grid-template-columns: 3fr;
@@ -154,8 +158,15 @@ div#content > div#navbar{
   "projectViews"
   "soon";
   width: 450px;
-  background-color:#B6B6B6 ;
-  /* width: calc(100%/4); */
+  /* background-color:#B6B6B6 ; */
+  /* background: rgb(247, 247, 247); */
+  background: #b8b9ba;
+box-shadow: 0 8px 32px 0 rgba(224, 219, 199, 0.372);
+backdrop-filter: blur( 8.5px );
+-webkit-backdrop-filter: blur( 8.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+
 }
 
 div#content > div#navbar > ul{
@@ -174,12 +185,12 @@ div#content > div#navbar > ul > li {
 }
 
 div#content > div#navbar > ul > li:hover{
-  background:#4653EC;
+  background:#D3D0C7;
   transition: 1s all ease;
 }
 
 div#content > div#navbar > ul > li.active {
-  background:#4653EC;
+  background:#D3D0C7;
 }
 
 div#content > div#navbar > ul#date-views{
@@ -188,33 +199,46 @@ div#content > div#navbar > ul#date-views{
 }
 
 div#content > div#navbar > ul#date-views > li:nth-child(1){
-  color: #C5EABE;
+  /* color: #655657; */
+  color: #FEFAF1;
+}
+div#content > div#navbar > ul#date-views > li.active:nth-child(1){
+  color: #e2ff0a;
 }
 
 div#content > div#navbar > ul#date-views > li:nth-child(2){
-  color: #FCFF7A;
+  /* color: #b3cb03; */
+  color: #FEFAF1;
 }
+div#content > div#navbar > ul#date-views > li.active:nth-child(2){
+  color: #e2ff0a;
+}
+
 
 div#content > div#navbar > ul#date-views > li:nth-child(3){
-  color: #D9CEDE;
+  /* color: #B8C5BC; */
+  color: #FEFAF1;
 }
 
+div#content > div#navbar > ul#date-views > li.active:nth-child(3){
+  color: #e2ff0a;
+}
 
 div#content > div#navbar > ul#project-views{
   grid-area: projectViews;
-  color: #F4F5F7;
+  color: #40495A;
 }
 
 div#content > div#navbar > ul#soon{
   grid-area: soon;
-  color: #F4F5F7;
+  color: #40495A;
   position: relative;
   top: 20px;
 }
 
 div#content > div#navbar > ul#soon > li > span{
-  color: #FCFF7A;
-  background: #D9CEDE;
+  color: #40495A;
+  background: #a0a1a2;
   padding: 7px 10px;
   border-radius: 7px;
 }
@@ -231,8 +255,8 @@ div#content > div#tasks-area{
 }
 div#content > div#tasks-area > h1#area-name{
   font-size: 3rem;
-  color: #B6B6B6;
-  border-bottom: 1px solid #B6B6B6;
+  color: #e2ff0a;
+  border-bottom: 1px solid #e2ff0a;
 
 }
 
@@ -243,7 +267,7 @@ div#content > div#tasks-area >  button#show{
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: #4653EC;
+  color: #e2ff0a;
   background: inherit;
   border: none;
   border-radius: 7px;
@@ -254,15 +278,16 @@ div#content > div#tasks-area >  button#show{
 
 
 div#content > div#tasks-area > button#show:hover{
-  color: #FCFF7A;
-  background-color: #D9CEDE;
-  border: 1px solid #D9CEDE;
+  /* color: #FCFF7A; */
+  background-color: #e2ff0a;
+  border: 1px solid #e2ff0a;
+  color: #40495A;
   margin: 10px;
   transition: 1s all ease;
 }
 
 div#content> div#tasks-area > dialog.add-a-task {
-  border: 1px solid #B6B6B6;
+  border: 1px solid #e2ff0a;
   border-radius: 15px;
   width: inherit;
   position: inherit;
@@ -279,7 +304,7 @@ div#content> div#tasks-area > dialog.add-a-task {
   "taskAction taskAction taskAction";
   gap: 10px;
   font-size: 1.2rem;
-  background-color: #F4F5F7;
+  background-color:#a0a1a2;
 }
 div#tasks-area > dialog#add-a-task > input.task-name:focus , dialog.add-a-task > textarea.task-description:focus{
   outline: transparent;
@@ -299,11 +324,11 @@ div#tasks-area > dialog.add-a-task > span{
   position: relative;
   display: flex;
   justify-content: flex-end;
-  color: #B6B6B6;
+  color: #FEFAF1;
   cursor: pointer;
 }
 div#tasks-area > dialog.add-a-task > span.active{
-  color: #4653EC;
+  color: #e2ff0a;
   transition: 1s all ease;
 }
 
@@ -320,7 +345,7 @@ div#tasks-area > dialog.add-a-task > textarea.task-description{
 div#tasks-area > dialog.add-a-task > ul.selection {
   grid-area: selection;
   padding-bottom: 15px;
-  border-bottom:1px solid #B6B6B6;
+  border-bottom:1px solid #e2ff0a;
   display: flex;
   gap: 10px;
   
@@ -330,10 +355,10 @@ div#tasks-area > dialog.add-a-task > ul.selection > input.task-due-date{
   grid-area: selection;
   padding: 5px 10px;
   width: 160px;
-  border: 1px solid #B6B6B6;
+  border: 1px solid #e2ff0a;
   border-radius: 7px;
   background: inherit;
-  color: #B6B6B6;
+  color: #e2ff0a;
 }
 
 ul.selection > input.task-due-date:focus{
@@ -345,16 +370,16 @@ div#tasks-area > dialog.add-a-task > ul.selection > select {
   grid-area: selection;
   padding: 5px 10px;
   width: 160px;
-  border: 1px solid #B6B6B6;
+  border: 1px solid #e2ff0a;
   border-radius: 7px;
-  background: #F4F5F7;
-  color: #333333;
+  background: #a0a1a2;
+  color: #e2ff0a;
 }
 div#tasks-area > dialog.add-a-task > ul.selection > select:focus, div#tasks-area > dialog.add-a-task > ul.selection > select > option::after{
   outline: transparent;
   transition: 1s all ease;
-  background-color: #D9CEDE;
-  color: #FCFF7A;
+  background-color: #e2ff0a;
+  color: #40495A;
 }
 
 dialog.add-a-task > ul.selection > select > span.material-symbols-outlined {
@@ -396,30 +421,32 @@ div#tasks-area > dialog.add-a-task > ul.task-action > button{
 }
 
 div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(1){
-  border: 1px solid #B8B8B8;
-  background-color:#F4F5F7;
+  border: 1px solid #40495A;
+  color: #40495A;
+  background-color:#a0a1a2;
 }
 
 div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(2){
-  border: 1px solid #4653EC;
-  background-color: #4653EC;
-  color: #F4F5F7;
+  border: 1px solid #e2ff0a;
+  background-color: #e2ff0a;
+  color: #40495A;
 
 }
 
 
 div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(2):hover{
-  border: 1px solid #D9CEDE;
-  background-color: #D9CEDE;
-  color: #FCFF7A;
+  /* border: 1px solid #e2ff0a; */
+  background-color: #a0a1a2;
+  /* color: #FEFAF1; */
+  color: #e2ff0a;
   margin: 0 10px;
   transition: 1s all ease;
 }
 
 div#tasks-area > dialog.add-a-task > ul.task-action > button:nth-child(1):hover{
-  border: 1px solid #4653EC;
-  background-color: #F4F5F7;
-  color: #4653EC;
+  border: 1px solid #FEFAF1;
+  background-color: #FEFAF1;
+  color: #40495A;
   margin: 0 10px;
   transition: 1s all ease;
 }
@@ -445,18 +472,25 @@ div#content> div#tasks-area > div.a-task{
   ". selection selection selection"
   ". taskAction taskAction taskAction";
   gap: 10px;
-  background-color: #F4F5F7;
+  background-color: #a0a1a2;
   font-weight: 300;
-  color: #333333;
+  color: #40495A;
 }
 div#content> div#tasks-area > div.a-task.edit-mode{
-  border: 1px solid #B6B6B6;
+  border: 1px solid #e2ff0a;
   transition: 1s all ease;
+  background: #b8b9ba;
+  box-shadow: 0 8px 32px 0 rgba(224, 219, 199, 0.372);
+  backdrop-filter: blur( 8.5px );
+  -webkit-backdrop-filter: blur( 8.5px );
+  border-radius: 10px;
+  /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
 }
 
 div.a-task > ul.mainInfo > .taskName:focus , div.a-task > textarea.description:focus{
   outline: transparent;
   transition: 1s all ease;
+  /* color: #e2ff0a; */
 }
 div#tasks-area > div.a-task > ul.mainInfo{
   grid-area: mainInfo;
@@ -468,12 +502,12 @@ div#tasks-area > div.a-task > ul.mainInfo{
 
 div#tasks-area > div.a-task > ul.mainInfo > .complete {
   grid-area: completeBtn;
-  border: 2px solid #4653EC;
+  border: 2px solid #e2ff0a;
   border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #F4F5F7;
+  background: #a0a1a2;
   margin: 0 10px 0 0;
   padding: 12px 12px;
   cursor: pointer;
@@ -481,7 +515,7 @@ div#tasks-area > div.a-task > ul.mainInfo > .complete {
 }
 
 div#tasks-area > div.a-task > ul.mainInfo > .complete.after{
-  background: #4653EC;
+  background: #e2ff0a;
   /* transition: 0.8s all ease; */
 }
 div#tasks-area > div.a-task > ul.mainInfo > .taskName {
@@ -490,10 +524,11 @@ div#tasks-area > div.a-task > ul.mainInfo > .taskName {
   border: none;
   background: inherit;
   font-size: 1rem;
+  color: #40495A;
 }
 div#tasks-area > div.a-task > ul.mainInfo > .taskName.done{
   text-decoration: line-through;
-  color: #4653EC;
+  color: #e2ff0a;
 }
 
 div#tasks-area > div.a-task > ul.mainInfo > ul.icons{
@@ -506,23 +541,24 @@ div#tasks-area > div.a-task > ul.mainInfo > ul.icons{
 }
 
 div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.edit {
-  color: #B6B6B6;
+  color: #FEFAF1;
   cursor: pointer;
 }
 
 div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.edit:hover{
-  font-size: 1.8rem;
+  font-size: 1.7rem;
+  color: #e2ff0a;
   transition: 0.8s all ease;
 }
 
 div#tasks-area > div.a-task > ul.mainInfo >  ul.icons > span.edit.active{
-    color: #4653EC;
+    color: #e2ff0a;
     transition: 1s all ease;
 }
 
 div#tasks-area > div.a-task > ul.mainInfo >  ul.icons  > span.delete {
   cursor: pointer;
-  color: #B6B6B6;
+  color: #FEFAF1;
   font-size: 1.4rem;
 }
 
@@ -537,14 +573,15 @@ div#tasks-area > div.a-task > .description {
   grid-area: description;
   border: none;
   background: inherit;
-  height: 15px;
+  height: 12px;
   font-size: 0.7rem;
+  color: #40495A;
 }
 
 div#tasks-area > div.a-task > .selection {
   grid-area: selection;
   padding-bottom: 15px;
-  border-bottom:1px solid #B6B6B6;
+  border-bottom:1px solid #e2ff0a;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -553,12 +590,13 @@ div#tasks-area > div.a-task > .selection {
 
 div#tasks-area > div.a-task >  .selection > .due-date {
   padding: 5px 10px 5px 3px;
-  width: 90px;
+  width: 97px;
     /* border:1px solid #B6B6B6; */
   border:none;
   border-radius: 7px;
-  background: #F4F5F7;
+  background: #a0a1a2;
   font-size: 0.7rem;
+  color: #e2ff0a;
 }
 
 div#tasks-area > div.a-task >  .selection > .task-priority-type {
@@ -567,7 +605,8 @@ div#tasks-area > div.a-task >  .selection > .task-priority-type {
   border:none;
   /* border:1px solid #B6B6B6; */
   border-radius: 7px;
-  background: #F4F5F7;
+  background: #a0a1a2;
+  color: #e2ff0a;
   font-size: 0.7rem;
 }
 
@@ -577,7 +616,8 @@ div#tasks-area > div.a-task > .selection > .type {
   /* border:1px solid #B6B6B6; */
   border:none;
   border-radius: 7px;
-  background: #F4F5F7;
+  background: #a0a1a2;
+  color: #e2ff0a;
   font-size: 0.7rem;
 }
 
@@ -598,29 +638,30 @@ div#tasks-area > div.a-task > .task-action > button {
 }
 
 div#tasks-area > div.a-task > .task-action > button:nth-child(1) {
-  border: 1px solid #B8B8B8;
-  background-color:#F4F5F7;
+  border: 1px solid #40495A;
+  color: #40495A;
+  background-color:inherit;
 }
 
 div#tasks-area > div.a-task > .task-action > button:nth-child(2) {
-  border: 1px solid #4653EC;
-  background-color: #4653EC;
-  color: #F4F5F7;
+  border: 1px solid #e2ff0a;
+  background-color: #e2ff0a;
+  color: #40495A;
 }
 
   
 div#tasks-area > div.a-task > .task-action > button:nth-child(1):hover {
-  border: 1px solid #4653EC;
-  background-color: #F4F5F7;
-  color: #4653EC;
+  border: 1px solid #FEFAF1;
+  background-color: inherit;
+  color: #FEFAF1;
   margin: 0 10px;
   transition: 1s all ease;
 }
 
 div#tasks-area > div.a-task > .task-action > button:nth-child(2):hover {
-  border: 1px solid #D9CEDE;
-  background-color: #D9CEDE;
-  color: #FCFF7A;
+  background-color: inherit;
+  /* color: #FEFAF1; */
+  color: #e2ff0a;
   margin: 0 10px;
   transition: 1s all ease;
 }
